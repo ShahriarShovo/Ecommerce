@@ -56,7 +56,7 @@ def user_login(request):
         return render(request,'accounts/user_login.html')
     
     
-#@login_required(login_url='login')
+@login_required(login_url='user_login')
 def myaccount(request):
     user=request.user
     redirectUrl=detectUser(user)

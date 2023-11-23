@@ -75,3 +75,20 @@ $(document).ready(function() {
     });
 
 
+
+// $(document).ready(function(){
+//         $('.increase_cart_item').on('click', function(e){
+//             e.preventDefault();
+//             pk = $(this).attr('data-id')
+           
+            
+//             $.ajax({
+//                 type : 'GET',
+//                 url :$(this).attr('data-url'),
+//                 data : pk,
+//                 success : function(data){
+//                     alert(data)
+//                 }
+//             })
+//         })
+//    });

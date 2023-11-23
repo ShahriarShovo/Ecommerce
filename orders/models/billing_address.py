@@ -40,41 +40,10 @@ class Billing_Address_Update_Manager(models.Manager):
         address.phone=args[1]
         address.house_number=args[2]
         address.street=args[3]
-        address.state=args[4],
+        address.state=args[4]
         address.country= args[5]
         address.save()
     
-
-    # def update_zipcode(self, user, new_zipcode):
-    #     print("New zip -------------", new_zipcode)
-    #     instance = self.get(user=user)
-    #     instance.zipcode = new_zipcode
-    #     instance.save()
-
-    # def update_phone(self, user, new_phone):
-    #     instance = self.get(user=user)
-    #     instance.phone = new_phone
-    #     instance.save()
-    
-    # def update_house_number(self, user, new_house_number):
-    #     instance = self.get(user=user)
-    #     instance.house_number = new_house_number
-    #     instance.save()
-
-    # def update_street(self, user, new_street):
-    #     instance = self.get(user=user)
-    #     instance.street = new_street
-    #     instance.save()
-
-    # def update_state(self, user, new_state):
-    #     instance = self.get(user=user)
-    #     instance.state = new_state
-    #     instance.save()
-    
-    # def update_country(self, user, new_country):
-    #     instance = self.get(user=user)
-    #     instance.country = new_country
-    #     instance.save()
 
 
 class BillingAddress(models.Model):

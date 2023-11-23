@@ -10,13 +10,17 @@ class Order(models.Model):
     DELIVER=2
     CANCLE=3
     oder_status = ((CANCLE, 'Cancle'), (DELIVER,'Deliver'), (PENDING,'Pending'))
-    orderItems = models.ManyToManyField(Cart)
+    orderItems = models.ManyToManyField(Cart, related_name='carts')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     paymentId = models.CharField(max_length=264, blank=True, null=True)
     orderId = models.CharField(max_length=200, blank=True, null=True)
     select_order_stats = models.PositiveSmallIntegerField(choices=oder_status, blank=True, null=True)
+    quantity = models.IntegerField(default=0)
+
+    def __str__(self) -> str:
+        return self.user.email
     
 
     def get_total_tax(self):

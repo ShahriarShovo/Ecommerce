@@ -1,5 +1,5 @@
 
-from django.shortcuts import render, get_object_or_404 , redirect
+from django.shortcuts import render, get_object_or_404 , redirect, HttpResponse
 from cart.models.cart import Cart
 from orders.models.orders import Order
 from products.models.models import Products
@@ -21,3 +21,7 @@ def increase_cart(request,pk):
     else:
 
         return redirect("index")
+
+
+# def increase_cart(request,pk):
+#     HttpResponse(pk)

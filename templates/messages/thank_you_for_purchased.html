@@ -75,12 +75,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+
+                                            {% for completed in orders %}
                                             
                                             <tr>
-                                                <td>1024MB Cloud 2.0 Server - elisium.dynamic.com (12/04/2014 - 01/03/2015)</td>
-                                                <td class="text-center">1</td>
+                                                <td>{{completed.orderItems.item.product_name}}</td>
+                                                <td class="text-center">{{completed.quantity}}</td>
                                                 <td class="text-center">$25.00 USD</td>
                                             </tr>
+
+                                            {% endfor %}
                                            
                                           
                                         </tbody>

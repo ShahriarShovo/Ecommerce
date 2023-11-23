@@ -24,15 +24,16 @@ def user_dashboard(request):
         #print(" order complete-----------", last_orderd)
 
         #pending_products = Products.objects.filter(cart__order__ordered=True, cart__order__select_order_stats=1,cart__order__created=datetime.today())
-        pending_products = Products.objects.filter(cart__order__ordered=True, 
-                                                   cart__order__select_order_stats=1)
+        # pending_products = Products.objects.filter(cart__order__ordered=True, 
+        #                                            cart__order__select_order_stats=1)
             #order_completed_qs=order_completed[0]
             # id = order_completed_qs.id
             #name = order_completed.orderItems
+        pending_order = Order.objects.filter(user=current_user, ordered=True, select_order_stats=1).values()
 
             
            
-        print(" order ----------complete-----------", pending_products)
+        print(" order ----------complete-----------", pending_order)
 
         return render(request,'dashboard/user_dashboard.html', locals())
         

@@ -26,15 +26,11 @@ def send_verification_email(request, user,mail_subject,email_template):
 
 
 
-
-
-
-
 def detectUser(user):
     if user.role==2:
-        redirectUrl= 'user_auth_user_login'
+        redirectUrl= 'user_dashboard'
         return redirectUrl
-    # elif user.role==1 and user.is_superadmin:
-    #     redirectUrl= '/admin'
-    #     return redirectUrl
+    elif user.role==1:
+        redirectUrl= 'admin_home'
+        return redirectUrl
 

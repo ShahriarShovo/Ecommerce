@@ -5,8 +5,10 @@ from payments.views.product_purchased import product_purchased
 from django.shortcuts import HttpResponseRedirect
 from django.urls import reverse
 
+
 @csrf_exempt
 def success(request):
+
 
     if request.method=='POST' or request.method=='post':
         payment_data=request.POST
@@ -17,6 +19,7 @@ def success(request):
 
         convert_data = payment_data.dict()
         saved_data = aamar_pay_data.objects.create(email=email, datas=convert_data)
+
 
         return HttpResponseRedirect(reverse('product_purchased', kwargs={'val_id':pg_txnid, 'tran_id':txnid},))
     

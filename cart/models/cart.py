@@ -13,8 +13,8 @@ class Cart(models.Model):
     updatedd = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return str(self.id)
-        #return f'{self.quantity} X {self.item}'
+        #return str(self.id)
+        return f'{self.quantity} X {self.item}'
     
     def calculate_tax(self):
         tax = self.item.product_price * self.quantity * (5 / 100)
@@ -27,6 +27,7 @@ class Cart(models.Model):
         float_total = format( total, '0.2f')
         print(' cart float_total -----------------------', float_total)
         return float_total
+    
     
 
     

@@ -1,0 +1,64 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block headers %}
+
+{% include 'include/main_include_file.html' %}
+
+{% endblock headers %}
+
+
+
+{% block body %}
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y bg">
+
+    <div class="container">
+        <div class="row">
+        {% include "admin/dashboard/admin_options.html" %}
+        <main class="col-md-9">
+            <article class="card">
+            <header class="card-header">
+                <strong class="d-inline-block mr-3">{{user.username}}</strong>
+                <span>Login Date: {{ user.last_login|date:"F j, Y" }} at {{ user.last_login|time:"g:i A" }}</span> |
+                <span>Last Order Date: {{order_completed.created}} </span>
+            </header>
+            <div class="card-body">
+                <div class="row"> 
+                    <div class="col-md-8">
+                        <h6 class="text-muted"><p>Phone +880{{address.phone}} Email: {{user.email}} <br><br>  </p> </h6>
+                        
+                    </div>
+                    <div class="col-md-4">
+                        <h6 class="text-muted">Payment</h6>
+                        <span class="text-success">
+                            <i class="fab fa-lg fa-cc-visa"></i>
+                            Visa  **** 4216  
+                        </span>
+                        <p>Subtotal: $356 <br>
+                         Shipping fee:  $56 <br> 
+                         <span class="b">Total:  $456 </span>
+                        </p>
+                    </div>
+                </div> <!-- row.// -->
+            </div> <!-- card-body .// -->
+            <div class="table-responsive">
+
+           {% include "admin/include/product_list.html" %}
+
+
+            </div> <!-- table-responsive .end// -->
+            </article> <!-- order-group.// --> 
+        </main>
+    </div> <!-- row.// -->
+    </div>
+
+    </section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+
+{% endblock body %}

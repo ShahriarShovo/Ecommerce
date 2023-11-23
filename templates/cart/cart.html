@@ -41,7 +41,8 @@
                                 <div class="input-group-prepend">
                                     <a class="mr-2" href="{% url 'decrease_item' pk=cart.item.pk%}"><span> <i class="fa fa-minus"></i> </span></a>
                                 {{ cart.quantity }}
-                                <a class="mr-2" href="{% url 'increase_item' pk=cart.item.pk%}"><span><i class="fa fa-plus"></i> </span></a>
+                                <a   class="mr-2" href="{% url 'increase_item' pk=cart.item.pk %}"><span><i class="fa fa-plus"></i> </span></a>
+                                {% comment %} <a   class="increase_cart_item" data-id="{{cart.item.pk}}" data-url="{% url 'increase_item' pk=cart.item.pk %}" href="{% url 'increase_item' pk=cart.item.pk %}"><span><i class="fa fa-plus"></i> </span></a> {% endcomment %}
                                 </div>
                                 
             

@@ -16,6 +16,7 @@ urlpatterns = [
     path('auth/', include('user_auth.urls')),
     path('cart/', include('cart.urls')),
     path('check_out/', include('payments.urls')),
+    path('admin_panel/', include('admin_panel.urls')),
     
 
 ]

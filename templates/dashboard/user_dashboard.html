@@ -52,13 +52,13 @@
             <div class="table-responsive">
             <table class="table table-hover">
 
-                 {% for qs in pending_products %}
+                 {% for qs in pending_order %}
                 <tr>
                     <td width="65">
                         <img src="/media/{{qs.product_image}}" class="img-xs border">
                     </td>
                     <td> 
-                        <p class="title mb-0">{{qs.product_name}} </p>
+                        <p class="title mb-0">{{qs.orderItems.item.product_name}} </p>
                         <var class="price text-muted">{{qs.product_price}}</var>
                     </td>
                     <td> Brand <br> {{qs.product_brand}}  </td>

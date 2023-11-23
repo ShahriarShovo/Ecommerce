@@ -51,8 +51,10 @@ def initial_payment(request):
     headers = {}
 
     response = requests.request("POST", url, headers=headers, data=payload, files=files)
+    
    
     data = response.json()
+    print("Response from Amar pay -----------------------", data)
     return redirect(data['payment_url'])
 
 
