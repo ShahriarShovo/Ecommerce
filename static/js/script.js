@@ -49,46 +49,29 @@ $(document).ready(function() {
 	//////////////////////// Bootstrap tooltip
 	if($('[data-toggle="tooltip"]').length>0) {  // check if element exists
 		$('[data-toggle="tooltip"]').tooltip()
-	} // end if
-
-
-
-
-    
+	} // end if   
 }); 
-// jquery end
 
 
-//login pop up
-    document.addEventListener('DOMContentLoaded', function() {
-        const loginPopup = document.getElementById('login-popup');
-        const showPopupButton = document.getElementById('show-popup');
-        const closePopupButton = document.getElementById('close-popup');
+// console.log('hello')
+// var add_to_cart_btn = document.getElementsByClassName('update-cart')
 
-        showPopupButton.addEventListener('click', function() {
-            loginPopup.style.display = 'block';
-        });
+// console.log('add_to_cart_btn',add_to_cart_btn)
+// for (var i=0; i<add_to_cart_btn.length; i++){
+//     add_to_cart_btn[i].addEventListener('click', function(){
 
-        closePopupButton.addEventListener('click', function() {
-            loginPopup.style.display = 'none';
-        });
-    });
+//         var product_id = this.dataset.product
+//         var action = this.dataset.action
+
+//         console.log('product id ',product_id)
+//         console.log('action', action)
 
 
+//     })
+// }
 
-// $(document).ready(function(){
-//         $('.increase_cart_item').on('click', function(e){
-//             e.preventDefault();
-//             pk = $(this).attr('data-id')
-           
-            
-//             $.ajax({
-//                 type : 'GET',
-//                 url :$(this).attr('data-url'),
-//                 data : pk,
-//                 success : function(data){
-//                     alert(data)
-//                 }
-//             })
-//         })
-//    });
+
+
+
+
+

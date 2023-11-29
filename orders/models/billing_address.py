@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from user_auth.models.guest_user import Guest_User
 
 # Create your models here.
 
@@ -49,16 +50,18 @@ class Billing_Address_Update_Manager(models.Manager):
 class BillingAddress(models.Model):
 
     BANGLADESH=1
-    COUNTRY_CHOOSED  = ((BANGLADESH, 'bangladesh'), )
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    COUNTRY_CHOOSED  = ((BANGLADESH, 'Bangladesh'), )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
+    guest_user = models.ForeignKey(Guest_User, on_delete=models.CASCADE, null=True, blank=True)
     zipcode = models.CharField(max_length=10, blank=True)
     phone = models.CharField(max_length=200, blank=True)
     house_number = models.CharField(max_length=20, blank=True)
     street = models.CharField(max_length=30, blank=True)
     state = models.CharField(max_length=30, blank=True)
     country    = models.PositiveSmallIntegerField(choices=COUNTRY_CHOOSED, blank=True, null=True)
+    guest_user = models.BooleanField(default=False)
 
     objects = Billing_Address_Update_Manager()
     
     def __str__(self):
-        return f'{self.user.email} billing address' 
+        return self.phone

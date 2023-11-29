@@ -18,9 +18,7 @@
     <center><i class="fas fa-check-circle" style="font-size: 72px;margin-bottom: 20px;color: #28A745;"></i></center>
     <h2 class="text-center">Payment Successful</h2>
 	<br>
-	<div class="text-center">
-		<a href="" class="btn btn-success">Shop more</a>
-	</div>
+	
 </div>
 
 <div class="container" style="margin: 0 auto;width: 50%;padding: 50px;background: #f1f1f1;margin-top: 50px;margin-bottom: 50px;">
@@ -44,9 +42,9 @@
                                     <li><strong>Invoiced To</strong></li>
                                     <li>{{user.username}}</li>
                                     <li>{{user}}</li>
-                                    <li>{{street}}</li>
-                                    <li>{{state}}, {{zip_code}}</li>
-                                    <li>{{country}}</li>
+                                    <li>{{user_address.street}}</li>
+                                    <li>{{user_address.state}}, {{user_address.zip_code}}</li>
+                                    <li>{{user_address.get_country_display}}</li>
                                 </ul>
                             </div>
                         </div>
@@ -56,10 +54,11 @@
                             <div class="invoice-details mt25">
                                 <div class="well">
                                     <ul class="list-unstyled mb0">
-                                        <li><strong>Order</strong> #{{orderId}}</li>
-                                        <li><strong>Transaction</strong> #{{paymentId}}</li>
-                                        <li><strong>Order Date:</strong> {{orderd_created}}</li>
-                                        <li><strong>Status:</strong> PAID</li>
+                                        <li><strong>Order</strong> #{{order.orderId}}</li>
+                                        <li><strong>Transaction</strong> #{{order.paymentId}}</li>
+                                        <li><strong>Order Date:</strong> {{order.created}}</li>
+                                        <li><strong>Payment Status:</strong> PAID</li>
+                                        <li><strong>Status:</strong> {{item.get_select_order_stats_display}}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -76,12 +75,12 @@
                                         </thead>
                                         <tbody>
 
-                                            {% for completed in orders %}
+                                            {% for order_completed in order_object_invoice %}
                                             
                                             <tr>
-                                                <td>{{completed.orderItems.item.product_name}}</td>
-                                                <td class="text-center">{{completed.quantity}}</td>
-                                                <td class="text-center">$25.00 USD</td>
+                                                <td>{{order_completed.item.product_name}}</td>
+                                                <td class="text-center">{{order_completed.quantity}}</td>
+                                                <td class="text-center">{{order_completed.get_total}}</td>
                                             </tr>
 
                                             {% endfor %}
@@ -91,16 +90,16 @@
                                         <tfoot>
                                             <tr>
                                                 <th colspan="2" class="text-right">Sub Total:</th>
-                                                <th class="text-center">$237.00 USD</th>
+                                                <th class="text-center">&#2547; {{total_item_price}} BDT</th>
                                             </tr>
                                             <tr>
                                                 <th colspan="2" class="text-right">Tax:</th>
-                                                <th class="text-center">$47.40 USD</th>
+                                                <th class="text-center">&#2547; {{total_tax}} BDT</th>
                                             </tr>
                                             
                                             <tr>
                                                 <th colspan="2" class="text-right">Grand Total:</th>
-                                                <th class="text-center">$284.4.40 USD</th>
+                                                <th class="text-center">&#2547; {{total_amount}} BDT</th>
                                             </tr>
                                         </tfoot>
                                     </table>

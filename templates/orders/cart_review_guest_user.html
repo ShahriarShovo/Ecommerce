@@ -1,0 +1,162 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block headers %}
+
+
+
+{% include 'include/main_include_file.html' %}
+
+
+{% endblock headers %}
+
+
+
+{% block body %}
+
+<header class="section-header">
+   
+    </header> <!-- section-header.// -->
+    <section class="section-content padding-y bg">
+    <div class="container">
+    
+    
+    
+    <!-- ============================ COMPONENT 2 ================================= -->
+    <div class="row">
+            <main class="col-md-8">
+    
+    <article class="card mb-4">
+    <div class="card-body">
+        <h4 class="card-title mb-4">Review cart</h4>
+       
+        <div class="row">
+            {% for cart in carts %}
+            <div class="col-md-6">
+                <figure class="itemside  mb-4">
+                    <div class="aside"><img src="/media/{{cart.item.product_image}}" class="border img-sm"></div>
+                    <figcaption class="info">
+                        <p>{{cart.item.product_name}} | {{cart.item.product_brand}} </p>
+                        <p>Quantity : {{cart.quantity}} </p>
+                        <span class="text-muted">&#2547;{{cart.item.product_price}} each</span>
+                    </figcaption>
+                </figure>
+            </div> <!-- col.// -->
+            {% endfor %}
+        </div> <!-- row.// -->
+       
+    </div> <!-- card-body.// -->
+    </article> <!-- card.// -->
+    
+    
+    <article class="card mb-4">
+        <div class="card-body">
+            <h4 class="card-title mb-4">Contact info | You are a Guest User. Please fill all the fields.</h4>
+            <form  Method="POST" action="{% url 'initial_order' %}">
+                {% csrf_token %}
+               
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label>Frst name</label>
+                        <input type="text" name='first_name' value="{{g_f_name}}" class="form-control">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label>Last name</label>
+                        <input type="text" name='last_name' value="{{g_l_name}}" class="form-control" >
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label>Phone</label>
+                        <input type="text" name='phone' value="{{g_phone}}" class="form-control" >
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label>Email</label>
+                        <input type="email" name='email' value="{{g_email}}" class="form-control" > 
+                    </div>
+                    
+                </div> <!-- row.// -->	
+            {% comment %} </form> {% endcomment %}
+        </div> <!-- card-body.// -->
+        </article> <!-- card.// -->
+    
+        <article class="card mb-4">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Delivery info</h4>
+                {% comment %} <form  method="POST" action=""> {% endcomment %}
+                  
+                    <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label>Country*</label>
+                                <select name="country" class="form-control">
+                                    <option value="1">Bangladesh</option>
+                                    
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>State*</label>
+                                <input type="text"  name='state' value="{{g_country}}" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>Street*</label>
+                                <input type="text" name='street' value="{{g_street}}" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>Building</label>
+                                <input type="text" name='building' value="{{g_house_number}}" class="form-control">
+                            </div>
+                        
+                            <div class="form-group col-sm-6">
+                                <label>Phone</label>
+                                <input type="text" name='phone' value="{{g_phone}}" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>Zip</label>
+                                <input type="text" name='zip' value="{{g_zip}}" class="form-control">
+                            </div>
+        
+                            <div class="form-group col-sm-4">
+                                <button type="submit" name ="" class="btn btn-primary "> Update  </button>
+                            </div> 
+                    </div>
+                   
+                </form>
+                
+            </div> 
+            
+            </article>
+    
+    
+</main> <!-- col.// -->
+<aside class="col-md-4">
+    <div class="card">
+<div class="card-body">
+    <dl class="dlist-align">
+      <dt>Total price:</dt>
+      <dd class="text-right">&#2547; {{total_item_price}}</dd>
+    </dl>
+    <dl class="dlist-align">
+      <dt>Tax:</dt>
+      <dd class="text-right"> &#2547;{{total_tax}}</dd>
+    </dl>
+    <dl class="dlist-align">
+      <dt>Total:</dt>
+      <dd class="text-right text-dark b"><strong>&#2547;{{get_total_all}}</strong></dd>
+    </dl>
+    <hr>
+    <p class="text-center mb-3">
+        <img height="26" src="{% static 'images/misc/payments.png' %}" >
+    </p>
+    <a href="{% url 'initial_payment_amarPay' %}" class="btn btn-primary btn-block"> Checkout </a>
+    
+</div> <!-- card-body.// -->
+</div> <!-- card.// -->
+</aside> <!-- col.// -->
+</div> <!-- row.// -->
+    
+    </div> 
+    </section>
+
+
+    {% include "include/footer.html" %}
+
+{% endblock body %}

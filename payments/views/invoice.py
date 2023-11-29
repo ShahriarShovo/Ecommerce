@@ -17,10 +17,11 @@ def invoice(request):
         state = user_address.state
         zip_code = user_address.zipcode
         country = user_address.country
-        orders = Order.objects.filter(user=request.user, ordered=True, select_order_stats=1)
+        print("Country ------------------------", country)
+        orders = Order.objects.filter(user=request.user, ordered=True, select_order_stats=1).values()
         current_oders = orders[0]
         
-        #print("Objects ------------------", s)
+        print("Objects ------------------", orders)
         return render(request, 'messages/thank_you_for_purchased.html', locals())
     
     except:

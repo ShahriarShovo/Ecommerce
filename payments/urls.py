@@ -9,7 +9,7 @@ urlpatterns = [
 
     path('payment/', initial_payment, name='initial_payment_amarPay'),
     path('payment_sucess/', success, name='payment_success'),
-    path('product_purchased/<val_id>/<tran_id>/', product_purchased, name ='product_purchased'),
+    path('product_purchased/<val_id>/<tran_id>/<total_amount>/', product_purchased, name ='product_purchased'),
     path('invoice/', invoice, name ='invoice'),
     
     

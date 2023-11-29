@@ -1,0 +1,64 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block headers %}
+{% include 'include/main_include_file.html' %}
+{% endblock headers %}
+{% block body %}
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y bg">
+
+    <div class="container">
+        <div class="row">
+        {% include "admin/dashboard/admin_options.html" %}
+        <main class="col-md-9">
+            <article class="card">
+            <header class="card-header">
+                <strong class="d-inline-block mr-3">{{user.username}}</strong>
+                <span>Login Date: {{ user.last_login|date:"F j, Y" }} at {{ user.last_login|time:"g:i A" }}</span> |
+                <span>Last Order Date: {{order_completed.created}} </span>
+            </header>
+            <div class="card-body">
+                <div class="row"> 
+                    <div class="col-md-8">
+
+                        
+                    </div>
+                    
+                </div> <!-- row.// -->
+            </div> <!-- card-body .// -->
+            <div class="table-responsive">
+
+                
+                <table class="table table-hover">
+                         
+                    <tr>
+                        <td width="65">
+                           
+                        </td>
+                        <td> 
+                            <p class="title mb-0"> </p>
+                            <var class="price text-muted"></var>
+                        </td>
+                        <td> <br></td>
+                        <td width="250"> <a href="" class="btn btn-outline-primary">Edit</a> <a href="{% url 'add_product' %}" class="btn btn-outline-primary">Insert  </a> </td>
+                    </tr>
+                    
+                </table>
+
+           {% include "admin/include/product_list.html" %}
+
+
+            </div> <!-- table-responsive .end// -->
+            </article> <!-- order-group.// --> 
+        </main>
+    </div> <!-- row.// -->
+    </div>
+
+    </section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+
+{% endblock body %}

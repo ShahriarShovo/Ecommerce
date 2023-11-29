@@ -24,7 +24,7 @@
             <header class="card-header">
                 <strong class="d-inline-block mr-3">Order ID: 6123456789</strong>
                 <span>Login Date: {{ user.last_login|date:"F j, Y" }} at {{ user.last_login|time:"g:i A" }}</span> |
-                <span>Last Order Date: {{order_completed.created}} </span>
+                <span>Last Order Date : {{get_order.created}} </span>
             </header>
             <div class="card-body">
                 <div class="row"> 
@@ -55,13 +55,13 @@
                  {% for qs in pending_order %}
                 <tr>
                     <td width="65">
-                        <img src="/media/{{qs.product_image}}" class="img-xs border">
+                        <img src="/media/{{qs.item.product_image}}" class="img-xs border">
                     </td>
                     <td> 
-                        <p class="title mb-0">{{qs.orderItems.item.product_name}} </p>
-                        <var class="price text-muted">{{qs.product_price}}</var>
+                        <p class="title mb-0">{{qs.item.product_name}} </p>
+                        <var class="price text-muted">{{qs.item.product_price}}</var>
                     </td>
-                    <td> Brand <br> {{qs.product_brand}}  </td>
+                    <td> Brand <br> {{qs.item.product_brand}}  </td>
                     <td width="250"> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
                 </tr>
              

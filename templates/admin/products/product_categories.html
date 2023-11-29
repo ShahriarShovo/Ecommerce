@@ -1,0 +1,57 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block headers %}
+{% include 'include/main_include_file.html' %}
+{% endblock headers %}
+{% block body %}
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y bg">
+    <div class="container">
+        <div class="row">
+        {% include "admin/dashboard/admin_options.html" %}
+        <main class="col-md-9">
+            <article class="card">
+            <header class="card-header">
+                <strong class="d-inline-block mr-3">{{user.username}}</strong>
+                <span>Login Date: {{ user.last_login|date:"F j, Y" }} at {{ user.last_login|time:"g:i A" }}</span> |
+                <span>Last Order Date: </span>
+            </header>
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Delivery info</h4>
+                    <form  method="POST" action="{% url 'add_category' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label>Product Category*</label>
+                                    <input type="text" name='category_name' value="" class="form-control">
+                                </div>
+                                
+                                <div class="form-group col-sm-3">
+                                    <label></label>
+                                    <button type="submit" name='' value="" class="btn btn-primary btn-block"> Add Category</button>
+                                </div>
+                        </div>
+                    </form> 
+                    <table class="table table-hover">
+                        {% for cat in fatch_cat %}
+                    <tr>
+                        <td width="65">
+                        </td>
+                        
+                        <td  > 
+                            <p class="title mb-0">{{ forloop.counter }} | {{cat.category_name}}</p>
+                            <var class="price text-muted"></var>
+                        </td>
+                        <td>  <br>   </td>
+                        <td width="250"> <a href="{% url 'update_categories' pk=cat.pk %}" class="btn btn-outline-primary">Edit</a> <a href="{% url 'delete_category' pk=cat.pk %}" class="btn btn-outline-danger"> Delete </a> </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                </div>      
+        </main>
+    </section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+
+{% endblock body %}

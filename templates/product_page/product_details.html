@@ -84,31 +84,90 @@
     
     <br>
     
+    {% if user.is_authenticated %}
+
     <div class="row">
                 <div class="col-md-9">
     
         <header class="section-heading">
-            <h3>Customer Reviews </h3>  
-            
+            <h3>Customer Reviews </h3>    
         </header>
-    
+        {% if not product_details.products_review.all %}
+          <p> No Comment Yet</p>
+          <div class="form-group col-sm-6">
+            <label>Comment</label>
+            <textarea type="text" name='comment' value="" class="form-control"></textarea>
+        </div>
+        <a href="" class="btn btn-primary "> Comment </a>
+
+        {% else %}
         <article class="box mb-3">
+          {% for comments in  product_details.products_review.all %}
             <div class="icontext w-100">
-                <img src="../static/images/avatars/avatar1.jpg" class="img-xs icon rounded-circle">
+                <img src="{% static 'images/avatars/avatar1.jpg' %}" class="img-xs icon rounded-circle">
                 <div class="text">
-                    <span class="date text-muted float-md-right">24.04.2020 </span>  
-                    <h6 class="mb-1">Mike John </h6>
-                    
+                    <span class="date text-muted float-md-right">{{comments.commented_date}} </span>  
+                    <h6 class="mb-1">{{comments.user.username}} </h6>
                 </div>
             </div> <!-- icontext.// -->
             <div class="mt-3">
                 <p>
-                    Dummy comment Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    {{comments.comment_area}}
                 </p>	
             </div>
+            <br>
+            {% endfor %}
         </article>
+
+        <form method="POST" action="{% url 'customer_reviews' pk=product_details.pk  %}" >
+          {% csrf_token %}
+            <div class="form-group col-sm-6">
+              <label>Comment</label>
+              <textarea type="text" name='comment' value="" class="form-control"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary "> Comment </button>
+        </form>
+
+        {% endif %}
+
+
+       
+
+        {% else %}
+
+        <div class="row">
+          <div class="col-md-9">
+
+      <header class="section-heading">
+          <h3>Customer Reviews </h3>    
+      </header>
+      {% if not product_details.products_review.all %}
+        <p> No Comment Yet. Please Login for review</p>
+      
+      {% else %}
+
+      <article class="box mb-3">
+        {% for comments in  product_details.products_review.all %}
+          <div class="icontext w-100">
+              <img src="{% static 'images/avatars/avatar1.jpg' %}" class="img-xs icon rounded-circle">
+              <div class="text">
+                  <span class="date text-muted float-md-right">{{comments.commented_date}} </span>  
+                  <h6 class="mb-1">{{comments.user.username}} </h6>
+              </div>
+          </div> <!-- icontext.// -->
+
+          <div class="mt-3">
+              <p>
+                  {{comments.comment_area}}
+              </p>	
+          </div>
+          <br>
+          {% endfor %}
+      </article>
+
+      {% endif %}
+
+    {% endif %}
     
         
     

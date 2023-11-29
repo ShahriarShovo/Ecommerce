@@ -30,7 +30,8 @@
 						<del class="price-old">{{products.product_old_price}}</del>
 					</div> <!-- price-wrap.// -->
 				</div>
-				<a href="{% url 'add_to_cart' products.id %}"  class="btn btn-block btn-primary">Added to cart </a>
+				{% comment %} {% url 'add_to_cart' products.id %} {% endcomment %}
+				<a href="{% url 'add_to_cart' products.id %}" data-product={{products.pk}} data-action="addToCart"  class="btn btn-block btn-primary add-cart">Added to cart </a>
 			</figcaption>
 		</figure>
 	</div> <!-- col.// -->

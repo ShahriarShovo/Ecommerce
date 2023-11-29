@@ -71,15 +71,15 @@
             <div class="card-body">
                 <dl class="dlist-align">
                   <dt>Total price:</dt>
-                  <dd class="text-right">&#2547; {{order.get_totals | floatformat:2 }}</dd>
+                  <dd class="text-right">&#2547;{{total_item_price}} </dd>
                 </dl>
                 <dl class="dlist-align">
                   <dt>Tax:</dt>
-                  <dd class="text-right">&#2547; {{order.get_total_tax | floatformat:2 }}</dd>
+                  <dd class="text-right">&#2547;{{total_tax}} </dd>
                 </dl>
                 <dl class="dlist-align">
                   <dt>Total:</dt>
-                  <dd class="text-right text-dark b"><strong>&#2547;{{order.get_total_cost | floatformat:2 }}</strong></dd>
+                  <dd class="text-right text-dark b"><strong>&#2547;{{get_total_all}}</strong></dd>
                 </dl>
                 <hr>
                 <p class="text-center mb-3">
