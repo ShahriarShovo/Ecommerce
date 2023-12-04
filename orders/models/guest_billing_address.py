@@ -12,29 +12,34 @@ class Billing_Address_Update_Manager(models.Manager):
         print("args ---------------",args)
         print("kwargs ---------------",kwargs)
 
-        return self.create(user=user, zipcode=args[0],
-                            phone=args[1], house_number=args[2],
-                            street=args[3],state=args[4],
-                             country= args[5])
+        # return self.create(guest_user=user, zipcode=args[0],
+        #                     phone=args[1], house_number=args[2],
+        #                     street=args[3],state=args[4],
+        #                      country= args[5])
+
+        return self.create(user=user, zipcode=kwargs['zipcode'],
+                            phone=kwargs['phone'], house_number=kwargs['house_number'],
+                            street=kwargs['street'],state=kwargs['state'],
+                             country= kwargs['country'])
     
     
-    def update_user_billing_address(self, user, *args, **kwargs):
-        address = self.get(user=user)
-        address.zipcode=args[0]
-        address.phone=args[1]
-        address.house_number=args[2]
-        address.street=args[3]
-        address.state=args[4]
-        address.country= args[5]
-        address.save()
+#     def update_user_billing_address(self, user, *args, **kwargs):
+#         address = self.get(user=user)
+#         address.zipcode=args[0]
+#         address.phone=args[1]
+#         address.house_number=args[2]
+#         address.street=args[3]
+#         address.state=args[4]
+#         address.country= args[5]
+#         address.save()
     
 
 
-class BillingAddress(models.Model):
+class Guest_BillingAddress(models.Model):
 
     BANGLADESH=1
     COUNTRY_CHOOSED  = ((BANGLADESH, 'Bangladesh'), )
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(Guest_User, on_delete=models.CASCADE, null=True, blank=True, related_name='guest')
     zipcode = models.CharField(max_length=10, blank=True)
     phone = models.CharField(max_length=200, blank=True)
     house_number = models.CharField(max_length=20, blank=True)

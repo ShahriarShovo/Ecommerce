@@ -11,7 +11,7 @@ class Products(models.Model):
     product_brand = models.CharField(max_length=50)
     product_discription = models.TextField()
 
-    product_category = models.ForeignKey(Product_Categories, on_delete=models.CASCADE)
+    product_category = models.ForeignKey(Product_Categories, on_delete=models.CASCADE, related_name='category')
 
     def __str__(self) -> str:
         return self.product_name

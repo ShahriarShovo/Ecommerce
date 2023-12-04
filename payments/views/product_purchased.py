@@ -14,6 +14,7 @@ def product_purchased(request,val_id, tran_id,total_amount):
 
 
     if request.user.is_authenticated:
+        
         user = request.user
         user_address = BillingAddress.objects.get(user=user)
         cart_items = Cart.objects.filter(user=user, purchased=False)
@@ -40,10 +41,16 @@ def product_purchased(request,val_id, tran_id,total_amount):
 
         #user_address = BillingAddress.objects.get(user=user)
         cart_items = Cart.objects.filter(guest_user=False, purchased=False)
-        print("Cart item +++++++++++++++++",cart_items)
+        print("Cart item anonomous +++++++++++++++++",cart_items)
         total_tax=request.session['total_tax'] 
         total_item_price=request.session['total_item_price']
         order_object_invoice=cart_items
+
+        print("Cart item anonomous user +++++++++++++++++",order_object_invoice)
+
+        cus_name = request.session['first_name']
+        email = request.session['email']
+        phone = request.session['phone']
 
         
         order = Order.objects.create(
@@ -61,10 +68,6 @@ def product_purchased(request,val_id, tran_id,total_amount):
         
         return render(request, 'messages/thank_you_for_purchased.html', locals())
 
-    
-
-    # 
-    #return HttpResponseRedirect(reverse('invoice'))
 
 
 

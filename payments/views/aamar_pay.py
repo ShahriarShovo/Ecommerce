@@ -65,7 +65,12 @@ def initial_payment(request):
     else:
 
         get_total_all=request.session['get_total_all']
+        cus_name = request.session['first_name']
+        email = request.session['email']
+        phone = request.session['phone']
         print("Session get_total_all ++++++++++++++++++++", get_total_all)
+        print("Session get_name ++++++++++++++++++++", cus_name)
+        print("Session get_email ++++++++++++++++++++", email)
 
         tran_id = generate_transaction_id()
         
@@ -73,9 +78,9 @@ def initial_payment(request):
 
         payload = {'store_id': STORE_ID,
         'signature_key': SIGNATURE_KEY,
-        'cus_name': "None",
-        'cus_email': "ex@mail.com",
-        'cus_phone': "None",
+        'cus_name': cus_name,
+        'cus_email': email,
+        'cus_phone': phone,
         'amount': get_total_all,
         'currency': 'BDT',
         'tran_id': tran_id,

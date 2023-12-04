@@ -8,7 +8,8 @@ register = template.Library()
 def cart_total(user):
 
     if user == None:
-        cart_total_item = Cart.objects.filter(guest_user=True, purchased=False)
+        cart_total_item = Cart.objects.filter(user=None, purchased=False)
+        print(" without user +++++++++++++++++++++", cart_total_item)
         return cart_total_item.count()
     
     else:

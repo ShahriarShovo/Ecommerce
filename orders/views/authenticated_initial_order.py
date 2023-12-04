@@ -1,9 +1,11 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render,redirect,get_object_or_404, HttpResponse
 from cart.models.cart import Cart
 from orders.models.orders import Order
 from user_auth.models.user import User
 from orders.models.billing_address import BillingAddress
+from orders.models.guest_billing_address import Guest_BillingAddress
 from user_auth.models.guest_user import Guest_User
+
 
 
 
@@ -15,6 +17,7 @@ def initial_order(request):
         user_last_name=user.last_name
         user_email = user.email
         user_name= user.username
+
         try :
             address = BillingAddress.objects.get(user=user)
             
@@ -76,24 +79,13 @@ def initial_order(request):
         
     else:
 
+
         if request.method == "POST":
             first_name = request.POST.get('first_name')
             last_name = request.POST.get('last_name')
             phone = request.POST.get('phone')
             email = request.POST.get('email')
 
-
-            guest_user_saved = Guest_User(first_name=first_name,last_name=last_name,phone=phone,email=email)
-            guest_user_saved.save()
-
-            retrive_guest_user=Guest_User.objects.filter(email=email)[0]
-            g_f_name=retrive_guest_user.first_name
-            g_l_name=retrive_guest_user.last_name
-            g_phone=retrive_guest_user.phone
-            g_email=retrive_guest_user.email
-
-
-            
             country = request.POST.get('country')
             state = request.POST.get('state')
             street = request.POST.get('street')
@@ -101,55 +93,69 @@ def initial_order(request):
             phone = request.POST.get('phone')
             zip = request.POST.get('zip')
 
-            guest_billing_address = BillingAddress(zipcode=zip,phone=phone,house_number=house_number,
-                                                   street=street,state=state,country=country,guest_user=True)
-            guest_billing_address.save()
-
-            g_country=retrive_guest_billing_address=BillingAddress.objects.filter(phone=phone)[0]
-            g_state=retrive_guest_billing_address.country
-            g_street=retrive_guest_billing_address.state
-            g_house_number=retrive_guest_billing_address.street
-            g_phone=retrive_guest_billing_address.phone
-            g_zip=retrive_guest_billing_address.zipcode
-
-
-            print(" Guest user phone ++++++++++++++++++++++",retrive_guest_billing_address)
-
-
-
+            print("First name +++++++++++++++++++++", first_name)
+            print("last_name name +++++++++++++++++++++", last_name)
+            print("phone name +++++++++++++++++++++", phone)
+            print("email name +++++++++++++++++++++", email)
 
 
             
 
-            # g_country=request.session['country']
-            # g_state=request.session['state']
-            # g_street =request.session['street']
-            # g_house_number =request.session['house_number']
-            # g_phone=request.session['phone']
-            # g_zip=request.session['zip']
 
-            # print("country ___________-name ", country)
-            # print("state ___________-name ", state)
-            # print("street ___________-name ", street)
-            # print("house_number ___________-name ", house_number)
-            # print("phone ___________-name ", phone)
-            # print("zip ___________-name ", zip)
+            guest_user_saved = Guest_User.objects.save_guest_user_data(first_name=first_name,
+                                                                        last_name=last_name,
+                                                                        phone=phone,
+                                                                        email=email)
 
-        carts = Cart.objects.filter(guest_user=True, purchased=False)
-        #orders = Order.objects.filter(user=request.user, ordered=False)
-        # if carts.exists() and orders.exists() :
-        #     order = orders[0]
-        if carts.exists():
-            total_item_price=request.session['total_item_price']
-            total_tax=request.session['total_tax'] 
-            get_total_all=request.session['get_total_all'] 
-            # print("Session total_item_price ++++++++++++++++++++", total_item_price)
-            # print("Session total_tax ++++++++++++++++++++", total_tax )
-            # print("Session get_total_all ++++++++++++++++++++", get_total_all)
-            return render(request, 'orders/cart_review_guest_user.html', locals())
+            print( "guest_user_saved+++++++++++++++++++++ ", guest_user_saved)
+
+            user = request.user.id
+
+            request.session['first_name']=first_name
+            request.session['last_name']=last_name
+            request.session['phone']=phone
+            request.session['email']=email
+
+
+            # identifier = request.session.get('email')
+            # guest_user_data_update = Guest_User.objects.update_guest_user_data(identifier)
+
+            saved_guest_billiging=Guest_BillingAddress.objects.create_user_billing_address(
+                                                                user=guest_user_saved,
+                                                                zipcode=zip, phone=phone,
+                                                                house_number=house_number,
+                                                                street=street,
+                                                                state=state,
+                                                                country=country
+                                                                )
             
-        else:
-            return redirect("index")
+            request.session['zipcode']=zip
+            request.session['phone']=phone
+            request.session['house_number']=house_number
+            request.session['street']=street
+            request.session['state']=state
+            request.session['country']=country
+
+            
+
+
+    carts = Cart.objects.filter(guest_user=True, purchased=False)
+    #orders = Order.objects.filter(user=request.user, ordered=False)
+    # if carts.exists() and orders.exists() :
+    #     order = orders[0]
+    if carts.exists():
+        total_item_price=request.session['total_item_price']
+        total_tax=request.session['total_tax'] 
+        get_total_all=request.session['get_total_all'] 
+        # print("Session total_item_price ++++++++++++++++++++", total_item_price)
+        # print("Session total_tax ++++++++++++++++++++", total_tax )
+        # print("Session get_total_all ++++++++++++++++++++", get_total_all)
+        return render(request, 'orders/cart_review_guest_user.html', locals())
+        
+    else:
+        return redirect("index")
+
+        
 
         
         

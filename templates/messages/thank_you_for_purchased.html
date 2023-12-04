@@ -40,11 +40,22 @@
                             <div class="invoice-from">
                                 <ul class="list-unstyled text-right">
                                     <li><strong>Invoiced To</strong></li>
+                                    {% if user.is_authenticated %}
                                     <li>{{user.username}}</li>
                                     <li>{{user}}</li>
                                     <li>{{user_address.street}}</li>
                                     <li>{{user_address.state}}, {{user_address.zip_code}}</li>
                                     <li>{{user_address.get_country_display}}</li>
+                                    
+                                    {% else %}
+
+                                    <li>{{ request.session.first_name }}</li>
+                                    <li>{{request.session.email}}</li>
+                                    <li>{{request.session.street}}</li>
+                                    <li>{{request.session.state}}, {{request.session.zip_code}}</li>
+                                    <li>{{request.session.get_country_display}}</li>
+
+                                    {% endif %}
                                 </ul>
                             </div>
                         </div>
