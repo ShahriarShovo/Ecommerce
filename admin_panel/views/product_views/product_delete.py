@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from products.models.models import Products
+from products.models.products_model import Products
 
 def product_delete(request,pk):
     

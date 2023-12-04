@@ -4,7 +4,7 @@ from django.shortcuts import render, HttpResponseRedirect,redirect
 from django.urls import reverse
 from django.http import HttpResponse
 from orders.models.billing_address import BillingAddress
-from products.models.models import Products
+from products.models.products_model import Products
 import datetime
 
 

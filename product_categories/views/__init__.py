@@ -1,2 +1,2 @@
-from product_categories.views.context_processors import categories
+from product_categories.views.category_context_processors import categories
 from product_categories.views.show_product_cat_wish import show_product_cat_wise

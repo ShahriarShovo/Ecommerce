@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from products.models.models import Products
+from products.models.products_model import Products
 from django.core.paginator import Paginator,EmptyPage, PageNotAnInteger
 
 # Create your views here.
 
 def index(request):
 
-    fatch_all_products = Products.objects.all()[:6]
+    fatch_all_products = Products.objects.all()
 
     items_per_page = 2
 

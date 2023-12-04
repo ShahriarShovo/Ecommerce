@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404 , redirect
 from cart.models.cart import Cart
-from products.models.models import Products
+from products.models.products_model import Products
 
 
 def increase_cart(request,pk):

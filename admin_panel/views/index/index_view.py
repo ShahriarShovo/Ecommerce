@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-from products.models.models import Products
+from products.models.products_model import Products
 from user_auth.models.user import User
 from orders.models.orders import Order
 from cart.models.cart import Cart

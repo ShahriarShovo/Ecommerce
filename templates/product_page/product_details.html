@@ -31,6 +31,9 @@
     <div class="mb-3"> 
         <var class="price h4">&#2547;{{product_details.product_price}}</var> 
     </div> 
+    <div class="mb-3"> 
+      <var class="price h4">{{product_details.product_brand}} </var> 
+  </div> 
     
     <p> {{product_details.product_discription}}</p>
     
@@ -92,15 +95,22 @@
         <header class="section-heading">
             <h3>Customer Reviews </h3>    
         </header>
-        {% if not product_details.products_review.all %}
+        
+         {% if not product_details.products_review.all %}
           <p> No Comment Yet</p>
-          <div class="form-group col-sm-6">
-            <label>Comment</label>
-            <textarea type="text" name='comment' value="" class="form-control"></textarea>
-        </div>
-        <a href="" class="btn btn-primary "> Comment </a>
+          
+          <form method="POST" action="{% url 'customer_reviews' pk=product_details.pk  %}">
+            {% csrf_token %}
+              <div class="form-group col-sm-6">
+                <label>Comment</label>
+                <textarea type="text" name='comment' value="" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary "> Comment </button>
+  
+          </form>
 
-        {% else %}
+        {% else %} 
+
         <article class="box mb-3">
           {% for comments in  product_details.products_review.all %}
             <div class="icontext w-100">
@@ -119,21 +129,26 @@
             {% endfor %}
         </article>
 
-        <form method="POST" action="{% url 'customer_reviews' pk=product_details.pk  %}" >
+
+         <form method="POST" action="{% url 'customer_reviews' pk=product_details.pk  %}">
           {% csrf_token %}
             <div class="form-group col-sm-6">
               <label>Comment</label>
               <textarea type="text" name='comment' value="" class="form-control"></textarea>
           </div>
           <button type="submit" class="btn btn-primary "> Comment </button>
-        </form>
 
-        {% endif %}
+        </form> 
+
+        {% endif %} 
 
 
        
 
         {% else %}
+
+
+
 
         <div class="row">
           <div class="col-md-9">

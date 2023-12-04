@@ -70,7 +70,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "product_categories.views.context_processors.categories",
+                "product_categories.views.category_context_processors.categories",
+                "product_categories.views.brand_context_processor.brands"
             ],
             'libraries':{
             'cart_tag': 'cart.templatetags.cart_tag',

@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from products.models.models import Products
-from product_categories.models.models import Product_Categories
+from products.models.products_model import Products
+from product_categories.models.product_category import Product_Categories
 
 
 def add_product(request):

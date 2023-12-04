@@ -1,1 +1,2 @@
-from product_categories.models.models import Product_Categories
+from product_categories.models.product_category import Product_Categories
+from product_categories.models.product_brand import Product_Brand

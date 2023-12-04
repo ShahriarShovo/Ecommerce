@@ -1,5 +1,5 @@
 from django.db import models
-from products.models.models import Products
+from products.models.products_model import Products
 from user_auth.models.user import User
 
 

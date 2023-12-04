@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
-from product_categories.models.models import Product_Categories
+from product_categories.models.product_category import Product_Categories
 
 
 def fatch_categories(request):

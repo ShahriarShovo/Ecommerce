@@ -7,9 +7,9 @@
     </header>
     <div class="filter-content collapse show" id="collapse_1" style="">
         <div class="card-body">
-            {% for cat in category_name %}
+            {% for brand in brand_name %}
             <ul class="list-menu">
-            <li><a href="{% url 'show_product_cat_wise' pk=cat.pk %}"> {{cat.category_name}}</a></li>
+            <li><a href=""> {{brand.brand_name}}</a></li>
             </ul>
             {% endfor %}
 
