@@ -16,7 +16,7 @@
 			</button>
 			<div class="dropdown-menu">
 				{% for cat in category_name %}
-			   <a class="dropdown-item" href="#">{{cat.category_name}} </a>
+			   <a class="dropdown-item" href="{% url 'show_product_cat_wise' pk=cat.pk %}">{{cat.category_name}} </a>
 			   {% endfor %}
 		   </div>
 		</div>  <!-- category-wrap.// -->

@@ -86,7 +86,7 @@
                                         </thead>
                                         <tbody>
 
-                                            {% for order_completed in order_object_invoice %}
+                                             {% for order_completed in order_object_invoice %}
                                             
                                             <tr>
                                                 <td>{{order_completed.item.product_name}}</td>
@@ -94,7 +94,19 @@
                                                 <td class="text-center">{{order_completed.get_total}}</td>
                                             </tr>
 
-                                            {% endfor %}
+                                            {% endfor %} 
+
+                                            {% comment %} {% for order_completed in array %}
+                                            
+                                            <tr>
+                                                <td>{{order_completed.item.product_name}}</td>
+                                                <td class="text-center">{{order_completed.quantity}}</td>
+                                                <td class="text-center">{{order_completed.get_total}}</td>
+                                            </tr>
+
+                                            {% endfor %} {% endcomment %}
+
+
                                            
                                           
                                         </tbody>
