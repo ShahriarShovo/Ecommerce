@@ -16,3 +16,33 @@ class Products(models.Model):
 
     def __str__(self) -> str:
         return self.product_name
+    
+
+
+class VariationManager(models.Manager):
+
+    def size(self):
+        return super(VariationManager,self).filter(Variation='size')
+    
+
+    def color(self):
+        return super(VariationManager,self).filter(Variation='color')
+
+
+PRODUCT_VARIATION=(
+    ('size','size'),
+    ('color','color'),
+)
+
+class Variation(models.Model):
+    Variation = models.CharField(max_length=100, choices=PRODUCT_VARIATION)
+    name = models.CharField(max_length=50)
+    product = models.ForeignKey(Products, on_delete=models.CASCADE)
+    price= models.IntegerField()
+    created = models.DateTimeField(auto_now_add=True)
+
+    objects= VariationManager()
+
+    def __str__(self):
+        return self.name
+    

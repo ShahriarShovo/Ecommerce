@@ -10,7 +10,6 @@ def product_detail(request, pk):
 
     product_details = Products.objects.get(pk=pk)
 
-
     context={
         'product_details' : product_details,
     }

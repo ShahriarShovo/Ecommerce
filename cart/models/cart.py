@@ -14,6 +14,8 @@ class Cart(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="cart", null=True, blank=True)
     item = models.ForeignKey(Products, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
+    size = models.CharField(max_length=100, blank=True, null=True)
+    color = models.CharField(max_length=100, blank=True, null=True)
     purchased = models.BooleanField(default=False)
     guest_user = models.BooleanField(default=False)
     #guest_user = models.ForeignKey(Guest_User, on_delete=models.CASCADE, related_name="cart", null=True, blank=True)
