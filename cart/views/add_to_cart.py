@@ -9,6 +9,7 @@ from products.models.products_model import Products
 # Create your views here.
 
 def add_to_cart(request, pk):
+
     product_item = get_object_or_404(Products, pk=pk)
 
     if request.user.is_authenticated:
@@ -22,7 +23,11 @@ def add_to_cart(request, pk):
             Cart.objects.create(item=product_item, user= request.user, purchased = False)
             return redirect("index")
         
+        
     else:
+        
+        user=request.user.id
+        print("Guest user id -----------------********************", user)
         cart_item = Cart.objects.filter(item=product_item, guest_user=True,  purchased = False).first()
         if cart_item:
             cart_item.quantity +=1

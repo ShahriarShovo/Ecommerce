@@ -25,11 +25,7 @@ def product_purchased(request,val_id, tran_id,total_amount):
         total_tax=request.session['total_tax'] 
         total_item_price=request.session['total_item_price']
         order_object_invoice=cart_items
-        # global_dict.update(order_object_invoice)
-        #array.append(cart_items)
-        
-
-        
+       
         order = Order(user=user,
                       ordered=True,
                       paymentId=val_id,
@@ -60,7 +56,7 @@ def product_purchased(request,val_id, tran_id,total_amount):
     else:
 
         #user_address = BillingAddress.objects.get(user=user)
-        cart_items = Cart.objects.filter(guest_user=False, purchased=False)
+        cart_items = Cart.objects.filter(guest_user=True, purchased=False)
         print("Cart item anonomous +++++++++++++++++",cart_items)
         total_tax=request.session['total_tax'] 
         total_item_price=request.session['total_item_price']
@@ -73,17 +69,27 @@ def product_purchased(request,val_id, tran_id,total_amount):
         phone = request.session['phone']
 
         
-        order = Order.objects.create(
+        order = Order(
                                     ordered=True,
                                     paymentId=val_id,
                                     orderId=tran_id,
                                     final_total =total_amount,
                                     total_tax=total_tax,
                                     sum_of_each_product=total_item_price)
+        
+        get_payment_id = Order.objects.filter(paymentId=val_id)
+
+        if len(get_payment_id) == 0 :
+
+            order.save()
+
+        else:
+             print(" Nothing+++++++++++++")
+             
         for item in cart_items:
             item.purchased = True
             item.select_order_stats=1
-            item.guest_user=True
+            #item.guest_user=True
             item.save()
         
         return render(request, 'messages/thank_you_for_purchased.html', locals())
