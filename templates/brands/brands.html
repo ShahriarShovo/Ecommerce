@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block headers %}
+
+
+
+{% include 'include/main_include_file.html' %}
+
+
+{% endblock headers %}
+
+
+{% block body %}
+
+{% include 'include/side_bar.html' %}
+
+
+
+</aside> <!-- col.// -->
+<main class="col-md-9">
+
+
+<div class="row">
+{% for product_brand in brand_wise %}
+<div class="col-md-4">
+    <figure class="card card-product-grid">
+        <div class="img-wrap"> 
+            
+            <img src="/media/{{product_brand.product_image}}">
+            
+        </div> <!-- img-wrap.// -->
+        <figcaption class="info-wrap">
+            <div class="fix-height">
+                <a href="{% url 'product_detail' product_brand.pk %}" class="title"> {{product_brand.product_name}}</a>
+                <div class="price-wrap mt-2">
+                    <span class="price">&#2547;{{product_brand.product_price}}</span>
+                    <del class="price-old">{{product_brand.product_old_price}}</del>
+                </div> <!-- price-wrap.// -->
+            </div>
+            {% comment %} {% url 'add_to_cart' products.id %} {% endcomment %}
+            <a href="{% url 'add_to_cart' product_brand.id %}" data-product={{product_brand.pk}} data-action="addToCart"  class="btn btn-block btn-primary add-cart">Added to cart </a>
+        </figcaption>
+    </figure>
+</div> <!-- col.// -->
+{% endfor %}
+
+</div> <!-- row end.// -->
+
+
+
+
+
+
+{% endblock body %}
