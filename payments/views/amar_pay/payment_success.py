@@ -1,7 +1,7 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from payments.models.aamar_pay_data import aamar_pay_data
-from payments.views.product_purchased import product_purchased
+from payments.views.amar_pay.product_purchased import product_purchased
 from django.shortcuts import HttpResponseRedirect
 from django.urls import reverse
 
