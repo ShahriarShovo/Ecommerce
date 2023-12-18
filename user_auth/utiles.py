@@ -31,6 +31,6 @@ def detectUser(user):
         redirectUrl= 'user_dashboard'
         return redirectUrl
     elif user.role==1:
-        redirectUrl= 'admin_home'
+        redirectUrl= 'admin_home'  
         return redirectUrl
 

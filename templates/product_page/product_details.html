@@ -67,7 +67,7 @@
                 <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
                   {% for product_size_variation in product_details.variation_set.size %}
                   <label class="btn btn-light">
-                    <input type="radio" name="color" value="{{product_size_variation.name}}"> {{product_size_variation.name}}
+                    <input type="radio" name="size" value="{{product_size_variation.name}}"> {{product_size_variation.name}}
                   </label>
                   {% endfor %}
                   
