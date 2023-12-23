@@ -87,13 +87,6 @@ def cash_on_delivery(request):
             order.save()
         else:
             print(" again generate payment Id+++++++++++++")
-
-
-        
-            
-
-        
-        
         
         for item in cart_items:
             item.purchased = True
@@ -101,4 +94,7 @@ def cash_on_delivery(request):
             item.save()
         
         return render(request, 'messages/thank_you_for_purchased.html', locals())
+    
+    else:
+        pass
 

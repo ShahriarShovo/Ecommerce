@@ -30,8 +30,15 @@
 						<del class="price-old">{{products.product_old_price}}</del>
 					</div> <!-- price-wrap.// -->
 				</div>
+
+				<span class="fa fa-star checked"></span>
+				<span class="fa fa-star checked"></span>
+				<span class="fa fa-star checked"></span>
+				<span class="fa fa-star"></span>
+				<span class="fa fa-star"></span>
+
 				{% comment %} {% url 'add_to_cart' products.id %} {% endcomment %}
-				<a href="{% url 'add_to_cart' products.id %}" data-product={{products.pk}} data-action="addToCart"  class="btn btn-block btn-primary add-cart">Added to cart </a>
+				{% comment %} <a href="{% url 'add_to_cart' products.id %}" data-product={{products.pk}} data-action="addToCart"  class="btn btn-block btn-primary add-cart">Added to cart </a> {% endcomment %}
 			</figcaption>
 		</figure>
 	</div> <!-- col.// -->

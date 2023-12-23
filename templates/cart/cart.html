@@ -17,6 +17,8 @@
     <thead class="text-muted">
     <tr class="small text-uppercase">
       <th scope="col">Product</th>
+      <th scope="col" width="120">Color</th>
+      <th scope="col" width="120">Size</th>
       <th scope="col" width="120">Quantity</th>
       <th scope="col" width="120">Price</th>
       <th scope="col" class="text-right" width="200"> </th>
@@ -34,18 +36,38 @@
                 </figcaption>
             </figure>
         </td>
+
+        <td>
+            <figure class="itemside align-items-center">
+                
+                <figcaption class="info">
+                    <p class="title text-dark">{{cart.color}}</p>
+                 
+                </figcaption>
+            </figure>
+
+        </td>
+
+        <td>
+            <figure class="itemside align-items-center">
+                
+                <figcaption class="info">
+                    <p class="title text-dark">{{cart.size}}</p>
+                   
+                </figcaption>
+            </figure>
+
+        </td>
+
+
         <td> 
-         
-                        <div class="col"> 
-                            <div class="input-group input-spinner">
-                                <div class="input-group-prepend">
-                                    <a class="mr-2" href="{% url 'decrease_item' pk=cart.item.pk%}"><span> <i class="fa fa-minus"></i> </span></a>
-                                {{ cart.quantity }}
-                                <a   class="mr-2" href="{% url 'increase_item' pk=cart.item.pk %}"><span><i class="fa fa-plus"></i> </span></a>
-                                 {% comment %} <a   class="increase_cart_item" data-id="{{cart.item.pk}}" data-url="{% url 'increase_item' pk=cart.item.pk %}" href="{% url 'increase_item' pk=cart.item.pk %}"><span><i class="fa fa-plus"></i> </span></a> {% endcomment %}
-                                </div>
-                            </div> 
-                        </div> 
+        
+                        <div class="counter">
+                            <span class="down" onClick='decreaseCount(event, this)'> <a class="mr-2" href="{% url 'decrease_item' pk=cart.item.pk%}">-</a></span>
+                            <input type="text" value="{{ cart.quantity }}">
+                            <span class="up" onClick='increaseCount(event, this)'> <a   class="mr-2" href="{% url 'increase_item' pk=cart.item.pk %}">+</a></span>
+                          </div>
+               
         </td>
         <td> 
             <div class="price-wrap"> 

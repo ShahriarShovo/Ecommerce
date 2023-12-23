@@ -18,17 +18,28 @@ def add_to_cart(request, pk):
 
         size=request.POST.get('size')
         color=request.POST.get('color')
+        quantity= request.POST.get('quantity')
         print("Size ===================", size)
         print("Color ===================", color)
+        print("quantity ===================", quantity)
+
 
         if cart_item:
-            cart_item.quantity +=1
+
+            if quantity:
+
+                cart_item.quantity += int(quantity)
+            else:
+
+                cart_item.quantity +=1
+            
             cart_item.color=color
             cart_item.size=size
             cart_item.save()
             return redirect("index")
+        
         else:
-            Cart.objects.create(item=product_item,color=color,size=size, user= request.user, purchased = False)
+            Cart.objects.create(item=product_item,color=color,size=size, quantity=quantity, user= request.user, purchased = False)
             return redirect("index")
         
         
@@ -40,16 +51,22 @@ def add_to_cart(request, pk):
 
         size=request.POST.get('size')
         color=request.POST.get('color')
+        quantity= request.POST.get('quantity')
         print("Size ===================", size)
         print("Color ===================", color)
+        print("quantity ===================", quantity)
+
         if cart_item:
-            cart_item.quantity +=1
+            if quantity:
+                cart_item.quantity += int(quantity)
+            else:
+                cart_item.quantity +=1
             cart_item.color=color
             cart_item.size=size
             cart_item.save()
             return redirect("index")
         else:
-            Cart.objects.create(item=product_item,guest_user=True,color=color,size=size, purchased = False)
+            Cart.objects.create(item=product_item,guest_user=True,color=color,size=size,quantity=quantity, purchased = False)
 
             return redirect("index")
 
