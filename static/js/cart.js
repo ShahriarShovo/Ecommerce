@@ -34,4 +34,10 @@ function increaseCount(a, b) {
       input.value = value;
     }
   }
+
+
+  function get_size_name(size){
+    console.log(size)
+    window.location.href = window.location.pathname + `?size=${size}`
+  }
   

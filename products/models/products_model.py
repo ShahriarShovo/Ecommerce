@@ -2,6 +2,8 @@ from django.db import models
 from product_categories.models.product_category import Product_Categories
 from product_categories.models.product_brand import Product_Brand
 
+#from products.models.product_variation import Variation
+
 # Create your models here.
 
 
@@ -21,6 +23,12 @@ class Products(models.Model):
 
     def __str__(self) -> str:
         return self.product_name
+    
+
+    # def get_size_price(self, size):
+
+    #     size = Variation.objects.get(name=size)
+    #     print("model size ================______________", size)
     
 
 

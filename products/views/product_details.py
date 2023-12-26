@@ -15,4 +15,8 @@ def product_detail(request, pk):
         'product_details' : product_details,
     }
 
+    if request.GET.get('size'):
+        size = request.GET.get('size')
+        print("size ++++++++++++++++++++", size)
+
     return render(request, 'product_page/product_details.html', context=context)
