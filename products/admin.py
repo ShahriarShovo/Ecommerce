@@ -1,5 +1,6 @@
 from django.contrib import admin
-from products.models.products_model import Products, Variation
+from products.models.products_model import Products 
+from products.models.product_variation import Variation
 from products.models.customer_review import Customer_Review
 
 # Register your models here.

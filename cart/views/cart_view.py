@@ -28,7 +28,7 @@ def cart_view(request):
             request.session['total_tax'] = total_tax
             request.session['get_total_all'] = get_total_all
 
-            print("Session ++++++++++++++++++++", request.session['total_item_price'])
+            # print("Session ++++++++++++++++++++", request.session['total_item_price'])
             
             return render(request, 'cart/cart.html', locals())
         
@@ -57,7 +57,7 @@ def cart_view(request):
             request.session['total_tax'] = total_tax
             request.session['get_total_all'] = get_total_all
 
-            print("Session ++++++++++++++++++++", request.session['total_item_price'])
+            # print("Session ++++++++++++++++++++", request.session['total_item_price'])
             
             return render(request, 'cart/cart.html', locals())
         

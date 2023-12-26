@@ -3,6 +3,7 @@ from products.models.products_model import Products
 from django.conf import settings
 from user_auth.models.guest_user import Guest_User
 
+
 # Create your models here.
 
 class Cart(models.Model):

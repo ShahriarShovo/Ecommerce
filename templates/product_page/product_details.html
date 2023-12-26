@@ -27,25 +27,64 @@
     <article class="content-body">
     
     <h2 class="title">{{product_details.product_name}}</h2>
+
+
+    <div class="rating-wrap my-3">
+      <ul class="rating-stars">
+          <li style="width:80%" class="stars-active"> 
+              <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+              <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+              <i class="fa fa-star"></i> 
+          </li>
+          <li>
+              <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+              <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+              <i class="fa fa-star"></i> 
+          </li>
+      </ul>
+      <small class="label-rating text-muted">132 reviews</small>
+      <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
+  </div> <!-- rating-wrap.// -->
+
+
     
     <div class="mb-3"> 
-        <var class="price h4">&#2547;{{product_details.product_price}}</var> 
+         <var class="price h4">
+         
+          &#2547;{{product_details.product_price}}
+        
+        </var>  
+
     </div> 
     <div class="mb-3"> 
       <var class="price h4">{{product_details.product_brand}} </var> 
   </div> 
     
     <p> {{product_details.product_discription}}</p>
+
+    <dl class="row">
+      <dt class="col-sm-3">Model#</dt>
+      <dd class="col-sm-9">Odsy-1000</dd>
+    
+      <dt class="col-sm-3">Color</dt>
+      <dd class="col-sm-9">Brown</dd>
+    
+      <dt class="col-sm-3">Delivery</dt>
+      <dd class="col-sm-9">Russia, USA, and Europe </dd>
+    </dl>
     
 
     
     <hr>
 
+    
+
     <form method="POST" action="{% url 'add_to_cart' product_details.pk %}"> 
 
       {% csrf_token %}
 
-    {% if product_details.variation_set.color %}
+
+     {% if product_details.variation_set.color %}
         <div class="row">
             <div class="item-option-select">
                 <h6>Choose Color</h6>
@@ -67,15 +106,14 @@
                 <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
                   {% for product_size_variation in product_details.variation_set.size %}
                   <label class="btn btn-light">
-                    <input type="radio" name="size" value="{{product_size_variation.name}}"> {{product_size_variation.name}}
+                    <input type="radio" name="size" value="{{product_size_variation.name}}" > {{product_size_variation.name}}
                   </label>
                   {% endfor %}
                   
                 </div> 
             </div>
         </div> 
-        {% endif %}
-       
+        {% endif %} 
 
         <div class="counter">
           <span class="down" onClick='decreaseCount(event, this)'>-</span>
@@ -83,13 +121,13 @@
           <span class="up" onClick='increaseCount(event, this)'>+</span>
         </div>
 
-
-
           <hr>
         {% comment %} <a href="" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a> {% endcomment %}
         <button type='submit' class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </button>
+        <a href="#" class="btn  btn-primary"> Buy now </a>
 
       </form>
+      
     </article> 
             </main> 
         </div> 
@@ -214,6 +252,9 @@
     </div> <!-- container .//  -->
     </section>
     <!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+   
 
   
 
