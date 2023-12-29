@@ -69,13 +69,14 @@
 
     <dl class="row">
       <dt class="col-sm-3">Model#</dt>
-      <dd class="col-sm-9">Odsy-1000</dd>
-    
-      <dt class="col-sm-3">Color</dt>
-      <dd class="col-sm-9">Brown</dd>
-    
+      <dd class="col-sm-9">{{product_details.model}}</dd>
+
       <dt class="col-sm-3">Delivery</dt>
-      <dd class="col-sm-9">Russia, USA, and Europe </dd>
+      <dd class="col-sm-9">
+        {% for delivery_country in product_details.product_delivery_country.all  %}
+        {{delivery_country.country_name}},
+        {% endfor %}
+       </dd>
     </dl>
     
 
