@@ -15,7 +15,8 @@ def cart_view(request):
             total_item_price =0
             
             for items in carts:
-                totals = items.quantity * items.item.product_price
+                #totals = items.quantity * items.item.product_price
+                totals = items.quantity * items.price
                 total_item_price_store_in_array.append(totals)
 
             for sum_of_total_item_price in total_item_price_store_in_array:

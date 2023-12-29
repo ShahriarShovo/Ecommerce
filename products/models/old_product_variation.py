@@ -29,8 +29,9 @@ class Variation(models.Model):
         return self.name
     
 
-    # def get_variation_price(self,size):
-    #     return self.product.product_price + Variation.objects.get(Variation=size)
+    def get_variation_price(self,size):
+        pass
+        #print("Model base price 0000000000000000000", size)
     
 
 

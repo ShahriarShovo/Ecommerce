@@ -5,7 +5,7 @@ def categories(request):
 
     category_name = Product_Categories.objects.all()
 
-    print("Category name +++++++++++++++", category_name)
+    #print("Category name +++++++++++++++", category_name)
     
     return {'category_name' : category_name}
 

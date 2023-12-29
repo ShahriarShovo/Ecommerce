@@ -52,7 +52,7 @@
             <figure class="itemside align-items-center">
                 
                 <figcaption class="info">
-                    <p class="title text-dark">{{cart.size}}</p>
+                    <p class="title text-dark">{{cart.product_size}}</p>
                    
                 </figcaption>
             </figure>
@@ -72,7 +72,7 @@
         <td> 
             <div class="price-wrap"> 
                 <var class="price">&#2547; {{cart.get_total}}</var> 
-                <small class="text-muted"> &#2547; {{cart.item.product_price}} each </small> 
+                {% comment %} <small class="text-muted"> &#2547; {{cart.item.product_price}} each </small>  {% endcomment %}
             </div> <!-- price-wrap .// -->
         </td>
         <td class="text-right"> 

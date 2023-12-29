@@ -50,14 +50,9 @@
     
     <div class="mb-3"> 
          <var class="price h4">
-
-          {% if depend_on_size_price %}
-
-          &#2547;{{depend_on_size_price}}
-        
-         {% else %}
+         
           &#2547;{{product_details.product_price}}
-          {% endif %}
+        
         </var>  
 
     </div> 
@@ -82,40 +77,43 @@
     
     <hr>
 
-  
-    {% if product_details.product_color.count %}
+    
+
+    <form method="POST" action="{% url 'add_to_cart' product_details.pk %}"> 
+
+      {% csrf_token %}
+
+
+     {% if product_details.variation_set.color %}
         <div class="row">
             <div class="item-option-select">
                 <h6>Choose Color</h6>
                 <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                 {% for colors in product_details.product_color.all %}
+                  {% for product_color_variation in product_details.variation_set.color %}
                   <label class="btn btn-light">
-                    <input type="radio" name="color" onchange="get_color_name('{{colors.color_name}}')" checked value=""> {{colors.color_name}}
+                    <input type="radio" name="color" value="{{product_color_variation.name}}"> {{product_color_variation.name}}
                   </label>
-                  {% endfor %}
+                  {% endfor %} 
                 </div> 
             </div>
         </div>
         {% endif %}
-
-
        
-       {% if product_details.product_size.count %}
+        {% if product_details.variation_set.size %}
         <div class="row">
             <div class="item-option-select">
                 <h6>Select Size</h6>
                 <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                  {% for size in product_details.product_size.all %}
+                  {% for product_size_variation in product_details.variation_set.size %}
                   <label class="btn btn-light">
-                    <input type="radio" name="size" {% if selected_size == size.size_name %} checked {% endif %} onchange="get_size_name('{{size.size_name}}')" value="" > {{size.size_name}}
+                    <input type="radio" name="size" onchange="get_size_name('{{product_size_variation.name}}')" value="{{product_size_variation.name}}" > {{product_size_variation.name}}
                   </label>
                   {% endfor %}
+                  
                 </div> 
             </div>
         </div> 
-        {% endif %}
-       
-       
+        {% endif %} 
 
         <div class="counter">
           <span class="down" onClick='decreaseCount(event, this)'>-</span>
@@ -124,16 +122,11 @@
         </div>
 
           <hr>
-          <a href="#" class="btn  btn-primary"> Buy now </a>
-          {% if selected_size %}
-          <a href="{% url 'add_to_cart' product_details.pk %}?size={{selected_size}} " class="btn  btn-outline-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
-          {% else %}
-          <a href="{% url 'add_to_cart' product_details.pk %} " class="btn  btn-outline-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
-          {% endif %}
-        
-       
-        
-     
+        {% comment %} <a href="" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a> {% endcomment %}
+        <button type='submit' class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </button>
+        <a href="#" class="btn  btn-primary"> Buy now </a>
+
+      </form>
       
     </article> 
             </main> 

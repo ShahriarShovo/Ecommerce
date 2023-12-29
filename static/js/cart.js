@@ -25,7 +25,7 @@ function increaseCount(a, b) {
     input.value = value;
   }
   
-  function decreaseCount(a, b) {
+function decreaseCount(a, b) {
     var input = b.nextElementSibling;
     var value = parseInt(input.value, 10);
     if (value > 1) {
@@ -35,9 +35,16 @@ function increaseCount(a, b) {
     }
   }
 
+  function get_color_name(color){
+    console.log(color)
+    window.location.href = window.location.pathname + `?color=${color}`
+  }
 
-  function get_size_name(size){
+
+function get_size_name(size){
     console.log(size)
     window.location.href = window.location.pathname + `?size=${size}`
   }
-  
+
+
+

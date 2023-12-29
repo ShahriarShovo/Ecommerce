@@ -1,8 +1,10 @@
 from django.db import models
 from product_categories.models.product_category import Product_Categories
 from product_categories.models.product_brand import Product_Brand
+from products.models.product_variation.size_variant import Product_Size_variant
+from products.models.product_variation.color_variant import Product_Color_Variant
 
-#from products.models.product_variation import Variation
+
 
 # Create your models here.
 
@@ -19,16 +21,21 @@ class Products(models.Model):
     
     product_brand = models.ForeignKey(Product_Brand, on_delete=models.CASCADE, related_name='product_prand')
     product_category = models.ForeignKey(Product_Categories, on_delete=models.CASCADE, related_name='category')
+
+    product_size = models.ManyToManyField(Product_Size_variant,  null=True, blank=True)
+    product_color = models.ManyToManyField(Product_Color_Variant,  null=True, blank=True)
     
 
     def __str__(self) -> str:
         return self.product_name
     
 
-    # def get_size_price(self, size):
+    def get_product_price_by_size(self,size):
 
-    #     size = Variation.objects.get(name=size)
-    #     print("model size ================______________", size)
+        return self.product_price + Product_Size_variant.objects.get(size_name=size).price
+
+    
+
     
 
 

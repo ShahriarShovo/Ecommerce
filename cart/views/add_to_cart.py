@@ -1,102 +1,71 @@
-from django.shortcuts import render, get_object_or_404 , redirect, HttpResponse
+from django.shortcuts import render, get_object_or_404 , redirect, HttpResponse, HttpResponseRedirect
 from cart.models.cart import Cart
 from orders.models.orders import Order
 from products.models.products_model import Products
+from products.models.product_variation.size_variant import Product_Size_variant
 
 
+def add_to_cart(request,pk):
 
-
-# Create your views here.
-
-def add_to_cart(request, pk):
+    size_variant = request.GET.get('size')
 
     product_item = get_object_or_404(Products, pk=pk)
 
+    product_price = product_item.product_price
+    
+    print("product price ======================",product_price)
+
+    quantity= request.POST.get('quantity')
+
+    print("quantity ======================",quantity)
+
+
     if request.user.is_authenticated:
 
-        cart_item = Cart.objects.filter(user=request.user, item=product_item,  purchased = False).first()
+        if size_variant:
 
-        size=request.POST.get('size')
-        color=request.POST.get('color')
-        quantity= request.POST.get('quantity')
+            quantity= request.POST.get('quantity')
 
-        # print("Size ===================", size)
-        # print("Color ===================", color)
-        # print("quantity ===================", quantity)
+            print("quantity ======================",quantity)
 
+            size = request.GET.get('size')
+            print("add size in cart ======================",size)
 
-        if cart_item:
+            size_variant = Product_Size_variant.objects.get(size_name=size)
+            size_variant_price = size_variant.price
 
-            if quantity:
+            print("size_variant_price ======================",size_variant_price)
 
-                cart_item.quantity += int(quantity)
+            total_product_price = product_price + size_variant_price
+
+            print("total_product_price ======================",total_product_price)
+
+            cart_item = Cart.objects.filter(user=request.user, item=product_item,  purchased = False).first()
+
+            if cart_item:
+                cart_item.product_size=size_variant
+                cart_item.price=total_product_price
+                cart_item.save()
+                return redirect("index")
+
             else:
+                
+                Cart.objects.create(item=product_item,product_size=size_variant,price=total_product_price, user= request.user, purchased = False)
 
-                cart_item.quantity +=1
+                return redirect("index")
             
-            cart_item.color=color
-            cart_item.size=size
-            cart_item.save()
-            return redirect("index")
-        
         else:
-            Cart.objects.create(item=product_item,color=color,size=size, quantity=quantity, user= request.user, purchased = False)
-            return redirect("index")
-        
-        
-    else:
-        
-        user=request.user.id
-        print("Guest user id -----------------********************", user)
-        cart_item = Cart.objects.filter(item=product_item, guest_user=True,  purchased = False).first()
 
-        size=request.POST.get('size')
-        color=request.POST.get('color')
-        quantity= request.POST.get('quantity')
+            cart_item = Cart.objects.filter(user=request.user, item=product_item,  purchased = False).first()
 
-        print("Size ===================", size)
-        print("Color ===================", color)
-        print("quantity ===================", quantity)
+            if cart_item:
+                pass
 
-        if cart_item:
-            if quantity:
-                cart_item.quantity += int(quantity)
             else:
-                cart_item.quantity +=1
-            cart_item.color=color
-            cart_item.size=size
-            cart_item.save()
-            return redirect("index")
-        else:
-            Cart.objects.create(item=product_item,guest_user=True,color=color,size=size,quantity=quantity, purchased = False)
+                
+                Cart.objects.create(item=product_item,price=product_price, user= request.user, purchased = False)
 
-            return redirect("index")
+                return redirect("index")
 
 
-    
-
-    
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
+    return redirect('index')
