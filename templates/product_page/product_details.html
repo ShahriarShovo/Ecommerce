@@ -42,7 +42,7 @@
               <i class="fa fa-star"></i> 
           </li>
       </ul>
-      <small class="label-rating text-muted">132 reviews</small>
+      <small class="label-rating text-muted">{{reviews_count}} reviews</small>
       <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
   </div> <!-- rating-wrap.// -->
 
@@ -143,118 +143,11 @@
     <!-- ============================ COMPONENT 1 END .// ================================= -->
     
     <br>
+
     
-    {% if user.is_authenticated %}
+    {% include "include/user_review.html" %}
 
-    <div class="row">
-                <div class="col-md-9">
-    
-        <header class="section-heading">
-            <h3>Customer Reviews </h3>    
-        </header>
-        
-         {% if not product_details.products_review.all %}
-          <p> No Comment Yet</p>
-          
-          <form method="POST" action="{% url 'customer_reviews' pk=product_details.pk  %}">
-            {% csrf_token %}
-              <div class="form-group col-sm-6">
-                <label>Comment</label>
-                <textarea type="text" name='comment' value="" class="form-control"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary "> Comment </button>
-  
-          </form>
-
-        {% else %} 
-
-        <article class="box mb-3">
-          {% for comments in  product_details.products_review.all %}
-            <div class="icontext w-100">
-                <img src="{% static 'images/avatars/avatar1.jpg' %}" class="img-xs icon rounded-circle">
-                <div class="text">
-                    <span class="date text-muted float-md-right">{{comments.commented_date}} </span>  
-                    <h6 class="mb-1">{{comments.user.username}} </h6>
-                </div>
-            </div> <!-- icontext.// -->
-            <div class="mt-3">
-                <p>
-                    {{comments.comment_area}}
-                </p>	
-            </div>
-            <br>
-            {% endfor %}
-        </article>
-
-
-         <form method="POST" action="{% url 'customer_reviews' pk=product_details.pk  %}">
-          {% csrf_token %}
-            <div class="form-group col-sm-6">
-              <label>Comment</label>
-              <textarea type="text" name='comment' value="" class="form-control"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary "> Comment </button>
-
-        </form> 
-
-        {% endif %} 
-
-
-       
-
-        {% else %}
-
-
-
-
-        <div class="row">
-          <div class="col-md-9">
-
-      <header class="section-heading">
-          <h3>Customer Reviews </h3>    
-      </header>
-      {% if not product_details.products_review.all %}
-        <p> No Comment Yet. Please Login for review</p>
-      
-      {% else %}
-
-      <article class="box mb-3">
-        {% for comments in  product_details.products_review.all %}
-
-          <div class="icontext w-100">
-              <img src="{% static 'images/avatars/avatar1.jpg' %}" class="img-xs icon rounded-circle">
-              <div class="text">
-                  <span class="date text-muted float-md-right">{{comments.commented_date}} </span>  
-                  <h6 class="mb-1">{{comments.user.username}} </h6>
-
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-              
-              </div>
-
-
-          </div> <!-- icontext.// -->
-
-          <div class="mt-3">
-              <p>
-                  {{comments.comment_area}}
-              </p>	
-          </div>
-          <br>
-          {% endfor %}
-      </article>
-
-      {% endif %}
-
-    {% endif %}
-    
-        
-    
-        </div> <!-- col.// -->
-    </div> <!-- row.// -->
+    {% include "include/fatch_user_review.html" %}
     
     
     </div> <!-- container .//  -->

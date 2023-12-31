@@ -2,6 +2,7 @@ from django.shortcuts import render
 from products.models.products_model import Products
 from products.models.customer_review import Customer_Review
 from products.models.old_product_variation import Variation
+from django.db.models import Avg
 
 # Create your views here.
 
@@ -10,10 +11,16 @@ from products.models.old_product_variation import Variation
 def product_detail(request, pk):
 
     product_details = Products.objects.get(pk=pk)
+    reviews_count = Customer_Review.objects.filter(products=product_details).count()
+    
+    count_reviews = Customer_Review.objects.filter(products=product_details, status=True).aaggregate(average=Avg('rating'))
+    
     
 
     context={
         'product_details' : product_details,
+        'count_reviews' :count_reviews,
+        'reviews_count' :reviews_count,
     }
 
     if request.GET.get('size'):

@@ -6,11 +6,7 @@ from products.models.product_variation.color_variant import Product_Color_Varian
 from products.models.delivery_country import Product_Delivery_Country
 
 
-
 # Create your models here.
-
-
-    
 
 
 class Products(models.Model):
@@ -34,6 +30,8 @@ class Products(models.Model):
     def get_product_price_by_size(self,size):
 
         return self.product_price + Product_Size_variant.objects.get(size_name=size).price
+    
+
 
     
 
