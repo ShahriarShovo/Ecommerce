@@ -1,5 +1,5 @@
-from products.models.products_model import Products
-from products.models.customer_review import Customer_Review
+from products.models.products_model import Products, Customer_Review
+#from products.models.customer_review import Customer_Review
 #from products.models.old_product_variation import Variation
 from products.models.product_variation.size_variant import Product_Size_variant
 from products.models.product_variation.color_variant import Product_Color_Variant

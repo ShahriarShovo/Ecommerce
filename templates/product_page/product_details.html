@@ -30,21 +30,20 @@
 
 
     <div class="rating-wrap my-3">
-      <ul class="rating-stars">
-          <li style="width:80%" class="stars-active"> 
-              <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> 
-          </li>
-          <li>
-              <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-              <i class="fa fa-star"></i> 
-          </li>
-      </ul>
-      <small class="label-rating text-muted">{{reviews_count}} reviews</small>
-      <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
-  </div> <!-- rating-wrap.// -->
+      {{product_details.averageRating}}
+      <div class="rating-star">
+        <span>
+              <i class="fa fa-star{% if product_details.averageRating < 0.5 %}-o{% elif product_details.averageRating >= 0.5 and product_details.averageRating < 1  %}-half-o{% endif %}"></i> 
+              <i class="fa fa-star{% if product_details.averageRating < 1.5 %}-o{% elif product_details.averageRating >= 1.5 and product_details.averageRating < 2  %}-half-o{% endif %}"></i> 
+              <i class="fa fa-star{% if product_details.averageRating < 2.5 %}-o{% elif product_details.averageRating >= 2.5 and product_details.averageRating < 3  %}-half-o{% endif %}"></i> 
+              <i class="fa fa-star{% if product_details.averageRating < 3.5 %}-o{% elif product_details.averageRating >= 3.5 and product_details.averageRating < 4  %}-half-o{% endif %}"></i> 
+              <i class="fa fa-star{% if product_details.averageRating < 4.5 %}-o{% elif product_details.averageRating >= 4.5 and product_details.averageRating < 5  %}-half-o{% endif %}"></i> 
+              <small class="label-rating text-muted">{{product_details.count_reviews}} reviews</small>
+              <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
+    </span>
+  </div>
+     
+  
 
 
     

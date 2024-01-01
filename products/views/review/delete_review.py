@@ -1,6 +1,6 @@
 from django.shortcuts import redirect,get_object_or_404
-from products.models.customer_review import Customer_Review
-from products.models.products_model import Products
+#from products.models.customer_review import Customer_Review
+from products.models.products_model import Products,Customer_Review
 
 
 

@@ -4,6 +4,8 @@ from product_categories.models.product_brand import Product_Brand
 from products.models.product_variation.size_variant import Product_Size_variant
 from products.models.product_variation.color_variant import Product_Color_Variant
 from products.models.delivery_country import Product_Delivery_Country
+from user_auth.models.user import User
+from django.db.models import Avg, Count
 
 
 # Create your models here.
@@ -30,6 +32,38 @@ class Products(models.Model):
     def get_product_price_by_size(self,size):
 
         return self.product_price + Product_Size_variant.objects.get(size_name=size).price
+    
+    def averageRating(self):
+        reviews = Customer_Review.objects.filter(products=self,status=True).aggregate(average=Avg('rating'))
+        avg=0
+        if reviews['average'] is not None:
+            avg = float(reviews['average'])
+        return avg
+    
+    def count_reviews(self):
+        reviews = Customer_Review.objects.filter(products=self,status=True).aggregate(count=Count('rating'))
+        count=0
+        if reviews['count'] is not None:
+            avg = int(reviews['count'])
+        return avg
+    
+
+
+class Customer_Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='customer_review')
+    products = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='products_review')
+    comment_title = models.CharField(max_length=200,null=True,blank=True)
+    comment_area = models.TextField(blank=True, null=True)
+    ip = models.CharField(max_length=200,null=True,blank=True)
+    status = models.BooleanField(default=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
+
+
+    rating = models.FloatField(default=0)
+
+    def __str__(self) -> str:
+        return self.user.email
     
 
 
