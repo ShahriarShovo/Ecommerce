@@ -12,6 +12,15 @@ from django.db.models import Avg, Count
 
 
 class Products(models.Model):
+    in_stock=1
+    out_of_stock=2
+
+    free=1
+    not_free=2
+
+    available = ((in_stock,'In Stoke') , (out_of_stock,'Out of Stock'))
+    shipping_fee= ((free,'Free') , (not_free,'Not Free'))
+
     product_name = models.CharField(max_length=50)
     product_image = models.ImageField(upload_to='products')
     product_price = models.FloatField()
@@ -23,6 +32,8 @@ class Products(models.Model):
     product_delivery_country = models.ManyToManyField(Product_Delivery_Country,  null=True, blank=True)
     product_size = models.ManyToManyField(Product_Size_variant,  null=True, blank=True)
     product_color = models.ManyToManyField(Product_Color_Variant,  null=True, blank=True)
+    available_choose = models.PositiveSmallIntegerField(choices=available,blank=True, null=True)
+    shipping_fee = models.PositiveSmallIntegerField(choices=shipping_fee,blank=True, null=True)
     
 
     def __str__(self) -> str:

@@ -1,11 +1,10 @@
 {% load static %}
 
+{% if product_details.products_review.all %}
 <br>
 <header class="section-heading">
   <h5>Customer Reviews </h5>    
 
-
- {{product_details.averageRating}}
     <div class="rating-star">
       <span>
             <i class="fa fa-star{% if product_details.averageRating < 0.5 %}-o{% elif product_details.averageRating >= 0.5 and product_details.averageRating < 1  %}-half-o{% endif %}"></i> 
@@ -15,18 +14,9 @@
             <i class="fa fa-star{% if product_details.averageRating < 4.5 %}-o{% elif product_details.averageRating >= 4.5 and product_details.averageRating < 5  %}-half-o{% endif %}"></i> 
   </span>
 </div>
-
-
-
-
-
-
-
 </header>
 
 
-
-{% if product_details.products_review.all %}
 
 <article class="box mb-3">
   {% for reviews in product_details.products_review.all %}
@@ -35,7 +25,7 @@
           <img src="{% static 'images/avatars/avatar1.jpg' %}" class="img-xs icon rounded-circle">
           <div class="text">
             <h6 class="mb-1">{{reviews.user.username}} {{reviews.created_date}} </h6>
-            Rating : 
+           
           </div>
           {% if user.is_authenticated %}
           <a href="" > <i class="fas fa-edit"></i></a><br>
@@ -49,7 +39,11 @@
       </div>
       {% endfor %}  
       <br>
-      
-   
+
+      {% else %}
+     
+      <br>
+      <h5>No Reviews </h5> 
+
   </article>
   {% endif %}
