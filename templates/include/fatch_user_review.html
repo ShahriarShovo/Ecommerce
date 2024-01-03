@@ -28,8 +28,10 @@
            
           </div>
           {% if user.is_authenticated %}
+          {% if reviews.user == request_user %}
           <a href="" > <i class="fas fa-edit"></i></a><br>
           <a href="{% url 'delete_review' pk=product_details.pk %}" > <i class="fa fa-trash" aria-hidden="true"></a></i>
+          {% endif %}
           {% endif %}
       </div> 
       <div class="mt-3">

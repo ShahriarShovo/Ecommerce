@@ -12,11 +12,13 @@ def product_detail(request, pk):
 
     product_details = Products.objects.get(pk=pk)
     reviews_count = Customer_Review.objects.filter(products=product_details).count()
+    request_user = request.user
     
     context={
         'product_details' : product_details,
       
         'reviews_count' :reviews_count,
+        "request_user": request_user,
     }
 
     if request.GET.get('size'):
