@@ -59,6 +59,14 @@ class Products(models.Model):
         return avg
     
 
+    # def get_total_for_single_product(self):
+    #     #total = self.product_price * self.quantity
+    #     total = self.product_price
+    #     float_total = format( total, '0.2f')
+    #     print(' cart each_total -----------------------', float_total)
+    #     return float_total
+    
+
 
 class Customer_Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='customer_review')
