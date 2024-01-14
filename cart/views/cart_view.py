@@ -25,6 +25,9 @@ def cart_view(request):
             total_tax = total_item_price *(5/100)
             get_total_all = total_item_price + total_tax
 
+            coupon_code = request.POST.get('coupon_code')
+            print("coupon_code--------------",coupon_code)
+
             request.session['total_item_price'] = total_item_price
             request.session['total_tax'] = total_tax
             request.session['get_total_all'] = get_total_all

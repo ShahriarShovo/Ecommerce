@@ -150,13 +150,34 @@
           <span class="up" onClick='increaseCount(event, this)'>+</span>
         </div>
 
+        <div>
+          <form action="#" class="search">
+            <div class="input-group w-50">
+                <input type="text" class="form-control" style="width:60%;" placeholder="Coupon Code">         
+                <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-gift" aria-hidden="true"></i>
+                </button>
+                </div>
+            </div>
+        </form>
+        </div>
+
+        
+
           <hr>
           <a href="{% url 'buy_now' pk=product_details.pk %}" class="btn  btn-primary"> Buy now </a>
           {% if selected_size %}
           <a href="{% url 'add_to_cart' product_details.pk %}?size={{selected_size}} " class="btn  btn-outline-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
           {% else %}
           <a href="{% url 'add_to_cart' product_details.pk %} " class="btn  btn-outline-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
+
           {% endif %}
+
+
+          
+            
+     
         
        
         

@@ -101,10 +101,32 @@
                   <dt>Total:</dt>
                   <dd class="text-right text-dark b"><strong>&#2547;{{get_total_all}}</strong></dd>
                 </dl>
+
                 <hr>
-                <p class="text-center mb-3">
-                    <img  height="26" src="{% static 'images/misc/payments.png' %}" >
-                </p>
+                    <div class="col-lg  col-md-6 col-sm-12 col">
+                        <form action="" class="search">
+                            {% csrf_token %}
+                            <div class="input-group w-100">
+                                <input type="text" name="coupon_code" class="form-control" style="width:60%;" placeholder="Coupon Code">         
+                                <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fa fa-gift" aria-hidden="true"></i>
+                                </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div> 
+                </hr>
+
+
+                <hr>
+                    <p class="text-center mb-3">
+                        <img  height="26" src="{% static 'images/misc/payments.png' %}" >
+                    </p>
+                </hr>
+
+                
+
                 <a href="{% url 'initial_order' %}" class="btn btn-primary btn-block"> Place Order </a>
                 <a href="{% url 'index' %}" class="btn btn-light btn-block">Continue Shopping</a>
             </div> <!-- card-body.// -->
