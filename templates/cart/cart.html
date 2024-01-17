@@ -29,10 +29,10 @@
     <tr>
         <td>
             <figure class="itemside align-items-center">
-                <div class="aside"><img src="/media/{{cart.item.product_image}}" class="img-sm"></div>
+                <div class="aside"><img src="/media/{{cart.product.product_image}}" class="img-sm"></div>
                 <figcaption class="info">
-                    <a href="#" class="title text-dark">{{cart.item.product_name}}</a>
-                    <p class="text-muted small">{{cart.item.product_brand}} <br> </p>
+                    <a href="#" class="title text-dark">{{cart.product.product_name}}</a>
+                    <p class="text-muted small">{{cart.product.product_brand}} <br> </p>
                 </figcaption>
             </figure>
         </td>
@@ -41,7 +41,7 @@
             <figure class="itemside align-items-center">
                 
                 <figcaption class="info">
-                    <p class="title text-dark">{{cart.color}}</p>
+                    <p class="title text-dark">None</p>
                  
                 </figcaption>
             </figure>
@@ -52,7 +52,7 @@
             <figure class="itemside align-items-center">
                 
                 <figcaption class="info">
-                    <p class="title text-dark">{{cart.product_size}}</p>
+                    <p class="title text-dark">{{cart.product_Size_variant}}</p>
                    
                 </figcaption>
             </figure>
@@ -62,21 +62,21 @@
 
         <td> 
         
-                        <div class="counter">
-                            <span class="down" onClick='decreaseCount(event, this)'> <a class="mr-2" href="{% url 'decrease_item' pk=cart.item.pk%}">-</a></span>
+                         <div class="counter">
+                            <span class="down" onClick='decreaseCount(event, this)'> <a class="mr-2" href="{% url 'decrease_item' pk=cart.product.pk%}">-</a></span>
                             <input type="text" value="{{ cart.quantity }}">
-                            <span class="up" onClick='increaseCount(event, this)'> <a   class="mr-2" href="{% url 'increase_item' pk=cart.item.pk %}">+</a></span>
-                          </div>
+                            <span class="up" onClick='increaseCount(event, this)'> <a   class="mr-2" href="{% url 'increase_item' pk=cart.product.pk %}">+</a></span>
+                          </div> 
                
         </td>
         <td> 
             <div class="price-wrap"> 
-                <var class="price">&#2547; {{cart.get_total}}</var> 
+                <var class="price">&#2547; {{cart.get_product_price}}</var> 
                 {% comment %} <small class="text-muted"> &#2547; {{cart.item.product_price}} each </small>  {% endcomment %}
             </div> <!-- price-wrap .// -->
         </td>
         <td class="text-right"> 
-        <a href="{% url 'remove_from_cart' cart.item.pk %}" class="btn btn-danger"> Remove</a>
+         <a href="{% url 'remove_from_cart' cart.product.pk %}" class="btn btn-danger"> Remove</a> 
         </td>
     </tr>
     {% endfor %}
@@ -91,20 +91,20 @@
             <div class="card-body">
                 <dl class="dlist-align">
                   <dt>Total price:</dt>
-                  <dd class="text-right">&#2547;{{total_item_price}} </dd>
+                  <dd class="text-right">&#2547;{{total_price_in_cart.get_cart_total}} </dd>
                 </dl>
                 <dl class="dlist-align">
                   <dt>Tax:</dt>
-                  <dd class="text-right">&#2547;{{total_tax}} </dd>
+                  <dd class="text-right">&#2547;{{total_price_in_cart.get_tax}} </dd>
                 </dl>
                 <dl class="dlist-align">
                   <dt>Total:</dt>
-                  <dd class="text-right text-dark b"><strong>&#2547;{{get_total_all}}</strong></dd>
+                  <dd class="text-right text-dark b"><strong>&#2547;{{final_total}}</strong></dd>
                 </dl>
 
                 <hr>
                     <div class="col-lg  col-md-6 col-sm-12 col">
-                        <form action="" class="search">
+                        <form  class="search">
                             {% csrf_token %}
                             <div class="input-group w-100">
                                 <input type="text" name="coupon_code" class="form-control" style="width:60%;" placeholder="Coupon Code">         
