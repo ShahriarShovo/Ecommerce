@@ -7,7 +7,7 @@ register = template.Library()
 @register.filter
 def cart_total(user):
 
-    print( "user +++++++++++++++",user)
+    #print( "user +++++++++++++++",user)
     cart_total_item = Cart_Item.objects.filter(cart__user=user, cart__is_paid=False)
     return cart_total_item.count()
 

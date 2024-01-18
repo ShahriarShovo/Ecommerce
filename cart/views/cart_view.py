@@ -1,24 +1,70 @@
-from django.shortcuts import render,redirect, HttpResponse
+from django.shortcuts import render,redirect, HttpResponse, HttpResponseRedirect
 from cart.models.cart import Cart,Cart_Item
 from orders.models.orders import Order
-from django.shortcuts import get_object_or_404
+from products.models.products_model import Coupon_Code
 
 
 def cart_view(request):
 
     #carts = Cart.objects.filter(user=request.user, is_paid=False)
     item_in_carts = Cart_Item.objects.filter(cart__user=request.user, cart__is_paid=False)
-    total_price_in_cart = Cart.objects.get(user=request.user, is_paid=False)
+   
+    cart_object = Cart.objects.get(user=request.user, is_paid=False)
 
-    total= total_price_in_cart.get_cart_total()
-    tax = total_price_in_cart.get_tax()
+    cart_item_count = item_in_carts.count()
+
+    print('=============count', cart_item_count)
+    total= cart_object.get_cart_total()
+    tax = cart_object.get_tax()
     final_total = total + tax
+
+    # get_code = request.GET.get('coupon_code')
+    # print ("Coupon code caputure +++++++++++++++++++++",get_code)
+
+    if request.method == "POST":
+        get_code = request.POST.get('coupon_code')
+        print ("Coupon code caputure +++++++++++++++++++++",get_code)
+        coupon_object = Coupon_Code.objects.filter(code__icontains=get_code)
+
+       
+        if not coupon_object.exists():
+            print("Coupon invalid")
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        
+        elif cart_object.coupon:
+            print("Coupon already exist")
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        
+        else:
+
+            if cart_object.get_cart_total() < coupon_object[0].minimum_amount:
+                print("Cart Item amount should be more than 500")
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            
+            elif coupon_object[0].is_expired_coupon_code:
+                print("Coupon exired")
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            
+            else:
+                cart_object.coupon=coupon_object[0]
+                cart_object.save()
+                print("Coupon applied")
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+
+
+        
    
     context={
         'carts':item_in_carts,
-        'total_price_in_cart':total_price_in_cart,
-        'final_total':final_total
+        'cart_object':cart_object,
+        'final_total':final_total,
+        'cart_item_count':cart_item_count,
+        
     }
+
+    
     return render(request, 'cart/cart.html', context=context)
 
 

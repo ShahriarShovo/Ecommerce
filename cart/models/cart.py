@@ -4,6 +4,7 @@ from django.conf import settings
 from user_auth.models.guest_user import Guest_User
 from products.models.product_variation.size_variant import Product_Size_variant
 from products.models.product_variation.color_variant import Product_Color_Variant
+from products.models.products_model import Coupon_Code
 
 
 
@@ -12,29 +13,32 @@ from products.models.product_variation.color_variant import Product_Color_Varian
 class Cart (models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="cart", null=True, blank=True)
     is_paid = models.BooleanField(default=False)
+    coupon = models.ForeignKey(Coupon_Code, on_delete=models.SET_NULL, null=True, blank=True)
 
     def get_cart_total(self):
         cart_items= self.cart_item.all()
         price = []
 
-        print("Price ---------------------------------------------",price)
+        #print("Price ---------------------------------------------",price)
 
         for cart_item in cart_items:
             price.append(cart_item.product.product_price)
             if cart_item.product_Size_variant:
                 size_variant_price = cart_item.product_Size_variant.price
                 price.append(size_variant_price)
+        
+        if self.coupon:
+            return sum(price) - self.coupon.discount
+        
         return sum(price)
     
     def get_tax(self):
         total_tax= self.get_cart_total() * float(5/100)
         return total_tax
     
-    # def get_all_total(self):
-
-    #     all_total = self.get_all_total() + self.get_tax()
-
-    #     return all_total
+    def __str__(self) -> str:
+        return self.user.email
+    
 
 
 
@@ -50,6 +54,9 @@ class Cart_Item(models.Model):
             size_variant_price = self.product_Size_variant.price
             price.append(size_variant_price *self.quantity)
         return sum(price)
+    
+    def __str__(self) -> str:
+        return self.product.product_name
     
 
 

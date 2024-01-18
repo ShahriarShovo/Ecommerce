@@ -90,7 +90,7 @@ class Coupon_Code(models.Model):
     code = models.CharField(max_length=15, unique=True)
     # valid_from = models.DateTimeField()
     # valid_to = models.DateTimeField()
-    discount = models.IntegerField(default=False)
+    discount = models.IntegerField(default=100)
     minimum_amount = models.IntegerField(default=500)
     is_expired_coupon_code = models.BooleanField(default=False)
 

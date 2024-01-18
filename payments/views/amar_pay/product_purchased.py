@@ -62,7 +62,7 @@ def product_purchased(request,val_id, tran_id,total_amount):
         total_item_price=request.session['total_item_price']
         order_object_invoice=cart_items
 
-        print("Cart item anonomous user +++++++++++++++++",order_object_invoice)
+        #print("Cart item anonomous user +++++++++++++++++",order_object_invoice)
 
         cus_name = request.session['first_name']
         email = request.session['email']
