@@ -74,6 +74,7 @@ TEMPLATES = [
                 "product_categories.views.category_context_processors.categories",
                 "product_categories.views.brand_context_processor.brands",
                 
+                
             ],
             'libraries':{
             'cart_tag': 'cart.templatetags.cart_tag',

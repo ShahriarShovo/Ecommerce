@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect, HttpResponse, HttpResponseRedirect
-from cart.models.cart import Cart,Cart_Item
+from cart.models.cart import Cart
+from cart.models.cart_item import Cart_Item
 from orders.models.orders import Order
 from products.models.products_model import Coupon_Code
 
@@ -13,7 +14,7 @@ def cart_view(request):
 
     cart_item_count = item_in_carts.count()
 
-    print('=============count', cart_item_count)
+    #print('=============count', cart_item_count)
     total= cart_object.get_cart_total()
     tax = cart_object.get_tax()
     final_total = total + tax

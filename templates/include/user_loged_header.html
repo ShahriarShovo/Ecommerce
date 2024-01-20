@@ -40,14 +40,25 @@
 					<div class="widget-header">
 						<small class="title text-muted">Logged In  {{user.username}} </small>
 						<div> 
-							<a href=""  >Home</a> <span class="dark-transp"> | </span>
+							<a href="{% url 'index' %}"  >Home</a> <span class="dark-transp"> | </span>
 							<a href="{% url 'myaccount' %}"  > Dashboard</a>
 						</div>
 					</div>
+
+					
+					<a href="" class="widget-header pl-3 ml-2">
+						<div class="icon icon-sm "><i class="fa fa-heart"></i></div>
+						<span class="badge badge-pill badge-danger notify"></span> 
+					</a>
+
 					<a href="{% url 'cart_view' %}" class="widget-header pl-3 ml-3">
-						<div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
+						<div class="icon icon-sm "><i class="fa fa-shopping-cart"></i></div>
 						<span class="badge badge-pill badge-danger notify">{{ request.user | cart_total }}</span> 
 					</a>
+
+					
+
+					
 				</div> <!-- widgets-wrap.// -->
 			</div> <!-- col.// -->
 </div> <!-- row.// -->

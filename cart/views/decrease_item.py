@@ -1,8 +1,8 @@
 
 from django.shortcuts import get_object_or_404 , redirect
-from cart.models.cart import Cart, Cart_Item
+from cart.models.cart import Cart
 from django.http import HttpResponseRedirect
-
+from cart.models.cart_item import Cart_Item
 from products.models.products_model import Products
 
 def decrease_cart(request,pk):

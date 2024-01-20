@@ -1,17 +1,36 @@
+
 {% load static %}
 
 
+
 {% block blody %}
-<!-- ========================= SECTION PAGETOP ========================= -->
 
-<!-- ========================= SECTION INTRO END// ========================= -->
+</header> <!-- section-header.// -->
 
-<!-- ========================= SECTION CONTENT ========================= -->
+
+<!-- ========================= SECTION MAIN ========================= -->
+<section class="section-intro padding-y-sm">
+<div class="container">
+
+<div class="intro-banner-wrap">
+	<img src="static/images/banners/1.jpg" class="img-fluid rounded">
+</div>
+
+</div> <!-- container //  -->
+</section>
+
+
+
 {% include 'include/side_bar.html' %}
 
 	</aside> <!-- col.// -->
 	<main class="col-md-9">
 
+		<style>
+			.right{
+				float:right;
+			}
+		</style>
 
 <div class="row">
 	{% for products in fatch_all_products %}
@@ -20,7 +39,6 @@
 			<div class="img-wrap"> 
 				
 				<img src="/media/{{products.product_image}}">
-				
 			</div> <!-- img-wrap.// -->
 			<figcaption class="info-wrap">
 				<div class="fix-height">
@@ -30,7 +48,6 @@
 						<del class="price-old">{{products.product_old_price}}</del>
 					</div> <!-- price-wrap.// -->
 				</div>
-
 				<span class="fa fa-star checked"></span>
 				<span class="fa fa-star checked"></span>
 				<span class="fa fa-star checked"></span>
@@ -39,6 +56,14 @@
 				<small class="label-rating text-muted">132 reviews</small>
       			<small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
 
+				  <div class="right">
+					<a href="" class="widget-header pl-3 ml-2">
+						<div class="icon icon-sm " ><i class="fa fa-heart"></i></div>
+						<span class="badge badge-pill badge-danger notify"></span> 
+					</a>
+				  </div>
+				 
+				
 				{% comment %} {% url 'add_to_cart' products.id %} {% endcomment %}
 				{% comment %} <a href="{% url 'add_to_cart' products.id %}" data-product={{products.pk}} data-action="addToCart"  class="btn btn-block btn-primary add-cart">Added to cart </a> {% endcomment %}
 			</figcaption>

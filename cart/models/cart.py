@@ -42,57 +42,26 @@ class Cart (models.Model):
 
 
 
-class Cart_Item(models.Model):
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='cart_item')
-    product = models.ForeignKey(Products, on_delete=models.SET_NULL, null=True, blank=True)
-    product_Size_variant = models.ForeignKey(Product_Size_variant, on_delete=models.SET_NULL, blank=True, null=True)
-    quantity = models.IntegerField(default=1)
-
-    def get_product_price(self):
-        price = [self.product.product_price]
-        if self.product_Size_variant:
-            size_variant_price = self.product_Size_variant.price
-            price.append(size_variant_price *self.quantity)
-        return sum(price)
-    
-    def __str__(self) -> str:
-        return self.product.product_name
-    
-
-
-
-# class Cart(models.Model):
-
-#     PENDING=1
-#     DELIVER=2
-#     CANCLE=3
-#     oder_status = ((CANCLE, 'Cancle'), (DELIVER,'Deliver'), (PENDING,'Pending'))
-#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="cart", null=True, blank=True)
-#     item = models.ForeignKey(Products, on_delete=models.CASCADE)
-#     coupon_Code = models.ForeignKey(Coupon_Code, on_delete=models.SET_NULL, null=True, blank=True)
+# class Cart_Item(models.Model):
+#     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='cart_item')
+#     product = models.ForeignKey(Products, on_delete=models.SET_NULL, null=True, blank=True)
+#     product_Size_variant = models.ForeignKey(Product_Size_variant, on_delete=models.SET_NULL, blank=True, null=True)
 #     quantity = models.IntegerField(default=1)
-#     price = models.FloatField(default=0)
-   
-#     purchased = models.BooleanField(default=False)
-#     guest_user = models.BooleanField(default=False)
-#     #guest_user = models.ForeignKey(Guest_User, on_delete=models.CASCADE, related_name="cart", null=True, blank=True)
-#     created = models.DateTimeField(auto_now_add=True)
-#     updatedd = models.DateTimeField(auto_now=True)
-#     select_order_stats = models.PositiveSmallIntegerField(choices=oder_status, blank=True, null=True)
-#     product_color = models.ForeignKey(Product_Color_Variant, on_delete=models.SET_NULL, blank=True, null=True)
-#     product_size = models.ForeignKey(Product_Size_variant, on_delete=models.SET_NULL, blank=True, null=True)
 
-#     def __str__(self):
-#         #return str(self.id)
-#         return f'{self.quantity} X {self.item}'
+#     def get_product_price(self):
+#         price = [self.product.product_price]
+#         if self.product_Size_variant:
+#             size_variant_price = self.product_Size_variant.price
+#             price.append(size_variant_price *self.quantity)
+#         return sum(price)
     
+#     def __str__(self) -> str:
+#         return self.product.product_name
     
 
-#     def get_total(self):
-#         total = self.price * self.quantity
-#         float_total = format( total, '0.2f')
-#         # print(' cart each_total -----------------------', float_total)
-#         return float_total
+
+
+
     
 
     
