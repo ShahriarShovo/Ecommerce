@@ -19,8 +19,8 @@ class Cart_Item(models.Model):
         price = [self.product.product_price]
         if self.product_Size_variant:
             size_variant_price = self.product_Size_variant.price
-            price.append(size_variant_price *self.quantity)
-        return sum(price)
+            price.append(size_variant_price )
+        return sum(price) * self.quantity
     
     def __str__(self) -> str:
         return self.product.product_name

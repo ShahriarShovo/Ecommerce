@@ -249,5 +249,28 @@ img{
     }
 }
 
+/* product many image css */
+
+ul.thumbs{
+
+    margin: 0 auto;
+    padding: 0;
+    
+    
+
+}
+
+ul.thumbs li{
+    margin: 10px;
+    list-style: none;
+}
+
+ul.thumbs li img{
+    width: 80px;
+    height: 80px;
+    border: 1px solid gray;
+    float: left;
+}
+
 
 

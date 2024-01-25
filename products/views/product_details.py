@@ -3,6 +3,7 @@ from products.models.products_model import Products,Customer_Review
 #from products.models.customer_review import Customer_Review
 from products.models.old_product_variation import Variation
 from django.db.models import Avg
+from products.models.product_gallary import Product_Gallery
 
 # Create your views here.
 
@@ -13,12 +14,15 @@ def product_detail(request, pk):
     product_details = Products.objects.get(pk=pk)
     reviews_count = Customer_Review.objects.filter(products=product_details).count()
     request_user = request.user
+
+    product_gallery = Product_Gallery.objects.filter(product=product_details)
     
     context={
         'product_details' : product_details,
       
         'reviews_count' :reviews_count,
         "request_user": request_user,
+        'product_gallery':product_gallery,
     }
 
     if request.GET.get('size'):

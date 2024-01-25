@@ -15,23 +15,40 @@ class Cart (models.Model):
     is_paid = models.BooleanField(default=False)
     coupon = models.ForeignKey(Coupon_Code, on_delete=models.SET_NULL, null=True, blank=True)
 
+
+    #Old function but not working properly
+    # def get_cart_total(self):
+    #     cart_items= self.cart_item.all()
+    #     price = []
+
+    #     print("Price ---------------------------------------------",price)
+
+    #     for cart_item in cart_items:
+    #         price.append(cart_item.product.product_price)
+    #         if cart_item.product_Size_variant:
+    #             size_variant_price = cart_item.product_Size_variant.price 
+    #             price.append(size_variant_price)
+        
+    #     if self.coupon:
+    #         return sum(price) - self.coupon.discount
+    #     print("Price ---------------------------------------------",sum(price) )
+
+    #     return sum(price) * cart_item.quantity
+    
+
+
+
+    #Another fuction using list comprehensive 
     def get_cart_total(self):
         cart_items= self.cart_item.all()
-        price = []
 
-        #print("Price ---------------------------------------------",price)
+        return sum( (item.product.product_price + item.product_Size_variant.price) * item.quantity
+                   if item.product_Size_variant else item.product.product_price  * item.quantity
+                    for item in cart_items 
+                       )
 
-        for cart_item in cart_items:
-            price.append(cart_item.product.product_price)
-            if cart_item.product_Size_variant:
-                size_variant_price = cart_item.product_Size_variant.price
-                price.append(size_variant_price)
-        
-        if self.coupon:
-            return sum(price) - self.coupon.discount
-        
-        return sum(price)
-    
+
+  
     def get_tax(self):
         total_tax= self.get_cart_total() * float(5/100)
         return total_tax

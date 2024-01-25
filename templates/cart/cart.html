@@ -21,10 +21,10 @@
         {% if cart_item_count > 0 %}
     <tr class="small text-uppercase">
       <th scope="col">Product</th>
-      <th scope="col" width="120">Color</th>
-      <th scope="col" width="120">Size</th>
-      <th scope="col" width="120">Quantity</th>
       <th scope="col" width="120">Price</th>
+      <th scope="col" width="120">Quantity</th>
+      {% comment %} <th scope="col" width="120">Quantity</th>
+      <th scope="col" width="120">Price</th> {% endcomment %}
       <th scope="col" class="text-right" width="200"> </th>
     </tr>
     </thead>
@@ -37,42 +37,33 @@
                 <figcaption class="info">
                     <a href="#" class="title text-dark">{{cart.product.product_name}}</a>
                     <p class="text-muted small">{{cart.product.product_brand}} <br> </p>
+                    <p class="text-muted small">Size :{{cart.product_Size_variant}} <br> </p>
+                    <p class="text-muted small">Color :  <br> </p>
                 </figcaption>
             </figure>
         </td>
-        <td>
-            <figure class="itemside align-items-center">
-                
-                <figcaption class="info">
-                    <p class="title text-dark">None</p>
-                 
-                </figcaption>
-            </figure>
-        </td>
-        <td>
-            <figure class="itemside align-items-center">
-                
-                <figcaption class="info">
-                    <p class="title text-dark">{{cart.product_Size_variant}}</p>
-                   
-                </figcaption>
-            </figure>
-
-        </td>
-        <td> 
-                         <div class="counter">
-                            <span class="down" onClick='decreaseCount(event, this)'> <a class="mr-2" href="{% url 'decrease_item' pk=cart.product.pk%}">-</a></span>
-                            <input type="text" value="{{ cart.quantity }}">
-                            <span class="up" onClick='increaseCount(event, this)'> <a   class="mr-2" href="{% url 'increase_item' pk=cart.product.pk %}">+</a></span>
-                          </div> 
-               
-        </td>
+       
         <td> 
             <div class="price-wrap"> 
                 <var class="price">&#2547; {{cart.get_product_price}}</var> 
                 {% comment %} <small class="text-muted"> &#2547; {{cart.item.product_price}} each </small>  {% endcomment %}
-            </div> <!-- price-wrap .// -->
+            </div> 
+                        
+               
         </td>
+
+        <td>
+           
+            <div class="counter">
+                            <span class="down" onClick='decreaseCount(event, this)'> <a class="mr-2" href="{% url 'decrease_item' pk=cart.product.pk%}">-</a></span>
+                            <input type="" value="{{ cart.quantity }}" readonly>
+                            <span class="up" onClick='increaseCount(event, this)'> <a   class="mr-2" href="{% url 'increase_item' pk=cart.product.pk %}">+</a></span>
+                          </div> 
+
+        </td>
+
+
+    
         <td class="text-right"> 
          <a href="{% url 'remove_from_cart' cart.product.pk %}" class="btn btn-danger"> Remove</a> 
         </td>

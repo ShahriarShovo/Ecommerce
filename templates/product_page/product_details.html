@@ -17,14 +17,21 @@
         <div class="row no-gutters">
             <aside class="col-md-6">
     <article class="gallery-wrap"> 
-        <div class="img-big-wrap">
-           <a href="#"><img src="/media/{{product_details.product_image}}"></a>
+        <div class="img-big-wrap mainImage">
+           <center><img src="/media/{{product_details.product_image}}"></center>
            
         </div>  
-
-        
-    
     </article> 
+    <ul class='thumbs'  >
+
+      <li >
+        <a href="{{product_details.product_image.url}}" target="mainImage"><img src="{{product_details.product_image.url}}" alt="Product Image" ></a>
+        {% for product_images in product_gallery %}
+        <a href="{{product_images.image.url}}" target="mainImage"><img src="{{product_images.image.url}}" alt="Product Image" ></a>
+        {% endfor %}
+      </li>
+
+    </ul>
             </aside>
             <main class="col-md-6 border-left">
     <article class="content-body">
@@ -36,6 +43,7 @@
      
       <div class="rating-star">
         <span>
+          {% if product_details.averageRating %}
           {{product_details.averageRating}}
               <i class="fa fa-star{% if product_details.averageRating < 0.5 %}-o{% elif product_details.averageRating >= 0.5 and product_details.averageRating < 1  %}-half-o{% endif %}"></i> 
               <i class="fa fa-star{% if product_details.averageRating < 1.5 %}-o{% elif product_details.averageRating >= 1.5 and product_details.averageRating < 2  %}-half-o{% endif %}"></i> 
@@ -44,6 +52,10 @@
               <i class="fa fa-star{% if product_details.averageRating < 4.5 %}-o{% elif product_details.averageRating >= 4.5 and product_details.averageRating < 5  %}-half-o{% endif %}"></i> 
               <small class="label-rating text-muted">{{product_details.count_reviews}} reviews</small>
               <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
+              {% else %}
+              <small class="label-rating text-muted">No reviews Yet</small>
+              <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
+              {% endif %}
     </span>
   </div>
      <br>
