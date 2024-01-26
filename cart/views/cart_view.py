@@ -15,9 +15,9 @@ def cart_view(request):
     cart_item_count = item_in_carts.count()
 
     #print('=============count', cart_item_count)
-    total= cart_object.get_cart_total()
-    tax = cart_object.get_tax()
-    final_total = total + tax
+    # total= cart_object.get_cart_total()
+    # tax = cart_object.get_tax()
+    # final_total = total + tax
 
     # get_code = request.GET.get('coupon_code')
     # print ("Coupon code caputure +++++++++++++++++++++",get_code)
@@ -52,15 +52,10 @@ def cart_view(request):
                 print("Coupon applied")
                 return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-
-
-
-        
-   
     context={
         'carts':item_in_carts,
         'cart_object':cart_object,
-        'final_total':final_total,
+        #'final_total':final_total,
         'cart_item_count':cart_item_count,
         
     }

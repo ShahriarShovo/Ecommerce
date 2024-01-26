@@ -17,13 +17,10 @@
 
 <header class="section-header">
    
-    </header> <!-- section-header.// -->
+    </header> 
     <section class="section-content padding-y bg">
     <div class="container">
     
-    
-    
-    <!-- ============================ COMPONENT 2 ================================= -->
     <div class="row">
             <main class="col-md-8">
     
@@ -32,22 +29,22 @@
         <h4 class="card-title mb-4">Review cart</h4>
        
         <div class="row">
-            {% for cart in carts %}
+            {% for items in item_in_carts %}
             <div class="col-md-6">
                 <figure class="itemside  mb-4">
-                    <div class="aside"><img src="/media/{{cart.item.product_image}}" class="border img-sm"></div>
+                    <div class="aside"><img src="{{items.product.product_image.url}}" class="border img-sm"></div>
                     <figcaption class="info">
-                        <p>{{cart.item.product_name}} | {{cart.item.product_brand}} </p>
-                        <p>Quantity : {{cart.quantity}} </p>
-                        <span class="text-muted">&#2547;{{cart.item.product_price}} each</span>
+                        <p>{{items.product.product_name}} | {{items.product.product_brand}} </p>
+                        <p>Quantity : {{items.quantity}} </p>
+                        <span class="text-muted">&#2547;{{items.get_product_price}} each</span>
                     </figcaption>
                 </figure>
-            </div> <!-- col.// -->
+            </div> 
             {% endfor %}
-        </div> <!-- row.// -->
+        </div> 
        
-    </div> <!-- card-body.// -->
-    </article> <!-- card.// -->
+    </div> 
+    </article> 
     
     
     <article class="card mb-4">
@@ -56,27 +53,28 @@
             <form  action="">
                
                 <div class="row">
+                    
                     <div class="form-group col-sm-6">
                         <label>Frst name</label>
-                        <input type="text" name='first_name' value="{{user_first_name}}" class="form-control"  readonly>
+                        <input type="text" name='first_name' value="{{address.user.first_name}}" class="form-control"  readonly>
                     </div>
                     <div class="form-group col-sm-6">
                         <label>Last name</label>
-                        <input type="text" name='last_name' value="{{user_last_name}}" class="form-control" readonly>
+                        <input type="text" name='last_name' value="{{address.user.last_name}}" class="form-control" readonly>
                     </div>
                     <div class="form-group col-sm-6">
                         <label>User name</label>
-                        <input type="text" name='phone' value="{{user_name}}" class="form-control" readonly>
+                        <input type="text" name='phone' value="{{address.user.username}}" class="form-control" readonly>
                     </div>
                     <div class="form-group col-sm-6">
                         <label>Email</label>
-                        <input type="email" name='email' value="{{user_email}}" class="form-control" readonly> 
+                        <input type="email" name='email' value="{{address.user.email}}" class="form-control" readonly> 
                     </div>
                     
-                </div> <!-- row.// -->	
+                </div> 
             </form>
-        </div> <!-- card-body.// -->
-        </article> <!-- card.// -->
+        </div> 
+        </article>
     
         <article class="card mb-4">
             <div class="card-body">
@@ -93,57 +91,53 @@
                             </div>
                             <div class="form-group col-sm-6">
                                 <label>State*</label>
-                                <input type="text"  name='state' value="{{state}}" class="form-control">
+                                <input type="text"  name='state' value="{{address.state}}" class="form-control">
                             </div>
                             <div class="form-group col-sm-6">
                                 <label>Street*</label>
-                                <input type="text" name='street' value="{{street}}" class="form-control">
+                                <input type="text" name='street' value="{{address.street}}" class="form-control">
                             </div>
                             <div class="form-group col-sm-6">
                                 <label>Building</label>
-                                <input type="text" name='building' value="{{house_number}}" class="form-control">
+                                <input type="text" name='building' value="{{address.house_number}}" class="form-control">
                             </div>
                         
                             <div class="form-group col-sm-6">
                                 <label>Phone</label>
-                                <input type="text" name='phone' value="{{phone}}" class="form-control">
+                                <input type="text" name='phone' value="{{address.phone}}" class="form-control">
                             </div>
                             <div class="form-group col-sm-6">
                                 <label>Zip</label>
-                                <input type="text" name='zip' value="{{zip}}" class="form-control">
+                                <input type="text" name='zip' value="{{address.zipcode}}" class="form-control">
                             </div>
         
                             <div class="form-group col-sm-4">
                                 <button type="submit" name ="user_final_checkout_form" class="btn btn-primary "> Update  </button>
                             </div> 
-                    </div>
-                   
+                    </div>   
                 </form>
-                
             </div> 
             
-            </article>
-    
-    
-</main> <!-- col.// -->
+            </article>  
+</main>
 
 <aside class="col-md-4">
     <div class="card">
 <div class="card-body">
     <dl class="dlist-align">
       <dt>Total price:</dt>
-      <dd class="text-right">&#2547;{{total_item_price}}</dd>
+      <dd class="text-right">&#2547;{{cart_object.get_cart_total}}</dd>
     </dl>
     <dl class="dlist-align">
       <dt>Tax:</dt>
-      <dd class="text-right"> &#2547;{{total_tax}}</dd>
+      <dd class="text-right"> &#2547;{{cart_object.get_tax}}</dd>
     </dl>
     
     <hr>
     <p class="text-center mb-3">
         <dl class="dlist-align">
             <dt>Total:</dt>
-            <dd class="text-right text-dark b"><strong>&#2547;{{get_total_all}}</strong></dd>
+            <dd class="text-right text-dark b"><strong>&#2547;{{cart_object.get_fully_total}}</strong></dd>
           </dl>
         {% comment %} <img height="26" src="{% static 'images/misc/payments.png' %}" > {% endcomment %}
     </p>
