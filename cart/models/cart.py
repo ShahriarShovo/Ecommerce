@@ -15,9 +15,14 @@ class Cart (models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="cart", null=True, blank=True)
     is_paid = models.BooleanField(default=False)
     coupon = models.ForeignKey(Coupon_Code, on_delete=models.SET_NULL, null=True, blank=True)
-    order_id = models.CharField(max_length=255, unique=True,null=True)
-    payment_id = models.CharField(max_length=255,unique=True,null=True)
-    created = models.DateTimeField(default=timezone.now)
+    # products = models.ManyToManyField(Products)
+    # order_id = models.CharField(max_length=255, unique=True,null=True)
+    # payment_id = models.CharField(max_length=255,unique=True,null=True)
+    # quantity = models.PositiveIntegerField(null=True)
+    # total=models.FloatField(null=True)
+    # tax=models.FloatField(null=True)
+    # grand_total=models.FloatField(null=True)
+    # created = models.DateTimeField(default=timezone.now)
 
     #Another fuction using list comprehensive 
 
@@ -55,6 +60,7 @@ class Cart (models.Model):
         #print("Final total ---------------------------------------------",total_final)
         return total_final
     
+
     def __str__(self) -> str:
         return self.user.email
     

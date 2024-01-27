@@ -5,6 +5,7 @@ from cart.views.cart_view import cart_view
 from cart.views.increase_item import increase_cart
 from cart.views.decrease_item import decrease_cart
 from cart.views.remove_item import remove_from_cart
+from cart.views.clear_cart import clear_cart
 
 
 
@@ -16,6 +17,7 @@ urlpatterns = [
      path('increase_item/<int:pk>/', increase_cart, name="increase_item"),
      path('decrease_item/<int:pk>/', decrease_cart, name="decrease_item"),
      path('remove/<int:pk>/', remove_from_cart, name='remove_from_cart'),
+     path('clear/', clear_cart, name='clear_cart'),
      path('check_out/', include('orders.urls')),
 
 ]

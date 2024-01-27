@@ -13,8 +13,7 @@ from user_auth.models.guest_user import Guest_User
 def initial_order(request):
         
     item_in_carts = Cart_Item.objects.filter(cart__user=request.user, cart__is_paid=False)
-
-    #print("Item in cart +++++++++++++++++++", item_in_carts)
+    
     cart_object = Cart.objects.get(user=request.user, is_paid=False)
     #print("Total price in cart +++++++++++++++++++", cart_object)
   

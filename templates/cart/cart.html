@@ -19,6 +19,9 @@
     <table class="table table-borderless table-shopping-cart">
     <thead class="text-muted">
         {% if cart_item_count > 0 %}
+
+        
+
     <tr class="small text-uppercase">
       <th scope="col">Product</th>
       <th scope="col" width="120">Price</th>
@@ -68,8 +71,9 @@
          <a href="{% url 'remove_from_cart' cart.product.pk %}" class="btn btn-danger"> Remove</a> 
         </td>
     </tr>
+    
     {% endfor %}
-
+    
     {% else %}
     
     <div class="empty-cart">
@@ -146,8 +150,14 @@
 
     
     </table>
+
     
     </div> 
+    <br>
+    <p align=""> 
+        <a href="{% url 'clear_cart' %}" class="btn btn-danger"> Clear Cart</a> 
+
+    </p>
 
         </aside> <!-- col.// -->
         <aside class="col-lg-3">

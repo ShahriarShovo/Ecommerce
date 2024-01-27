@@ -47,21 +47,41 @@ def cash_on_delivery(request):
         user = request.user
         user_address = BillingAddress.objects.get(user=user)
         cart_items = Cart_Item.objects.filter(cart__user=user)
-        cart_object = Cart.objects.get(user=user, is_paid=False)
-        print("Cart item +++++++++++++++", cart_items)
+        quantities = [quantities.quantity  for quantities in cart_items.all()]
+        product_name= [product_name.product  for product_name in cart_items.all()]
+        print("Total quantity-------------------", product_name)
+        cart_object = Cart.objects.filter(user=user, is_paid=False)
+        get_total= [total.get_cart_total() for total in cart_object]
+        get_tax= [tax.get_tax() for tax in cart_object]
+        grand_total= [grand_total.get_fully_total() for grand_total in cart_object]
+        print("Cart Total-------------------", get_total)
+        print("Cart get_tax-------------------", get_tax)
+        print("Cart grand_total-------------------", grand_total)
+        
+
+        
 
         for objects in cart_object:
             objects.is_paid=True
             objects.order_id=order_id
             objects.payment_id=payment_id
+            objects.quantity=quantities
+            objects.total=get_total
+            objects.tax=get_tax
+            objects.grand_total=grand_total
+            objects.products.set(product_name)
             objects.save()
-
+        
         context={
             'cart_items' : cart_items,
             'total_price_in_cart' :cart_object,
             'payment_id':payment_id,
-            'order_id':order_id
+            'order_id':order_id,
+            
         }
+
+        #clear_cart_item = cart_items.delete()
+
         return render(request, 'messages/thank_you_for_purchased.html', context)
         # total_tax=request.session['total_tax'] 
         # total_item_price=request.session['total_item_price']
