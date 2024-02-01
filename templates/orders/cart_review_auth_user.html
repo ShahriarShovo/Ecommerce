@@ -121,7 +121,7 @@
             </article>  
 </main>
 
-<aside class="col-md-4">
+<aside class="col-lg-3">
     <div class="card">
 <div class="card-body">
     <dl class="dlist-align">
@@ -149,7 +149,7 @@
 </div> 
 </div> 
 
-<form method="POST" action="{% url 'choose_payment' %}">
+ <form method="POST" action="{% url 'choose_payment' %}">
     {% csrf_token %}
     <div class="card">
         <div class="card-body">
@@ -171,8 +171,8 @@
                 <label class="form-check-label" for="flexRadioDefault2">
                   Paypal
                 </label>
-            </div>
-
+            </div> 
+            
         </div>
             <hr>
             <p class="text-center mb-3">
@@ -183,7 +183,47 @@
         </div> 
      </div> 
 
-    </form>
+    </form> 
+    
+
+    {% comment %} <div class="card">
+        <section class="payment-method">
+          
+          <form method="POST" >
+         
+            {% csrf_token %}
+            <fieldset>
+              <legend>Select payment method</legend>
+              <p>
+                <input type="radio" data-card="visa" id="visa" name="paymentMethod" value="visa" required />
+                <label for="visa">
+                  <img src="https://res.cloudinary.com/du2vvjrb5/image/upload/v1581191001/frontloops/l1s2-paymeth/visa_zqzwtd.svg" alt="" />Cash on Delivery</label>
+              </p>
+              <p>
+                <input type="radio" data-card="mastercard" id="mastercard" name="paymentMethod" value="mastercard" />
+                <label for="mastercard">
+                  <img src="https://res.cloudinary.com/du2vvjrb5/image/upload/v1581191001/frontloops/l1s2-paymeth/mastercard_cpwa1n.svg" alt="" />Amar Pay</label>
+              </p>
+              <p>
+                <input type="radio" data-card="maestro" id="maestro"  name="select_option" value="paypal" />
+                <label for="maestro">
+                  <img src="https://res.cloudinary.com/du2vvjrb5/image/upload/v1581191001/frontloops/l1s2-paymeth/maestro_tv9ivj.svg" alt="" / aria-hidden="true">Paypal</label>
+              </p>
+            </fieldset>
+
+            
+            
+          </form>
+        </section>
+    </div>
+    <hr>
+    <p class="text-center mb-3">
+        <img height="26" src="{% static 'images/misc/payments.png' %}" >
+    </p>
+    <button action="{% url 'choose_payment' %}"  class="btn btn-primary btn-block"> Checkout </button>
+     
+</div>  {% endcomment %}
+        
 
 </aside> 
 

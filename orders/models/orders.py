@@ -1,24 +1,43 @@
 from django.db import models
-from products.models.products_model import Products
 from cart.models.cart import Cart
 from django.conf import settings
 from user_auth.models.guest_user import Guest_User
+from orders.models.payment import Payment
+from products.models.product_variation.size_variant import Product_Size_variant
+from orders.models.billing_address import BillingAddress
+#from orders.models.product_ordered import Products_Ordered
 
 class Order(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True, blank=True)
-    guest_user = models.ForeignKey(Guest_User, on_delete=models.CASCADE, null=True, blank=True)
-    orderItems = models.ManyToManyField(Cart, related_name='carts')
-    ordered = models.BooleanField(default=False)
+
+    pay_status =(
+        ('Paid', 'Paid'),
+        ('Cash_on_delivery', 'Cash on delivery'),
+    )
+
+    order_status =(
+        ('Completed', 'Completed'),
+        ('Pending', 'Pending'),
+    )
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL)
+    #product = models.ForeignKey(Products_Ordered,null=True, blank=True, on_delete=models.CASCADE)
+    product_Size_variant = models.ManyToManyField(Product_Size_variant, null=True,blank=True)
+    order_number = models.CharField(max_length=200, null=True, blank=True)
+    payment_number = models.CharField(max_length=200, null=True, blank=True)
+    order_total = models.FloatField(null=True,blank=True)
+    tax = models.FloatField(null=True,blank=True)
+    grand_total = models.FloatField(null=True,blank=True)
+    payment_status = models.CharField(choices=pay_status, default='Paid', max_length=50)
+    status = models.CharField(choices=order_status, default='Pending', max_length=50)
+    ip_address = models.CharField(max_length=200, blank=True, null=True)
+    is_ordered = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
-    paymentId = models.CharField(max_length=264, blank=True, null=True)
-    orderId = models.CharField(max_length=200, blank=True, null=True)
-    sum_of_each_product = models.FloatField(max_length=200, blank=True, null=True)
-    total_tax = models.FloatField(max_length=200, blank=True, null=True)
-    final_total= models.FloatField(max_length=200, blank=True, null=True)
+    updated = models.DateTimeField(auto_now=True)
+    
     
 
     def __str__(self) -> str:
-        return self.paymentId
+        return self.order_number
     
 
         

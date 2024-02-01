@@ -18,7 +18,7 @@ def choose_payment(request):
         
         elif selected_payment_method == 'paypal':
 
-            #print("PayPal +++++++++++++++", selected_payment_method)
+            print("PayPal +++++++++++++++", selected_payment_method)
             return HttpResponse('paypal')
         else:
             print("error in select conditions +++++++++++++++")
