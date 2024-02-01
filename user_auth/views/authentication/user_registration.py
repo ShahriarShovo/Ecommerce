@@ -15,29 +15,22 @@ def user_register(request):
     
     if request.method == 'POST':
         # print('request  = ', request.POST)
-        first_name              =               request.POST.get('first_name')
-        last_name               =               request.POST.get('last_name')
-        email                   =               request.POST.get('email')
-        gender                  =               request.POST.get('gender')
-        password                =               request.POST.get('password')
-        confirm_password        =               request.POST.get('repeat_password')
+        first_name       =    request.POST.get('first_name')
+        last_name        =    request.POST.get('last_name')
+        email            =    request.POST.get('email')
+        gender           =    request.POST.get('gender')
+        password         =    request.POST.get('password')
+        confirm_password =    request.POST.get('repeat_password')
         
-        
-
         if email is not None:
             username            =               email.split('@')[0]
-
             if password         !=              confirm_password:
-
                 return HttpResponse("password Not match")
             
             else:
-                user             =               User.objects.create_user( 
-                                                                            gender_choosed=gender,
-                                                                            email=email, username=username, 
-                                                                            password=password)
-                user.role        =                User.CUSTOMER
-                user.sign_up_platform =           User.SITE_SIGNUP
+                user =User.objects.create_user(first_name=first_name,last_name=last_name,gender_choosed=gender,email=email,username=username,password=password)
+                user.role =  User.CUSTOMER
+                user.sign_up_platform = User.SITE_SIGNUP
                 user.save()
 
                 mail_subject='Active your Account'
@@ -58,12 +51,12 @@ def user_register(request):
 
 def activate(request, uidb64,token):
     try:
-        uid                        =                  urlsafe_base64_decode(uidb64).decode()
-        user                       =                  User._default_manager.get(pk=uid)
+        uid            =   urlsafe_base64_decode(uidb64).decode()
+        user           =   User._default_manager.get(pk=uid)
     except(User.DoesNotExist, OverflowError, TypeError, ValueError):
-        user                       =                  None
+        user           =   None
     if user is not None and default_token_generator.check_token(user,token):
-        user.is_active             =                  True
+        user.is_active =   True
         user.save()
         return redirect('user_login')
         #return HttpResponse('Account verify succesfully')

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from user_auth.models.user import User
-from user_auth.models.user_profile import Profile
+from user_auth.models.user_address import User_Address
 from user_auth.models.guest_user import Guest_User
 
 from django.contrib.auth.admin import UserAdmin
@@ -17,7 +17,7 @@ class Custom_User_Admin(UserAdmin):
 
      
 admin.site.register(User,Custom_User_Admin)
-admin.site.register(Profile)
+admin.site.register(User_Address)
 admin.site.register(Guest_User)
 
 

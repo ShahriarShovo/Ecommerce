@@ -69,7 +69,9 @@
                                         <li><strong>Transaction</strong> #{{order_number.payment_number}}</li>
                                         <li><strong>Order Date:</strong> {{order_number.created}}</li>
                                         <li><strong>Payment Status:</strong>  {{order_number.get_status_display}}</li>
+                                        <li><strong>Payment Method:</strong> ##########</li>
                                         <li><strong>Status:</strong> {{order_number.get_payment_status_display}}</li>
+                                        
                                     </ul>
                                 </div>
                             </div>
@@ -91,7 +93,7 @@
                                             
                                             <tr>
                                                 <td>{{order_completed.product_name}}</td>
-                                                <td>{{order_completed.product_Size_variant}}</td>
+                                                <td class="text-center">{{order_completed.product_Size_variant}}</td>
                                                 <td class="text-center">{{order_completed.quantity}}</td>
                                                 <td class="text-center">{{order_completed.each_product_price}}</td>
                                             </tr>

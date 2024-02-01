@@ -23,7 +23,8 @@
             <article class="card">
             <header class="card-header">
                 <strong class="d-inline-block mr-3">USER ID: 6123456789</strong>
-                <span>Login Date: {{ user.last_login|date:"F j, Y" }} at {{ user.last_login|time:"g:i A" }}</span>
+                <strong class="d-inline-block mr-3">{{user.get_sign_up_platform_display}}</strong>
+                <span>Login Date: {{user.last_login|date:"F j, Y"}} at {{ user.last_login|time:"g:i A"}}</span>
             </header>
             <div class="card-body">
                 {% include "accounts/user_contact.html" %}

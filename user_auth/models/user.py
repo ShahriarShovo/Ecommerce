@@ -18,46 +18,38 @@ class User(AbstractBaseUser, PermissionsMixin):
     SITE_SIGNUP =4
 
 
-    ROLE_CHOOSED                   =                       ((ADMIN, 'admin'),
-                                                           (CUSTOMER, 'customer'),)
-    GENDER_CHOOSED                 =                       ((MALE, 'male'),
-                                                           (FEMALE, 'female'))
+    ROLE_CHOOSED    =   ((ADMIN, 'admin'),(CUSTOMER, 'customer'),)
+    GENDER_CHOOSED  =   ((MALE, 'male'),(FEMALE, 'female'))
     
-    SIGNUP_PLATFORM                =                        ((GOOGLE_SIGNUP,'google_signup'),
-                                                             (GITHUB_SIGNUP, 'github_signup'),
-                                                             (FACEBOOK_SIGNUP,'facebook_signup'),
-                                                             (SITE_SIGNUP,'site_signup'),
-                                                             )
+    SIGNUP_PLATFORM =   ((GOOGLE_SIGNUP,'Login from Google'),(GITHUB_SIGNUP, 'Login from Github'),(FACEBOOK_SIGNUP,'Login from Facebook'),(SITE_SIGNUP,'Login'),)
 
-    first_name                     =                        models.CharField(max_length=50, null=True, blank=True)
-    last_name                      =                        models.CharField(max_length=50, null=True, blank=True)
-    username                       =                        models.CharField(max_length=50, unique=True)
-    email                          =                        models.EmailField(max_length=100, unique=True)
-    phone                          =                        models.CharField(max_length=20, blank=True)
-
-    role                           =                        models.PositiveSmallIntegerField(choices=ROLE_CHOOSED,
+    first_name      =   models.CharField(max_length=50, null=True, blank=True)
+    last_name       =   models.CharField(max_length=50, null=True, blank=True)
+    username        =   models.CharField(max_length=50, unique=True)
+    email           =   models.EmailField(max_length=100, unique=True)
+    role            =   models.PositiveSmallIntegerField(choices=ROLE_CHOOSED,
                                                                               blank=True, null=True)
     
-    gender_choosed                 =                        models.PositiveSmallIntegerField(choices=GENDER_CHOOSED,
+    gender_choosed  =   models.PositiveSmallIntegerField(choices=GENDER_CHOOSED,
                                                                               blank=True, null=True)
-    sign_up_platform               =                        models.PositiveSmallIntegerField(choices=SIGNUP_PLATFORM,
+    sign_up_platform=   models.PositiveSmallIntegerField(choices=SIGNUP_PLATFORM,
                                                                               blank=True, null=True)
 
     # requires fields
-    date_joined                    =                        models.DateTimeField(auto_now_add=True)
-    last_login                     =                        models.DateTimeField(auto_now_add=True)
-    created_date                   =                        models.DateTimeField(auto_now_add=True)
-    modify_date                    =                        models.DateTimeField(auto_now=True)
-    is_admin                       =                        models.BooleanField(default=False)
-    is_staff                       =                        models.BooleanField(default=False)
-    is_active                      =                        models.BooleanField(default=False)
-    is_superuser                   =                        models.BooleanField(default=False)
+    date_joined     =   models.DateTimeField(auto_now_add=True)
+    last_login      =   models.DateTimeField(auto_now_add=True)
+    created_date    =   models.DateTimeField(auto_now_add=True)
+    modify_date     =   models.DateTimeField(auto_now=True)
+    is_admin        =   models.BooleanField(default=False)
+    is_staff        =   models.BooleanField(default=False)
+    is_active       =   models.BooleanField(default=False)
+    is_superuser    =   models.BooleanField(default=False)
 
 
-    USERNAME_FIELD                 =                        'email'
-    # REQUIRED_FIELDS                =                        ['email',]
+    USERNAME_FIELD  =   'email'
+    #REQUIRED_FIELDS =  ['email',]
 
-    objects                        =                         UserManager()
+    objects         =  UserManager()
 
     def __str__(self) -> str:
         return self.email

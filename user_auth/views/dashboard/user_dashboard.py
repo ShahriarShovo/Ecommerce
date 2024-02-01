@@ -15,12 +15,12 @@ def user_dashboard(request):
         date = datetime.date.today()
         today = now().date()
         #TODO know about 1
-        pending_order = Cart.objects.filter(user=current_user,select_order_stats=1)
-        print(" order pending -----------", pending_order)  
-        #address = BillingAddress.objects.get(user=current_user)
-        get_order = Order.objects.filter(user=current_user, ordered=True).order_by('created')
+        # pending_order = Cart.objects.filter(user=current_user,select_order_stats=1)
+        # print(" order pending -----------", pending_order)  
+        # #address = BillingAddress.objects.get(user=current_user)
+        # get_order = Order.objects.filter(user=current_user, ordered=True).order_by('created')
         
-        print(" order date -----------",get_order)
+        # print(" order date -----------",get_order)
     
 
         return render(request,'dashboard/user_dashboard.html', locals())

@@ -14,14 +14,14 @@ def invoice(request, pay_id,order_id):
     get_grand_total = order_instance.grand_total
     # #items_in_order = Products_Ordered.objects.filter(ordered=order_instance).first()
     # #print( " Orderd Product +++++++++++++++++",items_in_order)
-    print( " order total  +++++++++++++++++",get_total)
-    print( " order get_tax  +++++++++++++++++",get_tax)
-    print( " order get_grand_total  +++++++++++++++++",get_grand_total)
+    # print( " order total  +++++++++++++++++",get_total)
+    # print( " order get_tax  +++++++++++++++++",get_tax)
+    # print( " order get_grand_total  +++++++++++++++++",get_grand_total)
     
     # order_instance = Order.objects.filter(payment_number=pay_id, is_ordered=True).first()
     # #order_instance = get_object_or_404(Order, order_number=order_id)
     product_ordered_instances = Products_Ordered.objects.filter(ordered=order_instance)
-    print( " Orderd Product +++++++++++++++++",product_ordered_instances)
+    #print( " Orderd Product +++++++++++++++++",product_ordered_instances)
     # products = [product_ordered.product for product_ordered in order_instance]
 
     # #product_names = [product_ordered.product.product_name for product_ordered in ordered.all()]
