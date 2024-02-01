@@ -74,6 +74,7 @@ def cash_on_delivery(request):
                 ordered=save_order,
                 product_name=items.product,
                 quantity=items.quantity,
+                product_Size_variant=items.product_Size_variant,
                 each_product_price=items.get_product_price()
             )
         #print("get_product_price-------------------", get_product_price)
