@@ -69,7 +69,7 @@
                                         <li><strong>Transaction</strong> #{{order_number.payment_number}}</li>
                                         <li><strong>Order Date:</strong> {{order_number.created}}</li>
                                         <li><strong>Payment Status:</strong>  {{order_number.get_status_display}}</li>
-                                        <li><strong>Payment Method:</strong> ##########</li>
+                                        <li><strong>Payment Method:</strong> {{order_number.bank}}</li>
                                         <li><strong>Status:</strong> {{order_number.get_payment_status_display}}</li>
                                         
                                     </ul>

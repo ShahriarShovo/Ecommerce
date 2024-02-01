@@ -20,8 +20,6 @@ class Order(models.Model):
     )
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL)
-    #product = models.ForeignKey(Products_Ordered,null=True, blank=True, on_delete=models.CASCADE)
-    product_Size_variant = models.ManyToManyField(Product_Size_variant, null=True,blank=True)
     order_number = models.CharField(max_length=200, null=True, blank=True)
     payment_number = models.CharField(max_length=200, null=True, blank=True)
     order_total = models.FloatField(null=True,blank=True)
@@ -30,6 +28,7 @@ class Order(models.Model):
     payment_status = models.CharField(choices=pay_status, default='Paid', max_length=50)
     status = models.CharField(choices=order_status, default='Pending', max_length=50)
     ip_address = models.CharField(max_length=200, blank=True, null=True)
+    bank=models.CharField(max_length=20, null=True, blank=True)
     is_ordered = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
