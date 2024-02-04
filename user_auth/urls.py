@@ -15,7 +15,7 @@ from .views.password.reset_password_validate import reset_password_validate
 #from .views.dashboard.update_address_view import update_address_view
 from .views.dashboard.update_address import update_address
 #from .views.user_billing_address import user_billing_address
-from user_auth.views.dashboard.change_password import change_password
+from user_auth.views.password.change_password import change_password
 
 #app_name='user_auth'
 
