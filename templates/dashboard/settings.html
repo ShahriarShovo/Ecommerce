@@ -27,8 +27,11 @@
                 <span>Login Date: {{user.last_login|date:"F j, Y"}} at {{ user.last_login|time:"g:i A"}}</span>
             </header>
             <div class="card-body">
+                {% if user.sign_up_platform == 4 %}
                 {% include "accounts/user_contact.html" %}
+                {% else %}
                 {% include "accounts/user_delivery.html" %}
+                {% endif %}
             </div>
             <div class="table-responsive">
           

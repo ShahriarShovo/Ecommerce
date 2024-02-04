@@ -13,12 +13,12 @@ def choose_payment(request):
         
         elif selected_payment_method == 'amar_pay':
 
-            print("Amar Pay +++++++++++++++", selected_payment_method)
+            #print("Amar Pay +++++++++++++++", selected_payment_method)
             return HttpResponseRedirect(reverse('initial_payment_amarPay'))
         
         elif selected_payment_method == 'paypal':
 
-            print("PayPal +++++++++++++++", selected_payment_method)
+            #print("PayPal +++++++++++++++", selected_payment_method)
             return HttpResponse('paypal')
         else:
             print("error in select conditions +++++++++++++++")

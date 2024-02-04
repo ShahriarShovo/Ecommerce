@@ -51,6 +51,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects         =  UserManager()
 
+    
+
     def __str__(self) -> str:
         return self.email
 
@@ -59,4 +61,26 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def has_module_perms(self, app_label):
         return True
+    
+    def update_user(self, *args, **kwargs):
+
+        if kwargs['first_name']:
+            self.first_name = kwargs['first_name']
+
+        if kwargs['last_name']:
+            self.last_name = kwargs['last_name']
+
+        if kwargs['username']:
+            self.username = kwargs['username']
+
+        if kwargs['email']:
+            self.email = kwargs['email']
+
+        else:
+            print("User Update has problem -----------------")
+        
+        self.save()
+
+
+        
     

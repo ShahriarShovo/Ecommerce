@@ -73,11 +73,9 @@ def cash_on_delivery(request):
                 product_Size_variant=items.product_Size_variant,
                 each_product_price=items.get_product_price()
             )
-       
-
-
         Cart_Item.objects.filter(cart__user=user).delete()
         return HttpResponseRedirect(reverse("invoice", kwargs={'pay_id':payment_id, 'order_id':order_id}))
+    
     else:
         return HttpResponse("Cash on delivery is not working")
 

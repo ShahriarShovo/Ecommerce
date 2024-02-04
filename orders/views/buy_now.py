@@ -68,6 +68,4 @@ def buy_now(request, pk):
                                                                     country)
 
 
-
-
         return render(request, 'orders/buy_now.html',locals())

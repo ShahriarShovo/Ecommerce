@@ -13,7 +13,7 @@ from .views.social_login.facebook_login import facebook_login,facebook_callback 
 from .views.password.reset_password import reset_password
 from .views.password.reset_password_validate import reset_password_validate
 #from .views.dashboard.update_address_view import update_address_view
-from .views.dashboard.create_address_view import create_address_view
+from .views.dashboard.update_address import update_address
 #from .views.user_billing_address import user_billing_address
 
 #app_name='user_auth'
@@ -30,7 +30,7 @@ urlpatterns = [
     path('logout/', user_logout, name='user_logout'),
     path('myaccount/', myaccount, name='myaccount'),
     #path('update_address_view/<int:pk>/', update_address_view, name='update_address_view'),
-    path('create_address_view/', create_address_view, name='create_address_view'),
+    path('create_address_view/', update_address, name='update_address'),
     #path('update_user_info', settings, name='update_user_info'),
     #path('update_user_billing_address', user_billing_address, name='update_user_billing_address'),
 
