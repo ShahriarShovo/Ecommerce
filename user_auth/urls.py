@@ -18,6 +18,7 @@ from .views.dashboard.update_address import update_address
 from user_auth.views.password.change_password import change_password
 
 #app_name='user_auth'
+from user_auth.views.dashboard.dashboard_options.total_orders import total_orders
 
 urlpatterns = [
    
@@ -55,4 +56,6 @@ urlpatterns = [
     path('reset_password/', reset_password, name='reset_password'),
 
     path('change-password/', change_password , name='change_password'),
+
+    path('total_orders/', total_orders , name='total_orders'),
 ]

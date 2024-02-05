@@ -1,21 +1,12 @@
 {% extends 'base/base.html' %}
-
 {% load static %}
-
 {% block headers %}
-
 {% include 'include/main_include_file.html' %}
-
 {% endblock headers %}
-
-
-
 {% block body %}
 
 
-<!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-conten padding-y bg">
-
     <div class="container">
         <div class="row">
         {% include "dashboard/user_options.html" %}
@@ -26,37 +17,17 @@
                 <span>Login Date: {{ user.last_login|date:"F j, Y" }} at {{ user.last_login|time:"g:i A" }}</span> |
                 <span>Last Order Date : {{get_order.created}} </span>
             </header>
-
             {% include "dashboard/show_address.html" %}
-            {% include "include/dashboard_functions.html" %}
-
-            <div class="table-responsive">
-            <table class="table table-hover">
-                 {% for qs in pending_order %}
-                <tr>
-                    <td width="65">
-                        <img src="/media/{{qs.item.product_image}}" class="img-xs border">
-                    </td>
-                    <td> 
-                        <p class="title mb-0">{{qs.item.product_name}} </p>
-                        <var class="price text-muted">{{qs.item.product_price}}</var>
-                    </td>
-                    <td> Brand <br> {{qs.item.product_brand}}  </td>
-                    <td width="250"> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
-                </tr>
-                {% endfor %}  
-
-            </table>
-            </div> 
+            {% include "include/dashboard_functions.html" %} 
+            
             </article> 
         </main>
     </div> 
     </div>
-    
-    
     </section>
    
 {% include "include/footer.html" %}
 
 
 {% endblock body %}
+

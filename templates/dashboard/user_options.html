@@ -3,11 +3,11 @@
     <ul class="list-group">
         <a class="list-group-item active" href="{% url 'user_dashboard' %}"> My Dashboard </a>
         {% comment %} <a class="list-group-item" href="#"> Transactions </a> {% endcomment %}
-        <a class="list-group-item" href="#"> Return and refunds </a>
+        {% comment %} <a class="list-group-item" href="#"> Return and refunds </a> {% endcomment %}
         <a class="list-group-item" href="{% url 'update_address' %}">Settings </a>
         {% comment %} <a class="list-group-item" href="#"> My Selling Items </a> {% endcomment %}
         <a class="list-group-item" href="{% url 'change_password' %}"> Change Password </a>
-        <a class="list-group-item" href="#">  Received orders </a>
+        {% comment %} <a class="list-group-item" href="#">  Received orders </a> {% endcomment %}
     </ul>
     <br>
     <a class="btn btn-light btn-block" href="{%url 'user_logout' %}"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a> 

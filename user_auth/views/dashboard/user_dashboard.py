@@ -7,6 +7,7 @@ from products.models.products_model import Products
 import datetime
 from django.utils.timezone import now
 from user_auth.models.user_address import User_Address
+from orders.models.product_ordered import Products_Ordered
 
 
 def user_dashboard(request):
@@ -16,14 +17,15 @@ def user_dashboard(request):
         date = datetime.date.today()
         today = now().date()
         user_address = User_Address.objects.get(user=current_user)
-        print("User Adrress -----------",user_address)
-        #TODO know about 1
-        # pending_order = Cart.objects.filter(user=current_user,select_order_stats=1)
-        # print(" order pending -----------", pending_order)  
-        # #address = BillingAddress.objects.get(user=current_user)
-        # get_order = Order.objects.filter(user=current_user, ordered=True).order_by('created')
         
-        # print(" order date -----------",get_order)
+        total_orders = Products_Ordered.objects.filter(ordered__user=current_user, ordered__is_ordered=True).count()
+        pending_count = Order.objects.filter(status='Pending').count()
+        completed_count = Order.objects.filter(status='Completed').count()
+
+        payment_status = Order.objects.filter(payment_status='Cash_on_delivery').count()
+        paid_status = Order.objects.filter(payment_status='Paid').count()
+
+       
     
 
         return render(request,'dashboard/user_dashboard.html', locals())
