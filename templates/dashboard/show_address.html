@@ -1,0 +1,25 @@
+<div class="card-body">
+    <div class="row"> 
+       
+        <div class="col-md-8">
+            <h6 class="text-muted">Delivery to</h6>
+            <p>{{user_address.user.username}}<br>  
+            Phone +880{{user_address.phone}} Email:{{user_address.email}} <br>
+            Location: {{user_address.country}}, {{user_address.house_number}}, {{user_address.street}},  {{user_address.state}} <br> 
+            P.O. Box: {{user_address.zipcode}}
+             </p>
+        </div>
+      
+        <div class="col-md-4">
+            <h6 class="text-muted">Payment</h6>
+            <span class="text-success">
+                <i class="fab fa-lg fa-cc-visa"></i>
+                Visa  **** 4216  
+            </span>
+            <p>Subtotal: $356 <br>
+             Shipping fee:  $56 <br> 
+             <span class="b">Total:  $456 </span>
+            </p>
+        </div>
+    </div> 
+</div>

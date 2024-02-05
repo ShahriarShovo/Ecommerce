@@ -6,6 +6,7 @@ from cart.models.cart import Cart
 from products.models.products_model import Products
 import datetime
 from django.utils.timezone import now
+from user_auth.models.user_address import User_Address
 
 
 def user_dashboard(request):
@@ -14,6 +15,8 @@ def user_dashboard(request):
         current_user = request.user
         date = datetime.date.today()
         today = now().date()
+        user_address = User_Address.objects.get(user=current_user)
+        print("User Adrress -----------",user_address)
         #TODO know about 1
         # pending_order = Cart.objects.filter(user=current_user,select_order_stats=1)
         # print(" order pending -----------", pending_order)  

@@ -2,10 +2,10 @@
     <!--   SIDEBAR   -->
     <ul class="list-group">
         <a class="list-group-item active" href="{% url 'user_dashboard' %}"> My Dashboard </a>
-        <a class="list-group-item" href="#"> Transactions </a>
+        {% comment %} <a class="list-group-item" href="#"> Transactions </a> {% endcomment %}
         <a class="list-group-item" href="#"> Return and refunds </a>
         <a class="list-group-item" href="{% url 'update_address' %}">Settings </a>
-        <a class="list-group-item" href="#"> My Selling Items </a>
+        {% comment %} <a class="list-group-item" href="#"> My Selling Items </a> {% endcomment %}
         <a class="list-group-item" href="{% url 'change_password' %}"> Change Password </a>
         <a class="list-group-item" href="#">  Received orders </a>
     </ul>
