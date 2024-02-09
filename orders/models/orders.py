@@ -2,7 +2,7 @@ from django.db import models
 from cart.models.cart import Cart
 from django.conf import settings
 from user_auth.models.guest_user import Guest_User
-from orders.models.payment import Payment
+
 from products.models.product_variation.size_variant import Product_Size_variant
 from orders.models.billing_address import BillingAddress
 #from orders.models.product_ordered import Products_Ordered

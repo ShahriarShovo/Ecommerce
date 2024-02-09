@@ -17,7 +17,7 @@
 
           <div class="c-dashboardInfo col-lg-3 col-md-6">
             <div class="wrap">
-              <a href=""> 
+              <a href="{% url 'pending_orders' %}"> 
               <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Pending Orders<svg
                   class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
                   <path fill="none" d="M0 0h24v24H0z"></path>
@@ -29,6 +29,7 @@
 
         <div class="c-dashboardInfo col-lg-3 col-md-6">
           <div class="wrap">
+            <a href="{% url 'order_completed' %}"> 
             <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Order Completed<svg
                 class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
                 <path fill="none" d="M0 0h24v24H0z"></path>
@@ -37,11 +38,13 @@
                 </path>
               </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count">{{completed_count}}</span>
           </div>
+        </a>
         </div>
 
         
         <div class="c-dashboardInfo col-lg-3 col-md-6">
           <div class="wrap">
+            <a href="{% url 'cash_on_deliverys' %}"> 
             <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Cash on Delivery<svg
                 class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
                 <path fill="none" d="M0 0h24v24H0z"></path>
@@ -50,6 +53,7 @@
                 </path>
               </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count">{{payment_status}}</span>
           </div>
+        </a>
         </div>
 
 
@@ -61,7 +65,7 @@
     <div class="container pt-2">
 
         <div class="row align-items-stretch">
-
+          <a href="{% url 'paid_delivery'%}">
           <div class="c-dashboardInfo col-lg-3 col-md-6">
             <div class="wrap">
               <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Paid Delivery<svg
@@ -72,27 +76,38 @@
                   </path>
                 </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count">{{paid_status}}</span>
             </div>
+          </a>
           </div>
 
           <div class="c-dashboardInfo col-lg-3 col-md-6">
+            <a href="">
             <div class="wrap">
-              <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Return and Refund<svg
+              <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Total Orders Amount<svg
                   class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
                   <path fill="none" d="M0 0h24v24H0z"></path>
                   <path
-                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z">
+                    d="">
                   </path>
-                </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count">€500</span><span
-                class="hind-font caption-12 c-dashboardInfo__subInfo">Last month: €30</span>
+                </svg>
+              </h4>
+              <span class="hind-font caption-12 c-dashboardInfo__subInfo">Sub Total:{{order_total}}</span>
+
+              <span
+                class="hind-font caption-12 c-dashboardInfo__subInfo">Tax:{{tax}}
+              </span>
+              <span class="hind-font caption-12 c-dashboardInfo__subInfo">Grand Total:{{grand_total_amount}}</span>
+                
             </div>
+          </a>
           </div>
+
           <div class="c-dashboardInfo col-lg-3 col-md-6">
             <div class="wrap">
               <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Available funds<svg
                   class="MuiSvgIcon-root-19" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
                   <path fill="none" d="M0 0h24v24H0z"></path>
                   <path
-                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z">
+                    d="">
                   </path>
                 </svg></h4><span class="hind-font caption-12 c-dashboardInfo__count">€5000</span>
             </div>

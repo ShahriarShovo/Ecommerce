@@ -2,7 +2,7 @@ from django.contrib import admin
 from orders.models.orders import Order
 from orders.models.billing_address import BillingAddress
 from orders.models.guest_billing_address import Guest_BillingAddress
-from orders.models.payment import Payment
+
 from orders.models.product_ordered import Products_Ordered
 
 
@@ -10,6 +10,6 @@ from orders.models.product_ordered import Products_Ordered
 admin.site.register(Order)
 admin.site.register(BillingAddress)
 admin.site.register(Guest_BillingAddress)
-admin.site.register(Payment)
+
 admin.site.register(Products_Ordered)
 

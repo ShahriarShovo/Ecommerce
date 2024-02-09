@@ -5,7 +5,8 @@ from orders.models.product_ordered import Products_Ordered
 
 def total_orders(request):
     user = request.user
-
+    
+    
     get_ordered= Products_Ordered.objects.filter(ordered__user=user,ordered__is_ordered=True)
 
     #print(" all odered _____________", get_ordered)
