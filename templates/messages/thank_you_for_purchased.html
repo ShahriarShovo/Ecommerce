@@ -43,8 +43,8 @@
                                     {% if user.is_authenticated %}
                                     <li>{{user.username}}</li>
                                     <li>{{user}}</li>
-                                    <li>{{user_address.street}}</li>
-                                    <li>{{user_address.state}}, {{user_address.zip_code}}</li>
+                                    <li>{{user_address.street}}-{{user_address.zipcode}}</li>
+                                    <li>{{user_address.state}}, </li>
                                     <li>{{user_address.get_country_display}}</li>
                                     
                                     {% else %}
@@ -84,7 +84,7 @@
                                                 <th class="per70 text-center">Description</th>
                                                 <th class="per5 text-center">Variation</th>
                                                 <th class="per5 text-center">Qty</th>
-                                                <th class="per25 text-center">Total</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -95,7 +95,7 @@
                                                 <td>{{order_completed.product_name}}</td>
                                                 <td class="text-center">{{order_completed.product_Size_variant}}</td>
                                                 <td class="text-center">{{order_completed.quantity}}</td>
-                                                <td class="text-center">{{order_completed.each_product_price}}</td>
+                                                
                                             </tr>
 
                                             {% endfor %} 

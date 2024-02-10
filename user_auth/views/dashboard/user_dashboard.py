@@ -55,7 +55,7 @@ def user_dashboard(request):
         today = now().date()
         user_address = User_Address.objects.get(user=current_user)
         
-        total_orders = Products_Ordered.objects.filter(ordered__user=current_user, ordered__is_ordered=True).count()
+        total_orders = Order.objects.filter(user=current_user, is_ordered=True).count()
         pending_count = Order.objects.filter(status='Pending').count()
         completed_count = Order.objects.filter(status='Completed').count()
 
