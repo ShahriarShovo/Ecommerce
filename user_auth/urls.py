@@ -23,7 +23,7 @@ from user_auth.views.dashboard.dashboard_options.pending_orders import pending_o
 from user_auth.views.dashboard.dashboard_options.order_completed import order_completed
 from user_auth.views.dashboard.dashboard_options.cash_on_deliverys import cash_on_deliverys
 from user_auth.views.dashboard.dashboard_options.paid_delivery import paid_delivery
-
+from user_auth.views.dashboard.deactivate_account import deactivate_account
 urlpatterns = [
    
     path('login/', user_login, name='user_login'),
@@ -68,4 +68,8 @@ urlpatterns = [
     path('order_completed/', order_completed , name='order_completed'),
     path('cash_on_delivery/', cash_on_deliverys , name='cash_on_deliverys'),
     path('paid_delivery/', paid_delivery , name='paid_delivery'),
+
+    path('deactivate_accound/', deactivate_account , name='deactivate_account'),
+
+    
 ]

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
 
 def change_password(request):
@@ -10,17 +11,17 @@ def change_password(request):
         confirm_password = request.POST.get('confirm_password')
 
         if new_password != confirm_password:
-            print(" Pasword not change")
+            messages.warning(request,'New password and comfirm password is not same. Give same password')
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         else:
             user=request.user
             user.set_password(new_password)
             user.save()
-            print(" Pasword change")
+            messages.success(request, 'Password has been changed')
 
             user = authenticate(email=user.email, password=new_password)
             if user is not None:
                 login(request, user)
-            return redirect('user_dashboard')
+            return redirect('change_password')
 
     return render(request,'accounts/change_password.html')

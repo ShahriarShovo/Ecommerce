@@ -52,6 +52,7 @@
 <article class="card mb-4">
     <div class="card-body">
         <h4 class="card-title mb-4">Contact info</h4>
+        {% include "messages/messages.html" %}
         <form  method="POST" action="{% url 'initial_order' %}">
             {% csrf_token %}
             <div class="row">

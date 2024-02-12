@@ -184,6 +184,7 @@
                         <form method="POST" class="search">
                             {% csrf_token %}
                             <label> Have Coupon ? </label>
+                            {% include "messages/messages.html" %}
                             <div class="input-group w-100">
                                 <input type="text" name="coupon_code" class="form-control" style="width:60%;" placeholder="Coupon Code">         
                                 <div class="input-group-append">

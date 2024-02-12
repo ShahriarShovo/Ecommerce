@@ -6,6 +6,7 @@ from django.core.exceptions import PermissionDenied
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth import get_user_model
+from django.contrib import messages
 
 
 
@@ -25,9 +26,15 @@ def user_register(request):
         if email is not None:
             username            =               email.split('@')[0]
             if password         !=              confirm_password:
-                return HttpResponse("password Not match")
+                messages.warning(request,"Create password and repeat password is not same.Please input same password")
+                return redirect('user_registration')
             
             else:
+                user_email=User.objects.filter(email=email)
+                if user_email.exists():
+                    messages.warning(request,"Email already exist. Try another valid email")
+                    return redirect('user_registration')
+                
                 user =User.objects.create_user(first_name=first_name,last_name=last_name,gender_choosed=gender,email=email,username=username,password=password)
                 user.role =  User.CUSTOMER
                 user.sign_up_platform = User.SITE_SIGNUP

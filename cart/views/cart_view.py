@@ -3,6 +3,7 @@ from cart.models.cart import Cart
 from cart.models.cart_item import Cart_Item
 from orders.models.orders import Order
 from products.models.products_model import Coupon_Code
+from django.contrib import messages
 
 
 def cart_view(request):
@@ -24,32 +25,34 @@ def cart_view(request):
 
     if request.method == "POST":
         get_code = request.POST.get('coupon_code')
-        print ("Coupon code caputure +++++++++++++++++++++",get_code)
+        #print ("Coupon code caputure +++++++++++++++++++++",get_code)
         coupon_object = Coupon_Code.objects.filter(code__icontains=get_code)
+
+        print("get money_______", coupon_object[0].discount)
 
        
         if not coupon_object.exists():
-            print("Coupon invalid")
+            messages.info(request,'This is not valid coupon')
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         
         elif cart_object.coupon:
-            print("Coupon already exist")
+            messages.warning(request,'Coupon already applied')
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         
         else:
 
             if cart_object.get_cart_total() < coupon_object[0].minimum_amount:
-                print("Cart Item amount should be more than 500")
+                messages.info(request,f"Please buy more than {coupon_object[0].minimum_amount}")
                 return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
             
             elif coupon_object[0].is_expired_coupon_code:
-                print("Coupon exired")
+                messages.warning(request,'Coupon exired')
                 return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
             
             else:
                 cart_object.coupon=coupon_object[0]
                 cart_object.save()
-                print("Coupon applied")
+                messages.success(request,f"Coupon applied succesfully and get {coupon_object[0].discount} discount.")
                 return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
     context={

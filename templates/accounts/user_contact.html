@@ -3,6 +3,7 @@
 <article class="card mb-4">
     <div class="card-body">
         <h4 class="card-title mb-4">Contact info</h4>
+        {% include "messages/messages.html" %}
         <form  method="POST" action="{% url 'update_address' %}">
             {% csrf_token %}
             <div class="row">
@@ -64,7 +65,10 @@
             
         </div> 
         <div class="form-group col-sm-4">
-            <button type="submit" class="btn btn-danger "> Deactivate Account </button>
+            <form method="POST" action="{% url 'deactivate_account' %}">
+                {% csrf_token %}
+            <button  type="submit" class="btn btn-danger "> Deactivate Account </button>
+            </form>
         </div> 
         </article>
 

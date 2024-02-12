@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from user_auth.models.user import User
 from user_auth.utiles import send_verification_email
 from django.shortcuts import HttpResponse
+from django.contrib import messages
 
 
 
@@ -19,11 +20,12 @@ def forget_password(request):
             send_verification_email(request, user,mail_subject,email_template)
 
             #return redirect('login')
-            return HttpResponse("Reset Password link send")
+            messages.success(request, "Password Reset link has been sent")
+            return redirect('forget_password')
+            # return HttpResponse("Reset Password link send")
         else:
-            pass
-            # messages.error(request, " User Not found")
-            # return redirect('login')
+            messages.warning(request, "Email does not exsist")
+            return redirect('forget_password')
         
     return render(request, 'accounts/forget_password.html')
 

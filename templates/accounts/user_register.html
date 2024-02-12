@@ -14,6 +14,7 @@
 <div class="card mx-auto" style="max-width:520px; margin-top:40px;">
   <article class="card-body">
 <header class="mb-4"><h4 class="card-title">Sign up</h4></header>
+{% include "messages/messages.html" %}
 <form "{% url 'user_registration' %}" method="POST" >
   {% csrf_token %}
     <div class="form-row">
@@ -42,27 +43,55 @@
         <input class="custom-control-input" type="radio" name="gender" value="2">
         <span class="custom-control-label"> Female </span>
       </label>
-    </div> <!-- form-group end.// -->
-    
+    </div> 
+  
+
+
     <div class="form-row">
       <div class="form-group col-md-6">
         <label>Create password</label>
-          <input class="form-control" name="password" type="password">
-      </div> <!-- form-group end.// --> 
+          <input class="form-control" name="password" id='password1' type="password">
+      </div> 
       <div class="form-group col-md-6">
         <label>Repeat password</label>
-          <input class="form-control" name="repeat_password" type="password">
-      </div> <!-- form-group end.// -->  
+          <input class="form-control" id='password2' name="repeat_password" type="password">
+      </div> 
+
+      <div class="form-group col-md-6">
+        
+        <div class="input-group-addon"><input type="checkbox" id="togglePasswords"> Show Password</div>
+      </div>
+
     </div>
+
+    
+
+
       <div class="form-group">
           <button type="submit" class="btn btn-primary btn-block"> Register  </button>
-      </div> <!-- form-group// -->      
+      </div>      
           
   </form>
-</article><!-- card-body.// -->
-</div> <!-- card .// -->
+</article>
+</div> 
 <p class="text-center mt-4">Have an account? <a href="{% url 'user_login' %}">Log In</a></p>
 <br><br>
-<!-- ============================ COMPONENT REGISTER  END.// ================================= -->
+
+
+<script>
+  function togglePasswordsVisibility(passwordInputs, toggleCheckbox) {
+    toggleCheckbox.addEventListener('change', function() {
+      const type = this.checked ? 'text' : 'password';
+      passwordInputs.forEach(input => {
+        input.setAttribute('type', type);
+      });
+    });
+  }
+  
+  const passwordInputs = document.querySelectorAll('input[type="password"]');
+  const toggleCheckbox = document.getElementById('togglePasswords');
+  
+  togglePasswordsVisibility(passwordInputs, toggleCheckbox);
+  </script>
 
 {% endblock body %}
