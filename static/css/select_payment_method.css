@@ -170,7 +170,7 @@
   
   /* footer */
   
-  footer {
+  /* footer {
     margin-top: 3rem;
     font-size: 0.8rem;
     padding: 1rem;
@@ -185,7 +185,7 @@
   
   footer a:hover {
     color: var(--colour-green);
-  }
+  } */
   
   .btn--toggle {
     padding: 0.5em 2em;

@@ -12,7 +12,7 @@ def index(request):
         reviews_count = Customer_Review.objects.filter(products=product.id).count()
     
     # Create a Paginator instance
-    paginator = Paginator(fatch_all_products,6)
+    paginator = Paginator(fatch_all_products,9)
 
     # Get the current page number from the request's GET parameters
 
