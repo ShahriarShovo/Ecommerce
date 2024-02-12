@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'orders',
     'payments',
     'admin_panel',
-    'coupon',
+    
     
 ]
 
