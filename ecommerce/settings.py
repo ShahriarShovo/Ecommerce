@@ -80,6 +80,7 @@ TEMPLATES = [
             'libraries':{
             'cart_tag': 'cart.templatetags.cart_tag',
             
+            
             }
         },
     },

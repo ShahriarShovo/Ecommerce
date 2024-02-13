@@ -1,6 +1,6 @@
 from django import template
-from cart.models.cart import Cart 
 from cart.models.cart_item import Cart_Item
+from cart.models.wish_list import Wish_List
 
 register = template.Library()
 
@@ -12,15 +12,16 @@ def cart_total(user):
     cart_total_item = Cart_Item.objects.filter(cart__user=user, cart__is_paid=False)
     return cart_total_item.count()
 
-    
-    # if user == None:
-    #     cart_total_item = Cart.objects.filter(user=None, purchased=False)
-    #     print(" without user +++++++++++++++++++++", cart_total_item)
-    #     return cart_total_item.count()
-    
-    # else:
-    #     cart_total_item = Cart.objects.filter(user=user, purchased=False)
-    #     return cart_total_item.count()
+
+
+@register.filter
+def wish_list_total(user):
+
+    #print("user+++++++++++", user)
+
+    #print( "user +++++++++++++++",user)
+    wishlist_total_item = Wish_List.objects.filter(user=user, is_added=True)
+    return wishlist_total_item.count()
 
 
 
