@@ -7,3 +7,4 @@ from cart.views.remove_item import remove_from_cart
 from cart.views.clear_cart import clear_cart
 from cart.views.add_to_wish_list import add_to_wish_list
 from cart.views.view_wishlist import view_wish_list
+from cart.views.delete_wish_list import delete_wish_list

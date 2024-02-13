@@ -8,6 +8,7 @@ from cart.views.remove_item import remove_from_cart
 from cart.views.clear_cart import clear_cart
 from cart.views.add_to_wish_list import add_to_wish_list
 from cart.views.view_wishlist import view_wish_list
+from cart.views.delete_wish_list import delete_wish_list
 
 
 
@@ -25,6 +26,8 @@ urlpatterns = [
      path('wish-list/<int:pk>/', add_to_wish_list, name="add_to_wish_list"),
 
      path('view-wish-list/', view_wish_list, name="view_wish_list"),
+     path('delete-wish-list/<int:pk>/', delete_wish_list, name='delete_wish_list'),
+     
 
 
 

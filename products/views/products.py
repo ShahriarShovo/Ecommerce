@@ -11,8 +11,8 @@ def index(request):
 
     for product in fatch_all_products:
         reviews_count = Customer_Review.objects.filter(products=product.id).count()
-        wish_list= Wish_List.objects.filter(user=request.user, products=product.id, is_added=True)
-        print("Wish list++++++++",wish_list)
+        # wish_list= Wish_List.objects.filter(user=request.user, products=product.id, is_added=True)
+        # print("Wish list++++++++",wish_list)
 
         
     
@@ -32,7 +32,7 @@ def index(request):
       
         'fatch_all_products' : paged_product,
         'reviews_count' :reviews_count,
-        'wish_list' :wish_list,
+        #'wish_list' :wish_list,
     }
     
     return render(request, 'index/index.html', context=context)
