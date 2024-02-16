@@ -74,6 +74,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "product_categories.views.category_context_processors.categories",
                 "product_categories.views.brand_context_processor.brands",
+                "system_setting.views.contact_and_details.contact_and_details",
                 
                 
             ],

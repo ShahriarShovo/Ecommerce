@@ -49,7 +49,7 @@ def cash_on_delivary_for_single_product(request,pk):
     product_size = Product_Size_variant.objects.get(pk=request.session['size_pk'])
     p=product_size.pk
 
-    print("get size________", p)
+    #print("get size________", p)
     
     
     

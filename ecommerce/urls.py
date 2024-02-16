@@ -18,6 +18,7 @@ urlpatterns = [
     path('check_out/', include('payments.urls')),
     path('admin_panel/', include('admin_panel.urls')),
     path('', include('product_categories.urls')),
+    path('', include('system_setting.urls')),
     
 
 ]

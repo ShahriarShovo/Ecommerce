@@ -30,8 +30,8 @@ def product_detail(request, pk):
         size = request.GET.get('size')
         size_object = get_object_or_404(Product_Size_variant, size_name=size)
         size_pk = size_object.pk
-        print("Size Pk_____________-", size_pk)
-        
+        #print("Size Pk_____________-", size_pk)
+        request.session['size']=size
         request.session['size_pk']=size_pk
         depend_on_size_price = product_details.get_product_price_by_size(size)
 
