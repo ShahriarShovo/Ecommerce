@@ -51,8 +51,8 @@ def initial_order(request):
         'item_in_carts' : item_in_carts,
         'cart_object' : cart_object,
         'user_address':user_address,
-        
-    }
+        }
+    
     return render(request, 'orders/initial_order.html',context)
         
 

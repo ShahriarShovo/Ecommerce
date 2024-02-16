@@ -8,8 +8,6 @@ import uuid
 from django.urls import reverse
 
 
-
-
 def generate_payment_id():
     
     #generate transaction id by uuid module
@@ -39,11 +37,14 @@ def generate_oder_id():
 
 def cash_on_delivery(request):
 
+    
+
     payment_id=generate_payment_id()
     order_id=generate_oder_id()
     user = request.user
 
     if request.user.is_authenticated:
+
         cart_items= Cart_Item.objects.filter(cart__user=request.user, cart__is_paid=False)
         cart_object = Cart.objects.filter(user=user, is_paid=False)
         get_total= [total.get_cart_total() for total in cart_object]
@@ -75,6 +76,8 @@ def cash_on_delivery(request):
             )
         Cart_Item.objects.filter(cart__user=user).delete()
         return HttpResponseRedirect(reverse("invoice", kwargs={'pay_id':payment_id, 'order_id':order_id}))
+    
+        
     
     else:
         return HttpResponse("Cash on delivery is not working")

@@ -1,55 +1,115 @@
 {% extends 'base/base.html' %}
-
 {% load static %}
-
 {% block headers %}
-
-
-
 {% include 'include/main_include_file.html' %}
-
-
 {% endblock headers %}
-
-
-
 {% block body %}
 
 <header class="section-header">
    
-    </header> <!-- section-header.// -->
+    </header> 
     <section class="section-content padding-y bg">
     <div class="container">
     
-    
-    
-    <!-- ============================ COMPONENT 2 ================================= -->
     <div class="row">
             <main class="col-md-8">
     
     <article class="card mb-4">
     <div class="card-body">
-        <h4 class="card-title mb-4">Review Product</h4>
+        <h4 class="card-title mb-4">Product Review</h4>
        
         <div class="row">
           
             <div class="col-md-6">
                 <figure class="itemside  mb-4">
-                    <div class="aside"><img src="/media/{{product_imag}}" class="border img-sm"></div>
+                    <div class="aside"><img src="{{get_single_product.product_image.url}}" class="border img-sm"></div>
                     <figcaption class="info">
-                        <p> {{product_name}} | {{product_brand}} </p>
-                        <p>Quantity : 1 </p>
-                        <span class="text-muted">&#2547;{{product_price}}</span>
+                        <p>{{get_single_product.product_name}} | {{get_single_product.product_brand}} </p>
+                        <p>Quantity : 1</p>
+                        <span class="text-muted">&#2547;{{get_single_product.product_price}} each</span>
                     </figcaption>
                 </figure>
-            </div> <!-- col.// -->
-
-        </div> <!-- row.// -->
+            </div> 
+          
+        </div> 
        
-    </div> <!-- card-body.// -->
-    </article> <!-- card.// -->
+    </div> 
+    </article> 
     
     
+    {% if user.sign_up_platform == 4 %}
+
+<article class="card mb-4">
+    <div class="card-body">
+        <h4 class="card-title mb-4">Contact info</h4>
+        {% include "messages/messages.html" %}
+        <form  method="POST" action="{% url 'buy_now' get_single_product.pk %}">
+            {% csrf_token %}
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label>Frst name</label>
+                    <input type="text" name='first_name' value="{{user.first_name}}" class="form-control" >
+                </div>
+                <div class="form-group col-sm-6">
+                    <label>Last name</label>
+                    <input type="text" name='last_name' value="{{user.last_name}}" class="form-control">
+                </div>
+                <div class="form-group col-sm-6">
+                    <label>User name</label>
+                    <input type="text" name='username' value="{{user.username}}" class="form-control">
+                </div>
+                <div class="form-group col-sm-6">
+                    <label>Email</label>
+                    <input type="email" name='email' value="{{user.email}}" class="form-control"> 
+                </div>
+                
+            </div> 
+    </div> 
+    </article> 
+    <article class="card mb-4">
+        <div class="card-body">
+            <h4 class="card-title mb-4">Delivery info</h4>
+                <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label>Country*</label>
+                            <select name="country" class="form-control">
+                                <option value="1">Bangladesh</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>State*</label>
+                            <input type="text"  name='state' value="{{user_address.state}}" class="form-control">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Street*</label>
+                            <input type="text" name='street' value="{{user_address.street}}" class="form-control">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Building</label>
+                            <input type="text" name='building' value="{{user_address.house_number}}" class="form-control">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Phone</label>
+                            <input type="text" name='phone' value="{{user_address.phone}}" class="form-control">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Zip</label>
+                            <input type="text" name='zip' value="{{user_address.zipcode}}" class="form-control">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <button type="submit" class="btn btn-primary "> Update  </button>
+                        </div> 
+                </div>
+            </form>
+            
+        </div> 
+        
+        </article>
+
+
+
+    {% else %}
+
     <article class="card mb-4">
         <div class="card-body">
             <h4 class="card-title mb-4">Contact info</h4>
@@ -58,76 +118,33 @@
                 <div class="row">
                     <div class="form-group col-sm-6">
                         <label>Frst name</label>
-                        <input type="text" name='first_name' value="{{user_first_name}}" class="form-control"  readonly>
+                        <input type="text" name='first_name' value="{{user.first_name}}" class="form-control"  readonly>
                     </div>
                     <div class="form-group col-sm-6">
                         <label>Last name</label>
-                        <input type="text" name='last_name' value="{{user_last_name}}" class="form-control" readonly>
+                        <input type="text" name='last_name' value="{{user.last_name}}" class="form-control" readonly>
                     </div>
                     <div class="form-group col-sm-6">
                         <label>User name</label>
-                        <input type="text" name='phone' value="{{user_name}}" class="form-control" readonly>
+                        <input type="text" name='phone' value="{{user.username}}" class="form-control" readonly>
                     </div>
                     <div class="form-group col-sm-6">
                         <label>Email</label>
-                        <input type="email" name='email' value="{{user_email}}" class="form-control" readonly> 
+                        <input type="email" name='email' value="{{user.email}}" class="form-control" readonly> 
                     </div>
                     
-                </div> <!-- row.// -->	
+                </div> 
             </form>
-        </div> <!-- card-body.// -->
-        </article> <!-- card.// -->
-    
-        <article class="card mb-4">
-            <div class="card-body">
-                <h4 class="card-title mb-4">Delivery info</h4>
-                <form  method="POST" action="">
-                    {% csrf_token %}
-                    <div class="row">
-                            <div class="form-group col-sm-6">
-                                <label>Country*</label>
-                                <select name="country" class="form-control">
-                                    <option value="1">Bangladesh</option>
-                                    
-                                </select>
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label>State*</label>
-                                <input type="text"  name='state' value="{{state}}" class="form-control">
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label>Street*</label>
-                                <input type="text" name='street' value="{{street}}" class="form-control">
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label>Building</label>
-                                <input type="text" name='building' value="{{house_number}}" class="form-control">
-                            </div>
-                        
-                            <div class="form-group col-sm-6">
-                                <label>Phone</label>
-                                <input type="text" name='phone' value="{{phone}}" class="form-control">
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label>Zip</label>
-                                <input type="text" name='zip' value="{{zip}}" class="form-control">
-                            </div>
-        
-                            <div class="form-group col-sm-4">
-                                <button type="submit" name ="user_final_checkout_form" class="btn btn-primary "> Update  </button>
-                            </div> 
-                    </div>
-                   
-                </form>
-                
-            </div> 
-            
-            </article>
-    
-    
-</main> <!-- col.// -->
+        </div> 
+        </article> 
 
-<aside class="col-md-4">
+    {% endif %}
+
+
+            
+</main>
+
+<aside class="col-lg-3">
     <div class="card">
 <div class="card-body">
     <dl class="dlist-align">
@@ -155,30 +172,30 @@
 </div> 
 </div> 
 
-<form method="POST" action="{% url 'choose_payment' %}">
+ <form method="POST" action="{% url 'select_payment' get_single_product.pk %}">
     {% csrf_token %}
     <div class="card">
         <div class="card-body">
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="select_option" value="cash_on_delivary" id="flexRadioDefault2" checked>
+                <input class="form-check-input" type="radio" name="select_option" value="cash_on_delivary_for_single_product" id="flexRadioDefault2" checked>
                 <label class="form-check-label" for="flexRadioDefault2">
                   Cash on delivery
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="select_option" value="amar_pay" id="flexRadioDefault1">
+                <input class="form-check-input" type="radio" name="select_option" value="amar_pay_for_single_product" id="flexRadioDefault1">
                 <label class="form-check-label" for="flexRadioDefault1">
                   Amar Pay
                 </label>
             </div>
 
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="select_option" value="paypal" id="flexRadioDefault3" checked>
+                <input class="form-check-input" type="radio" name="select_option" value="paypal_for_single_product" id="flexRadioDefault3" checked>
                 <label class="form-check-label" for="flexRadioDefault2">
                   Paypal
                 </label>
-            </div>
-
+            </div> 
+            
         </div>
             <hr>
             <p class="text-center mb-3">
@@ -189,7 +206,47 @@
         </div> 
      </div> 
 
-    </form>
+    </form> 
+    
+
+    {% comment %} <div class="card">
+        <section class="payment-method">
+          
+          <form method="POST" >
+         
+            {% csrf_token %}
+            <fieldset>
+              <legend>Select payment method</legend>
+              <p>
+                <input type="radio" data-card="visa" id="visa" name="paymentMethod" value="visa" required />
+                <label for="visa">
+                  <img src="https://res.cloudinary.com/du2vvjrb5/image/upload/v1581191001/frontloops/l1s2-paymeth/visa_zqzwtd.svg" alt="" />Cash on Delivery</label>
+              </p>
+              <p>
+                <input type="radio" data-card="mastercard" id="mastercard" name="paymentMethod" value="mastercard" />
+                <label for="mastercard">
+                  <img src="https://res.cloudinary.com/du2vvjrb5/image/upload/v1581191001/frontloops/l1s2-paymeth/mastercard_cpwa1n.svg" alt="" />Amar Pay</label>
+              </p>
+              <p>
+                <input type="radio" data-card="maestro" id="maestro"  name="select_option" value="paypal" />
+                <label for="maestro">
+                  <img src="https://res.cloudinary.com/du2vvjrb5/image/upload/v1581191001/frontloops/l1s2-paymeth/maestro_tv9ivj.svg" alt="" / aria-hidden="true">Paypal</label>
+              </p>
+            </fieldset>
+
+            
+            
+          </form>
+        </section>
+    </div>
+    <hr>
+    <p class="text-center mb-3">
+        <img height="26" src="{% static 'images/misc/payments.png' %}" >
+    </p>
+    <button action="{% url 'choose_payment' %}"  class="btn btn-primary btn-block"> Checkout </button>
+     
+</div>  {% endcomment %}
+        
 
 </aside> 
 

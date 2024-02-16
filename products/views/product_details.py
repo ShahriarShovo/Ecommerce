@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from products.models.products_model import Products,Customer_Review
 #from products.models.customer_review import Customer_Review
 from products.models.old_product_variation import Variation
 from django.db.models import Avg
 from products.models.product_gallary import Product_Gallery
+from products.models.product_variation.size_variant import Product_Size_variant
 
 # Create your views here.
 
@@ -27,8 +28,11 @@ def product_detail(request, pk):
 
     if request.GET.get('size'):
         size = request.GET.get('size')
+        size_object = get_object_or_404(Product_Size_variant, size_name=size)
+        size_pk = size_object.pk
+        print("Size Pk_____________-", size_pk)
         
-
+        request.session['size_pk']=size_pk
         depend_on_size_price = product_details.get_product_price_by_size(size)
 
         context['selected_size']=size

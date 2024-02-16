@@ -20,7 +20,39 @@ def choose_payment(request):
 
             #print("PayPal +++++++++++++++", selected_payment_method)
             return HttpResponse('paypal')
+        
+        
         else:
             print("error in select conditions +++++++++++++++")
     else:
          print("error in POST condition  +++++++++++++++")
+
+
+def select_payment(request,pk):
+
+    if request.method=="POST":
+        
+        selected_payment_method=request.POST.get('select_option')
+
+        if selected_payment_method == 'cash_on_delivary_for_single_product':
+            #print("cash_on_delivary +++++++++++++++", selected_payment_method)
+            return HttpResponseRedirect(reverse('cash_on_delivary_for_single_product', args=[pk]))
+        
+        # elif selected_payment_method == 'amar_pay':
+
+        #     #print("Amar Pay +++++++++++++++", selected_payment_method)
+        #     return HttpResponseRedirect(reverse('initial_payment_amarPay'))
+        
+        # elif selected_payment_method == 'paypal':
+
+        #     #print("PayPal +++++++++++++++", selected_payment_method)
+        #     return HttpResponse('paypal')
+        
+        
+        else:
+            print("error in select conditions +++++++++++++++")
+    else:
+         print("error in POST condition  +++++++++++++++")
+
+
+
