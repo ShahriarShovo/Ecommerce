@@ -5,6 +5,7 @@ from products.models.old_product_variation import Variation
 from django.db.models import Avg
 from products.models.product_gallary import Product_Gallery
 from products.models.product_variation.size_variant import Product_Size_variant
+from orders.models.product_ordered import Products_Ordered
 
 # Create your views here.
 
@@ -13,6 +14,9 @@ from products.models.product_variation.size_variant import Product_Size_variant
 def product_detail(request, pk):
 
     product_details = Products.objects.get(pk=pk)
+
+    #print(product_details.pk)
+
     reviews_count = Customer_Review.objects.filter(products=product_details).count()
     request_user = request.user
 
@@ -45,6 +49,17 @@ def product_detail(request, pk):
     #     print("Get color !!!!!!!!!!!!!!!!!!!!!",color)
     #     selected_color=request.session['selected']=color
     #     print('add color in session',selected_color )
+    
+    if request.user.is_authenticated:
+        get_review_product_ordered= Products_Ordered.objects.filter(ordered__user=request.user, product_name__pk=product_details.pk, ordered__status='Completed'  )
+        #print(get_review_product_ordered)
+        context['get_review_product_ordered']=get_review_product_ordered
+
+    # if request.method == 'POST':
+    get_code = request.POST.get('get_code')
+
+    print("coupon code in single product +++++++++++++++++", get_code)
+        
 
        
 

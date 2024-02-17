@@ -34,6 +34,8 @@ class Products(models.Model):
     product_color = models.ManyToManyField(Product_Color_Variant,  null=True, blank=True)
     available_choose = models.PositiveSmallIntegerField(choices=available,blank=True, null=True)
     shipping_fee = models.PositiveSmallIntegerField(choices=shipping_fee,blank=True, null=True)
+
+    
     
 
     def __str__(self) -> str:

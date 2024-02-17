@@ -51,6 +51,9 @@ def cart_view(request):
             
             else:
                 cart_object.coupon=coupon_object[0]
+                # if coupon_object[0].is_expired_coupon_code==False :
+                #     coupon_object[0].is_expired_coupon_code=True
+                #     coupon_object[0].save()
                 cart_object.save()
                 messages.success(request,f"Coupon applied succesfully and get {coupon_object[0].discount} discount.")
                 return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

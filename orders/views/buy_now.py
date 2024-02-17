@@ -21,7 +21,7 @@ def buy_now(request, pk):
     get_total_all= product_price + total_tax
 
     # request.session['size']
-    print("Size in buy Session+++++++++++++++",request.session['size_pk'])
+    #print("Size in buy Session+++++++++++++++",request.session['size_pk'])
 
     request.session['product_price']=product_price
     request.session['total_tax']=total_tax

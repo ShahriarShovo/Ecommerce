@@ -2,12 +2,15 @@ from django.shortcuts import render
 from products.models.products_model import Products,Customer_Review
 from django.core.paginator import Paginator
 from cart.models.wish_list import Wish_List
+from system_setting.models.banner import Banner
 
 # Create your views here.
 
 def index(request):
 
     fatch_all_products = Products.objects.all()
+
+    banners = Banner.objects.all()
 
     for product in fatch_all_products:
         reviews_count = Customer_Review.objects.filter(products=product.id).count()
@@ -33,6 +36,7 @@ def index(request):
         'fatch_all_products' : paged_product,
         'reviews_count' :reviews_count,
         #'wish_list' :wish_list,
+        'banners': banners
     }
     
     return render(request, 'index/index.html', context=context)

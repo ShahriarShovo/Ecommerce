@@ -75,6 +75,11 @@ def cash_on_delivary_for_single_product(request,pk):
                 product_Size_variant=product_size,
                 each_product_price=float(request.session['product_price'])
             )
+    
+    del request.session['product_price']
+    del request.session['total_tax']
+    del request.session['get_total_all']
+    del request.session['size_pk']
     return HttpResponseRedirect(reverse("invoice", kwargs={'pay_id':payment_id, 'order_id':order_id}))
 
     

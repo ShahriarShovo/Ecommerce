@@ -8,9 +8,16 @@
 <section class="section-intro padding-y-sm">
 <div class="container">
 {% include "messages/messages.html" %}
+
+{% for banner in banners %}
+
 <div class="intro-banner-wrap">
-	<img src="static/images/banners/2.jpg" class="img-fluid rounded">
+	<div class="slide">
+	<img src="{{ banner.image.url }}" class="img-fluid rounded">
+	</div>
 </div>
+
+{% endfor %}
 
 </div> 
 </section>
@@ -146,6 +153,25 @@
 </div> <!-- container .//  -->
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
+
+<script>
+    var index = 0;
+    var slides = document.querySelectorAll('.slide');
+    var totalSlides = slides.length;
+
+    function showSlide() {
+        slides.forEach(slide => {
+            slide.style.display = 'none';
+        });
+        slides[index % totalSlides].style.display = 'block';
+        index++;
+        setTimeout(showSlide, 3000);  // Change slide every 3 seconds (5000 milliseconds)
+    }
+
+    showSlide();  // Start slideshow
+</script>
+
+
 
 
 {% endblock blody %}
