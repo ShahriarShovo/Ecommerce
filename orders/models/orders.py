@@ -15,8 +15,10 @@ class Order(models.Model):
     )
 
     order_status =(
-        ('Completed', 'Completed'),
+        
         ('Pending', 'Pending'),
+        ('Sent', 'Sent'),
+        ('Completed', 'Completed'),
     )
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL)

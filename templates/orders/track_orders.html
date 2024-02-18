@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block headers %}
+
+{% include 'include/main_include_file.html' %}
+
+{% endblock headers %}
+
+
+
+{% block body %}
+
+<section class="section-conten padding-y bg">
+
+<div class="card mx-auto" style="max-width: 380px; margin-top:30px;">
+    <div class="card-body">
+    <h4 class="card-title mb-4">Track Your Orders</h4>
+       {% include "messages/messages.html" %} 
+    <form action="{% url 'track_orders' %}" method="POST">
+      {% csrf_token %}
+
+        <div class="form-group">
+           <input type="text"   name="order_id" class="form-control" placeholder="Type your order id" >
+        </div> 
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block"> Track  </button>
+        </div> 
+  </div> 
+</section>
+
+  {% include "include/footer.html" %}
+
+  {% endblock body %}

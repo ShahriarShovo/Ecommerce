@@ -1,0 +1,118 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block headers %}
+
+{% include 'include/main_include_file.html' %}
+
+{% endblock headers %}
+
+
+
+{% block body %}
+
+
+
+<section class="section-conten padding-y bg">
+    <div class="container">
+        <div class="row">
+            <div class="row">
+            </div>
+        
+        <main class="col-md-9">
+           
+            <header class="card-header">
+                <strong class="d-inline-block mr-3">Order ID: {{get_order_status}}</strong>
+                <span></span> | 
+                <span>Last Order Date :{{get_order_status.created}} </span>
+            </header>
+
+
+            <table class="table table-hover">
+                {% for track_product in get_product_info %}
+                <tr>
+                    <td width="65">
+                        <img src="{{track_product.product_name.product_image.url}}" class="img-xs border">
+                    </td>
+                    <td> 
+                        <p class="title mb-0">{{track_product.product_name}}</p>
+                        <var class="price text-muted">&#2547; {{track_product.each_product_price}}</var>
+                    </td>
+                    <td> Quantity <br> {{track_product.quantity}} </td>
+                    <td>Brand <br> {{track_product.product_name.product_brand}}  </td>
+                    <td>Variation<br> {{track_product.product_Size_variant}} </td>
+                    <td width="250"> </td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <br>
+
+            {% if get_order_status.status %}
+
+                <div class="horizontal timeline">
+                    {% if get_order_status.status == 'Pending' %}
+                        <div class="steps">
+                            <div class="step">
+                                <span>{{get_order_status.status}}</span>
+                            </div>
+                        </div>
+                        {% else %}
+
+                        <div class="steps">
+                            <div class="step">
+                                <span></span>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if get_order_status.status == 'Sent' %}
+                        <div class="steps">
+                            <div class="step">
+                                <span>{{get_order_status.status}}</span>
+                            </div>
+                        </div>
+                        {% else %}
+
+                        <div class="steps">
+                            <div class="step">
+                                <span></span>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if get_order_status.status == 'Completed' %}
+                        <div class="steps">
+                            <div class="step">
+                                <span>{{get_order_status.status}}</span>
+                            </div>
+                        </div>
+
+                        {% else %}
+                        <div class="steps">
+                            <div class="step">
+                                <span></span>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <div class="line"></div>
+                    
+                </div>
+            {% endif %}
+
+                
+            
+            
+          
+        </main>
+    </div> 
+    </div>
+    </section>
+
+
+  
+  
+
+  {% endblock body %}
