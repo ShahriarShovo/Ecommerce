@@ -51,10 +51,10 @@
               <i class="fa fa-star{% if product_details.averageRating < 3.5 %}-o{% elif product_details.averageRating >= 3.5 and product_details.averageRating < 4  %}-half-o{% endif %}"></i> 
               <i class="fa fa-star{% if product_details.averageRating < 4.5 %}-o{% elif product_details.averageRating >= 4.5 and product_details.averageRating < 5  %}-half-o{% endif %}"></i> 
               <small class="label-rating text-muted">{{product_details.count_reviews}} reviews</small>
-              <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
+              <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> {{total_product_order_count}} orders </small>
               {% else %}
               <small class="label-rating text-muted">No reviews Yet</small>
-              <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
+              <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> {{total_product_order_count}} orders </small>
               {% endif %}
     </span>
   </div>

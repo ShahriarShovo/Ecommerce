@@ -21,6 +21,10 @@ def product_detail(request, pk):
     request_user = request.user
 
     product_gallery = Product_Gallery.objects.filter(product=product_details)
+
+    total_product_order_count= Products_Ordered.objects.filter(product_name__pk=product_details.pk).count()
+
+    # print ("Total order this product ___________", total_product_order_count)
     
     context={
         'product_details' : product_details,
@@ -28,6 +32,7 @@ def product_detail(request, pk):
         'reviews_count' :reviews_count,
         "request_user": request_user,
         'product_gallery':product_gallery,
+        'total_product_order_count' :total_product_order_count,
     }
 
     if request.GET.get('size'):
@@ -58,7 +63,7 @@ def product_detail(request, pk):
     # if request.method == 'POST':
     get_code = request.POST.get('get_code')
 
-    print("coupon code in single product +++++++++++++++++", get_code)
+    # print("coupon code in single product +++++++++++++++++", get_code)
         
 
        

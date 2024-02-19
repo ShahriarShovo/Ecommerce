@@ -77,6 +77,7 @@ TEMPLATES = [
                 "system_setting.views.contact_and_details.contact_and_details",
                 
                 
+                
             ],
             'libraries':{
             'cart_tag': 'cart.templatetags.cart_tag',

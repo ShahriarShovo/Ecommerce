@@ -3,6 +3,8 @@ from products.models.products_model import Products,Customer_Review
 from django.core.paginator import Paginator
 from cart.models.wish_list import Wish_List
 from system_setting.models.banner import Banner
+from orders.models.product_ordered import Products_Ordered
+
 
 # Create your views here.
 
@@ -14,8 +16,13 @@ def index(request):
 
     for product in fatch_all_products:
         reviews_count = Customer_Review.objects.filter(products=product.id).count()
-        # wish_list= Wish_List.objects.filter(user=request.user, products=product.id, is_added=True)
-        # print("Wish list++++++++",wish_list)
+        wish_list= Wish_List.objects.filter(user=request.user, products=product.id, is_added=True)
+        print("Wish list++++++++",wish_list)
+
+        total_product_order_count= Products_Ordered.objects.filter(product_name__pk=product.pk).count()
+        print ("Total order this product ___________", total_product_order_count)
+
+
 
         
     
@@ -31,12 +38,15 @@ def index(request):
 
     
 
+    
+
     context ={
       
         'fatch_all_products' : paged_product,
         'reviews_count' :reviews_count,
-        #'wish_list' :wish_list,
-        'banners': banners
+        'wish_list' :wish_list,
+        'banners': banners,
+        'total_product_order_count' :total_product_order_count
     }
     
     return render(request, 'index/index.html', context=context)
