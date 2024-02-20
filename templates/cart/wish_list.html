@@ -34,7 +34,7 @@
                         <p>{{items.products.product_name}}</p>
                          <p>{{items.products.product_brand}} </p>
 
-                         <div class="icon icon-sm "><i class="fa fa-shopping-cart"></i></div>
+                         <div class="icon icon-sm "><a href="{% url 'add_to_cart' pk=items.products.pk %}" style="color:#343A40;" ><i class="fa fa-shopping-cart"></i></a></div>
                          <div class="icon icon-sm "><a href="{% url 'delete_wish_list' pk=items.pk %}" style="color:#343A40;" ><i class="fa fa-trash" aria-hidden="true"></i></a></div>
                         
                     </figcaption>

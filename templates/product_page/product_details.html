@@ -179,13 +179,16 @@
         
 
           <hr>
-          <a href="{% url 'buy_now' pk=product_details.pk %}" class="btn  btn-primary"> Buy now </a>
+          {% comment %} <a href="{% url 'buy_now' pk=product_details.pk %}" class="btn  btn-outline-primary"> Buy now <i class="fa fa-first-order" ></i> {% endcomment %}
+            <a href="{% url 'buy_now' pk=product_details.pk %}" class="btn  btn-outline-primary"> <span class="text">Buy Now</span> <i class="fas fa-snowflake"></i>  </a>
+          </a> 
           {% if selected_size %}
           <a href="{% url 'add_to_cart' product_details.pk %}?size={{selected_size}} " class="btn  btn-outline-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
           {% else %}
           <a href="{% url 'add_to_cart' product_details.pk %} " class="btn  btn-outline-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
 
           {% endif %}
+          <a href="{% url 'add_to_wish_list' product_details.pk %} " class="btn  btn-outline-primary"> <span class="text">Add to Wish List</span> <i class="fa fa-heart"></i>  </a>
 
 
           
