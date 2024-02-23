@@ -6,7 +6,13 @@ from django.contrib.auth import login, authenticate
 from django.db.models import Q
 from django.contrib import messages
 
+# #later remove
+# from django.views.decorators.csrf import csrf_exempt
 
+
+
+
+# @csrf_exempt
 def user_login(request):
     
     detect = request.POST.get('username_email_phone')

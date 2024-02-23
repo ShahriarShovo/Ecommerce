@@ -8,6 +8,8 @@ from user_auth.models.user import User
 from django.db.models import Avg, Count
 
 
+
+
 # Create your models here.
 
 
@@ -59,6 +61,10 @@ class Products(models.Model):
         if reviews['count'] is not None:
             avg = int(reviews['count'])
         return avg
+    
+    # def total_product_order_count(self):
+    #     total_product_order_count= Products_Ordered.objects.filter(product_name__pk=self.pk).count()
+    #     print(' _total -----------------------', total_product_order_count)
     
 
     # def get_total_for_single_product(self):

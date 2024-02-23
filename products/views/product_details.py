@@ -7,6 +7,8 @@ from products.models.product_gallary import Product_Gallery
 from products.models.product_variation.size_variant import Product_Size_variant
 from orders.models.product_ordered import Products_Ordered
 
+from cart.models.wish_list import Wish_List
+
 # Create your views here.
 
 
@@ -14,6 +16,7 @@ from orders.models.product_ordered import Products_Ordered
 def product_detail(request, pk):
 
     product_details = Products.objects.get(pk=pk)
+    
 
     #print(product_details.pk)
 
@@ -24,11 +27,12 @@ def product_detail(request, pk):
 
     total_product_order_count= Products_Ordered.objects.filter(product_name__pk=product_details.pk).count()
 
-    # print ("Total order this product ___________", total_product_order_count)
+    add_wish_list_or_not = Wish_List.objects.filter(user=request.user,products__pk=product_details.pk)
+    print(" its on wish list", add_wish_list_or_not)
     
     context={
         'product_details' : product_details,
-      
+        'add_wish_list_or_not': add_wish_list_or_not,
         'reviews_count' :reviews_count,
         "request_user": request_user,
         'product_gallery':product_gallery,

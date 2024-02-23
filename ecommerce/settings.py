@@ -25,6 +25,9 @@ SECRET_KEY=config('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = []
+# CSRF_TRUSTED_ORIGINS = ['https://19aa-103-189-158-206.ngrok-free.app']
+
+
 
 
 # Application definition

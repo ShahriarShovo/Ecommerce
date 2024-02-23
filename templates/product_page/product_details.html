@@ -188,7 +188,14 @@
           <a href="{% url 'add_to_cart' product_details.pk %} " class="btn  btn-outline-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
 
           {% endif %}
+
+
+          {% if add_wish_list_or_not %}
+          <p href="" class="btn  btn-outline-primary"> <span class="text">Already Added Wish List</span> <i class="fa fa-heart"></i>  </p>
+          {% else %}
           <a href="{% url 'add_to_wish_list' product_details.pk %} " class="btn  btn-outline-primary"> <span class="text">Add to Wish List</span> <i class="fa fa-heart"></i>  </a>
+          {% endif %}
+          
 
 
           

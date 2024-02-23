@@ -16,8 +16,14 @@ def index(request):
 
     for product in fatch_all_products:
         reviews_count = Customer_Review.objects.filter(products=product.id).count()
-        wish_list= Wish_List.objects.filter(user=request.user, products=product.id, is_added=True)
-        print("Wish list++++++++",wish_list)
+
+        if request.user.is_authenticated :
+            wish_list= Wish_List.objects.filter(user=request.user, products=product.id, is_added=True)
+            
+            print("Wish list++++++++",wish_list)
+        else:
+            wish_list = None
+        
 
         total_product_order_count= Products_Ordered.objects.filter(product_name__pk=product.pk).count()
         print ("Total order this product ___________", total_product_order_count)
