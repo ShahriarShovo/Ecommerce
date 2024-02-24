@@ -4,9 +4,12 @@
         <a class="list-group-item active" href="{% url 'user_dashboard' %}"> My Dashboard </a>
         {% comment %} <a class="list-group-item" href="#"> Transactions </a> {% endcomment %}
         {% comment %} <a class="list-group-item" href="#"> Return and refunds </a> {% endcomment %}
+        
         <a class="list-group-item" href="{% url 'update_address' %}">Settings </a>
         {% comment %} <a class="list-group-item" href="#"> My Selling Items </a> {% endcomment %}
+        {% if user.sign_up_platform == 4 %}
         <a class="list-group-item" href="{% url 'change_password' %}"> Change Password </a>
+        {% endif %}
         {% comment %} <a class="list-group-item" href="#">  Received orders </a> {% endcomment %}
     </ul>
     <br>

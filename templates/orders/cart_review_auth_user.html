@@ -124,30 +124,69 @@
     <article class="card mb-4">
         <div class="card-body">
             <h4 class="card-title mb-4">Contact info</h4>
-            <form  action="">
-               
+            {% include "messages/messages.html" %}
+            <form  method="POST" action="{% url 'initial_order' %}">
+                {% csrf_token %}
                 <div class="row">
                     <div class="form-group col-sm-6">
                         <label>Frst name</label>
-                        <input type="text" name='first_name' value="{{user.first_name}}" class="form-control"  readonly>
+                        <input type="text" name='first_name' value="{{user.first_name}}" class="form-control" >
                     </div>
                     <div class="form-group col-sm-6">
                         <label>Last name</label>
-                        <input type="text" name='last_name' value="{{user.last_name}}" class="form-control" readonly>
+                        <input type="text" name='last_name' value="{{user.last_name}}" class="form-control">
                     </div>
                     <div class="form-group col-sm-6">
                         <label>User name</label>
-                        <input type="text" name='phone' value="{{user.username}}" class="form-control" readonly>
+                        <input type="text" name='username' value="{{user.username}}" class="form-control">
                     </div>
                     <div class="form-group col-sm-6">
                         <label>Email</label>
-                        <input type="email" name='email' value="{{user.email}}" class="form-control" readonly> 
+                        <input type="email" name='email' value="{{user.email}}" class="form-control"> 
                     </div>
                     
                 </div> 
-            </form>
         </div> 
         </article> 
+        <article class="card mb-4">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Delivery info</h4>
+                    <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label>Country*</label>
+                                <select name="country" class="form-control">
+                                    <option value="1">Bangladesh</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>State*</label>
+                                <input type="text"  name='state' value="{{user_address.state}}" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>Street*</label>
+                                <input type="text" name='street' value="{{user_address.street}}" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>Building</label>
+                                <input type="text" name='building' value="{{user_address.house_number}}" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>Phone</label>
+                                <input type="text" name='phone' value="{{user_address.phone}}" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>Zip</label>
+                                <input type="text" name='zip' value="{{user_address.zipcode}}" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <button type="submit" class="btn btn-primary "> Update  </button>
+                            </div> 
+                    </div>
+                </form>
+                
+            </div> 
+            
+            </article>
 
     {% endif %}
 

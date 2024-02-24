@@ -23,6 +23,7 @@ def initial_payment(request):
     if request.user.is_authenticated:
 
         current_user = request.user
+        print("User -------------", current_user)
     
         # user_phone = BillingAddress.objects.get(user=current_user)
         # get_total_all=request.session['get_total_all']

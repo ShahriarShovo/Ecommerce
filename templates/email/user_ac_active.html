@@ -1,6 +1,6 @@
 {% autoescape off %}
 
-Hi{{user.fist_name}},
+Hi{{user.fist_name}}, Thank you Registration in our Shop
 
 Please Click the link and active your account.
 
@@ -8,3 +8,4 @@ http://{{domain}}{% url 'activate' uidb64=uid token=token %}
 
 
 {% endautoescape %}
+
