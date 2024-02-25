@@ -165,6 +165,8 @@ EMAIL_HOST_PASSWORD=config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS=True
 
 
-# AUTHENTICATION_BACKENDS = [
-#     'user_auth.EmailBackend.EmailBackend'
-# ]
+AUTHENTICATION_BACKENDS = [
+    'user_auth.views.authentication.custom_authentication.CustomAuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',
+
+]

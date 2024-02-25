@@ -28,7 +28,7 @@ def send_verification_email(request, user,mail_subject,email_template):
 
 def detectUser(user):
     if user.role==2:
-        redirectUrl= 'user_dashboard'
+        redirectUrl= 'index'
         return redirectUrl
     elif user.role==1:
         redirectUrl= 'admin_home'  
