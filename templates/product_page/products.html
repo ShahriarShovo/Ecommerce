@@ -36,20 +36,21 @@
 		</style>
 
 <div class="row">
+
 	{% for products in fatch_all_products %}
 	<div class="col-md-4">
 		<figure class="card card-product-grid">
 			<div class="img-wrap"> 
 				
 				<img src="{{products.product_image.url}}">
-			</div> <!-- img-wrap.// -->
+			</div> 
 			<figcaption class="info-wrap">
 				<div class="fix-height">
 					<a href="{% url 'product_detail' products.pk %}" class="title"> {{products.product_name}}</a>
 					<div class="price-wrap mt-2">
 						<span class="price">&#2547;{{products.product_price}}</span>
 						<del class="price-old">{{products.product_old_price}}</del>
-					</div> <!-- price-wrap.// -->
+					</div> 
 				</div>
 
 				<div class="rating-star">
@@ -94,6 +95,8 @@
 	{% endfor %}
 
 </div> 
+
+
 
 
 

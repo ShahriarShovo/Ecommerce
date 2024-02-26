@@ -8,8 +8,8 @@ class Update_User_Address(models.Manager):
     def update_user_address(self,user,*args, **kwargs):
 
         address = self.get(user=user)
-        print("Receiving data for user email", address)
-        print("Receiving data for user data", kwargs)
+        # print("Receiving data for user email", address)
+        # print("Receiving data for user data", kwargs)
 
         address.country=kwargs['country']
         address.zipcode = kwargs['zip']

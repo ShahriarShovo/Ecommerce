@@ -24,8 +24,9 @@ SECRET_KEY=config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# ALLOWED_HOSTS = ['abd6-103-189-158-206.ngrok-free.app']
+# CSRF_TRUSTED_ORIGINS = ['https://abd6-103-189-158-206.ngrok-free.app']
 ALLOWED_HOSTS = []
-# CSRF_TRUSTED_ORIGINS = ['https://19aa-103-189-158-206.ngrok-free.app']
 
 
 
@@ -77,10 +78,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "product_categories.views.category_context_processors.categories",
                 "product_categories.views.brand_context_processor.brands",
-                "system_setting.views.contact_and_details.contact_and_details",
-                
-                
-                
+                "system_setting.views.contact_and_details.contact_and_details",   
             ],
             'libraries':{
             'cart_tag': 'cart.templatetags.cart_tag',

@@ -4,6 +4,7 @@ from django.core.paginator import Paginator
 from cart.models.wish_list import Wish_List
 from system_setting.models.banner import Banner
 from orders.models.product_ordered import Products_Ordered
+from django.db.models import Min,Max
 
 
 # Create your views here.
@@ -11,6 +12,22 @@ from orders.models.product_ordered import Products_Ordered
 def index(request):
 
     fatch_all_products = Products.objects.all()
+
+    min_price = Products.objects.all().aggregate(Min('product_price'))
+    max_price = Products.objects.all().aggregate(Max('product_price'))
+    # print(min_price)
+    # print(max_price)
+
+    FilterPrice = request.GET.get('FilterPrice')
+
+    if FilterPrice:
+        Int_FilterPrice = int(FilterPrice)
+        fatch_all_products = Products.objects.filter(product_price__lte = Int_FilterPrice)
+
+        # print('fatch_all_products++++++++++++',fatch_all_products)
+        
+
+    # fatch_all_products = Products.objects.all()
 
     banners = Banner.objects.all()
 
@@ -20,13 +37,13 @@ def index(request):
         if request.user.is_authenticated :
             wish_list= Wish_List.objects.filter(user=request.user, products=product.id, is_added=True)
             
-            print("Wish list++++++++",wish_list)
+            # print("Wish list++++++++",wish_list)
         else:
             wish_list = None
         
 
         total_product_order_count= Products_Ordered.objects.filter(product_name__pk=product.pk).count()
-        print ("Total order this product ___________", total_product_order_count)
+        # print ("Total order this product ___________", total_product_order_count)
 
 
 
@@ -40,11 +57,6 @@ def index(request):
     page = request.GET.get('page')
     paged_product = paginator.get_page(page)
 
-    
-
-    
-
-    
 
     context ={
       
@@ -52,7 +64,10 @@ def index(request):
         'reviews_count' :reviews_count,
         'wish_list' :wish_list,
         'banners': banners,
-        'total_product_order_count' :total_product_order_count
+        'total_product_order_count' :total_product_order_count,
+        'min_price':min_price,
+        'max_price':max_price,
+        'FilterPrice':FilterPrice,
     }
     
     return render(request, 'index/index.html', context=context)

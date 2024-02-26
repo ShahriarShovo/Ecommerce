@@ -8,9 +8,9 @@ class Billing_Address_Update_Manager(models.Manager):
 
     def create_user_billing_address(self, user, *args, **kwargs):
 
-        print("User ---------------",user)
-        print("args ---------------",args)
-        print("kwargs ---------------",kwargs)
+        # print("User ---------------",user)
+        # print("args ---------------",args)
+        # print("kwargs ---------------",kwargs)
 
         # return self.create(guest_user=user, zipcode=args[0],
         #                     phone=args[1], house_number=args[2],

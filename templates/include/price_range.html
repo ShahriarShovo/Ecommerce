@@ -1,4 +1,33 @@
 
+<style>
+    input[type=range]{
+    -webkit-appearance: none;
+    width:100%;
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+    width: 1000px;
+    height: 5px;
+    background: #FCBE00;
+    border: none;
+    border-radius: 3px;
+    }
+    input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: goldenrod;
+    margin-top: -5px;
+    }
+    input[type=range]:focus {
+    outline: none;
+    }
+    input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #FCBE00;
+    }
+ </style>
+  
   <article class="filter-group">
     <header class="card-header">
         <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
@@ -10,22 +39,25 @@
     <div class="filter-content collapse show" id="collapse_3" style="">
         
         <div class="card-body">
-            <form method="POST" action="{% url 'get_product_price_range' %}">
-                <input type="range" id="points" name="points" min="0" max="10">
-                {% csrf_token %}
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label>Min</label>
-                    <!-- <input class="form-control" placeholder="$0" type="number"> -->
-                    <input type="text" name='min' class="mr-2 form-control">
-                  </div>
-                <div class="form-group text-right col-md-6">
-                    <label>Max</label>
-                        <input type="text" name='max' class="mr-2 form-control">      
-                  </div>
-            </div> <!-- form-row.// -->
-            <button class="btn btn-block btn-primary">Apply</button>
-        </form>
-        </div><!-- card-body.// -->
+        
+        <div class="product-widget mb-30">
+           
+            <div class="price__slider mt-30">
+               <input type="range" class="multi-range success" style="color:red;" value="1" min="{{min_price.product_price__min}}" max="{{max_price.product_price__max}}" id="rangeInput" oninput="maxPrice.value=this.value" width="400px;"/>
+               <div>
+                  <form action="" class="s-form mt-20" method="get">
+
+                    <div class="form-group col-md-6">
+                        <label></label>
+                        <input  class="mr-4 form-control" type="number" id="maxPrice"  name="FilterPrice" onkeyup="rangeInput.value=this.value" value={{FilterPrice}}>
+                     <button id="priceFilterBtn" class="btn btn-primary btn-sm mt-1">Filter</button>
+                    </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+
+        </div>
+
     </div>
-</article> <!-- filter-group .// -->
+</article> 
