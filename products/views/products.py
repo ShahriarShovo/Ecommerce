@@ -26,14 +26,12 @@ def index(request):
 
         # print('fatch_all_products++++++++++++',fatch_all_products)
         
-
-    # fatch_all_products = Products.objects.all()
-
     banners = Banner.objects.all()
 
+    
     for product in fatch_all_products:
         reviews_count = Customer_Review.objects.filter(products=product.id).count()
-
+    
         if request.user.is_authenticated :
             wish_list= Wish_List.objects.filter(user=request.user, products=product.id, is_added=True)
             
@@ -41,14 +39,6 @@ def index(request):
         else:
             wish_list = None
         
-
-        total_product_order_count= Products_Ordered.objects.filter(product_name__pk=product.pk).count()
-        # print ("Total order this product ___________", total_product_order_count)
-
-
-
-        
-    
     # Create a Paginator instance
     paginator = Paginator(fatch_all_products,9)
 
@@ -64,11 +54,11 @@ def index(request):
         'reviews_count' :reviews_count,
         'wish_list' :wish_list,
         'banners': banners,
-        'total_product_order_count' :total_product_order_count,
         'min_price':min_price,
         'max_price':max_price,
         'FilterPrice':FilterPrice,
+       
     }
     
-    return render(request, 'index/index.html', context=context)
+    return render(request, 'index/index.html', context)
 

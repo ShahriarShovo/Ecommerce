@@ -1,6 +1,6 @@
 
 {% load static %}
-
+{% load product_tag %}
 {% block blody %}
 
 </header> 
@@ -53,6 +53,14 @@
 					</div> 
 				</div>
 
+				 
+
+				{% comment %} 
+				{{ products.id.product_orders }}
+				{{ products.total_product_order_count }}
+				{{ products.total_product_order_count }} 
+				 {% endcomment %}
+
 				<div class="rating-star">
 					<span>
 						{% if products.averageRating %}
@@ -62,12 +70,12 @@
 						  <i class="fa fa-star{% if products.averageRating < 2.5 %}-o{% elif products.averageRating >= 2.5 and products.averageRating < 3  %}-half-o{% endif %}"></i> 
 						  <i class="fa fa-star{% if products.averageRating < 3.5 %}-o{% elif products.averageRating >= 3.5 and products.averageRating < 4  %}-half-o{% endif %}"></i> 
 						  <i class="fa fa-star{% if products.averageRating < 4.5 %}-o{% elif products.averageRating >= 4.5 and products.averageRating < 5  %}-half-o{% endif %}"></i> 
-						  <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> {{total_product_order_count}} orders </small>
+						  <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i>  {{products | total_orders }}  orders </small>
 						  <small class="label-rating text-muted">{{products.count_reviews}} reviews</small>
 						  {% else %}
 						  
 						  <small class="label-rating text-muted">No reviews Yet</small>
-						  <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> {{total_product_order_count}} orders </small><br>
+						  <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> {{products | total_orders }} orders </small><br>
 						  <small class="label-rating text-muted">{{products.count_reviews}} reviews</small>
 						  {% endif %}
 				</span>
