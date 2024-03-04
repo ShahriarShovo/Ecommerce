@@ -4,14 +4,25 @@ from orders.models.product_ordered import Products_Ordered
 
 
 def order_completed(request):
-    user = request.user
+    
+    if request.user.is_authenticated:
 
-    order_completed= Products_Ordered.objects.filter(ordered__user=user,ordered__status='Completed')
+        orders_with_products = Order.objects.prefetch_related('product_order')
 
-    print(" order_completed _____________", order_completed)
+        print(" all odered _____________", orders_with_products)
 
-    context={
-        'order_completed':order_completed
-    }
+        for order in orders_with_products:
+            print("Order Number_________:", order.order_number)
+            print("Order status________--:", order.status)
+            print("Products Ordered_______:")
+            for product in order.product_order.all():
+                print("- ", product.product_name)
+                print("- ", product.quantity)
+                print("- ", product.product_Size_variant)
+                print("- ", product.each_product_price)
+                
+        context={
+            # 'orders_with_products':orders_with_products,
+        }
 
     return render(request,'dashboard_options/order_completed.html',context)

@@ -19,7 +19,7 @@ from user_auth.views.password.change_password import change_password
 
 #app_name='user_auth'
 from user_auth.views.dashboard.dashboard_options.total_orders import total_orders
-from user_auth.views.dashboard.dashboard_options.pending_orders import pending_orders
+from user_auth.views.dashboard.dashboard_options.order_details_status import order_details_status
 from user_auth.views.dashboard.dashboard_options.order_completed import order_completed
 from user_auth.views.dashboard.dashboard_options.cash_on_deliverys import cash_on_deliverys
 from user_auth.views.dashboard.dashboard_options.paid_delivery import paid_delivery
@@ -64,7 +64,7 @@ urlpatterns = [
 
 #orders user
     path('total_orders/', total_orders , name='total_orders'),
-    path('pending_orders/', pending_orders , name='pending_orders'),
+    path('order_details_status/', order_details_status , name='order_details_status'),
     path('order_completed/', order_completed , name='order_completed'),
     path('cash_on_delivery/', cash_on_deliverys , name='cash_on_deliverys'),
     path('paid_delivery/', paid_delivery , name='paid_delivery'),

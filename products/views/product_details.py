@@ -27,8 +27,12 @@ def product_detail(request, pk):
 
     total_product_order_count= Products_Ordered.objects.filter(product_name__pk=product_details.pk).count()
 
-    add_wish_list_or_not = Wish_List.objects.filter(user=request.user,products__pk=product_details.pk)
-    print(" its on wish list", add_wish_list_or_not)
+    if request.user.is_authenticated:
+
+        add_wish_list_or_not = Wish_List.objects.filter(user=request.user,products__pk=product_details.pk)
+        print(" its on wish list", add_wish_list_or_not)
+    else:
+        add_wish_list_or_not=None
     
     context={
         'product_details' : product_details,

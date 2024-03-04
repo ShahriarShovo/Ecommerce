@@ -5,7 +5,7 @@ from products.models.product_variation.size_variant import Product_Size_variant
 
 
 class Products_Ordered(models.Model):
-    ordered = models.ForeignKey(Order,on_delete=models.CASCADE, null=True, blank=True)
+    ordered = models.ForeignKey(Order,on_delete=models.CASCADE, null=True, blank=True, related_name='product_order')
     product_name = models.ForeignKey(Products, on_delete=models.SET_NULL, null=True, blank=True)
     product_Size_variant = models.ForeignKey(Product_Size_variant, on_delete=models.SET_NULL, blank=True, null=True)
     quantity = models.IntegerField(null=True,blank=True)

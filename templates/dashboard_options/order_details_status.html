@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block headers %}
+{% include 'include/main_include_file.html' %}
+{% endblock headers %}
+{% block body %}
+
+
+<section class="section-content padding-y bg">
+    <div class="container">
+        <div class="row">
+        {% include "dashboard/user_options.html" %}
+         <main class="col-md-9">
+            {% for order in orders_with_products %}
+            <article class="card mb-4">
+                <div class="card-body">
+                    <p class="card-title mb-4">Order Number : {{order}} | {{order.status}} , {{order.get_payment_status_display}}</p> 
+                    
+                    
+                    <div class="row">
+                        {% for product in order.product_order.all %}
+                        <div class="col-md-6">
+                            <figure class="itemside  mb-4">
+                                <div class="aside"><img src="{{product.product_name.product_image.url}}" class="border img-sm"></div>
+                                <figcaption class="info">
+                                    <p>{{product.product_name}} | {{product.product_name.product_brand}}  </p>
+                                    <p>Quantity : {{product.quantity}} </p>
+                                    <p>Size : {{product.product_Size_variant}} </p>
+                                    <span class="text-muted">&#2547;{{product.each_product_price}} each</span>
+                                </figcaption>
+                            </figure>
+                        </div> 
+                        {% endfor %} 
+                    </div>
+                     
+                    
+                   
+                </div> 
+                </article> 
+                {% endfor %}
+        </main> 
+
+    </section>
+   
+{% include "include/footer.html" %}
+{% endblock body %}
