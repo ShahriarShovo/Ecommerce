@@ -8,4 +8,5 @@ from user_auth.views.dashboard.dashboard_options.cash_on_deliverys import cash_o
 from user_auth.views.dashboard.dashboard_options.paid_delivery import paid_delivery
 from user_auth.views.dashboard.deactivate_account import deactivate_account
 from user_auth.views.authentication.custom_authentication import CustomAuthenticationBackend
+from user_auth.views.dashboard.dashboard_options.notification import notification
 

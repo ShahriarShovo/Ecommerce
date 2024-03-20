@@ -1,0 +1,84 @@
+{% comment %} 
+
+
+<section class="section-conten padding-y bg">
+
+    <div class="container">
+        <div class="row">
+        {% include "dashboard/user_options.html" %}
+        <main class="col-md-9">
+
+            <article class="card">
+
+            <header class="card-header">
+                <strong class="d-inline-block mr-3">Order ID: 6123456789</strong>
+                <span>Login Date: {{ user.last_login|date:"F j, Y" }} at {{ user.last_login|time:"g:i A" }}</span> |
+                <span>Last Order Date : {{get_order.created}} </span>
+            </header>
+           
+            <style type="text/css">
+                .marked{
+                    display: none;
+                }
+            </style>
+                <!-- Main Start -->
+                <main>
+                    <!-- Services -->
+                    <section class="container my-4">
+                        <div class="row">
+                            <div class="col-3">
+                              
+                            </div>
+                            <div class="col-9">
+                                <div id="messageContainer">
+                                    <!-- The message will be displayed here -->
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- End -->
+                </main>
+                <!-- End -->
+                
+                
+      
+           
+            </article> 
+        </main>
+    </div> 
+    </div>
+  
+    </section>
+   
+{% include "include/footer.html" %}
+
+
+<script>
+    // setup chat scoket
+    const notifyScoket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/notify/'
+    );
+
+    // on socket open
+    notifyScoket.onopen = function (e) {
+        console.log('Socket successfully connected.');
+    };
+
+    // on socket close
+    notifyScoket.onclose = function (e) {
+        console.log('Socket closed unexpectedly');
+    };
+
+    // on receiving message on group
+    notifyScoket.onmessage = function (e) {
+		
+        const data = JSON.parse(e.data);
+		const messageContainer = document.getElementById('#messageContainer');
+        messageContainer.innerHTML = data.message;
+		console.log(data.message)
+    };
+
+
+{% endblock body %} {% endcomment %}

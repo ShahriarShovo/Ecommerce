@@ -45,7 +45,12 @@
 						</div>
 					</div>
 
-					
+
+					<a href="" class="widget-header pl-3 ml-2">
+						<div class="icon icon-sm "><i id="bellIcon" class="fa fa-bell"></i></div>
+						<span class="badge badge-pill badge-danger notify" id="badgeCount"></span> 
+					</a>
+
 					<a href="{% url 'view_wish_list' %}" class="widget-header pl-3 ml-2">
 						<div class="icon icon-sm "><i class="fa fa-heart"></i></div>
 						<span class="badge badge-pill badge-danger notify">{{ request.user | wish_list_total }}</span> 
@@ -55,12 +60,49 @@
 						<div class="icon icon-sm "><i class="fa fa-shopping-cart"></i></div>
 						<span class="badge badge-pill badge-danger notify">{{ request.user | cart_total }}</span> 
 					</a>
-
-					
-
-					
-				</div> <!-- widgets-wrap.// -->
-			</div> <!-- col.// -->
-</div> <!-- row.// -->
-	</div> <!-- container.// -->
+				</div> 
+			</div> 
+</div> 
+	</div> 
 </section> 
+
+{% comment %} 
+<script>
+    // setup chat scoket
+    const notifyScoket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/notify/'
+    );
+
+    // on socket open
+    notifyScoket.onopen = function (e) {
+        console.log('Socket successfully connected.');
+    };
+
+    // on socket close
+    notifyScoket.onclose = function (e) {
+        console.log('Socket closed unexpectedly');
+    };
+
+    // on receiving message on group
+    notifyScoket.onmessage = function (e) {
+		
+        const data = JSON.parse(e.data);
+		
+		// Update bell icon
+		const bellIcon = document.getElementById('bellIcon');
+		console.log(bellIcon);
+		bellIcon.className = data.hasNotification ? 'fa fa-bell' : 'fa fa-bell-o';
+	
+		// Update badge count
+		const badgeCount = document.getElementById('badgeCount');
+		badgeCount.textContent = data.notificationCount;
+		
+		console.log(data.message);
+        
+
+    }; 
+
+   
+</script> {% endcomment %}

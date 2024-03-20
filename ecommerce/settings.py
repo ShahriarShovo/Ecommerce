@@ -24,8 +24,8 @@ SECRET_KEY=config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['abd6-103-189-158-206.ngrok-free.app']
-# CSRF_TRUSTED_ORIGINS = ['https://abd6-103-189-158-206.ngrok-free.app']
+# ALLOWED_HOSTS = ['630e-103-189-158-204.ngrok-free.app']
+# CSRF_TRUSTED_ORIGINS = ['https://630e-103-189-158-204.ngrok-free.app']
 ALLOWED_HOSTS = []
 
 
@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'payments',
     'admin_panel',
     'system_setting',
+    'chat_notification',
     
     
 ]
@@ -89,7 +91,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "ecommerce.wsgi.application"
+#WSGI_APPLICATION = "ecommerce.wsgi.application"
+ASGI_APPLICATION = "ecommerce.asgi.application"
 
 
 # Database
@@ -99,6 +102,12 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': "channels.layers.InMemoryChannelLayer"
     }
 }
 

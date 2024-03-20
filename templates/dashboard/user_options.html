@@ -10,7 +10,7 @@
         {% if user.sign_up_platform == 4 %}
         <a class="list-group-item" href="{% url 'change_password' %}"> Change Password </a>
         {% endif %}
-        {% comment %} <a class="list-group-item" href="#">  Received orders </a> {% endcomment %}
+         <a class="list-group-item" href="{% url 'notification' %}">  Notification </a> 
     </ul>
     <br>
     <a class="btn btn-light btn-block" href="{%url 'user_logout' %}"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a> 

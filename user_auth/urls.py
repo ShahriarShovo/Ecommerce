@@ -24,6 +24,10 @@ from user_auth.views.dashboard.dashboard_options.order_completed import order_co
 from user_auth.views.dashboard.dashboard_options.cash_on_deliverys import cash_on_deliverys
 from user_auth.views.dashboard.dashboard_options.paid_delivery import paid_delivery
 from user_auth.views.dashboard.deactivate_account import deactivate_account
+
+from user_auth.views.dashboard.dashboard_options.notification import notification
+
+
 urlpatterns = [
    
     path('login/', user_login, name='user_login'),
@@ -70,6 +74,8 @@ urlpatterns = [
     path('paid_delivery/', paid_delivery , name='paid_delivery'),
 
     path('deactivate_accound/', deactivate_account , name='deactivate_account'),
+
+    path('notifications/', notification, name='notification'),
 
     
 ]

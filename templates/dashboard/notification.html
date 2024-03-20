@@ -1,0 +1,82 @@
+
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block headers %}
+
+{% include 'include/main_include_file.html' %}
+
+{% endblock headers %}
+
+
+
+{% block body %}
+<section class="section-conten padding-y bg">
+
+    <div class="container">
+        <div class="row">
+        {% include "dashboard/user_options.html" %}
+            <main class="col-md-9">
+
+                <article class="card">
+
+                <header class="card-header">
+                    <strong class="d-inline-block mr-3">Order ID: 6123456789</strong>
+                    <span>Login Date: {{ user.last_login|date:"F j, Y" }} at {{ user.last_login|time:"g:i A" }}</span> |
+                    <span>Last Order Date : {{get_order.created}} </span>
+                </header>
+                <div id="messageContainer">
+                   
+                 </div>
+                {% for notification in notifications %}
+                    <div >
+                       {{notification.message}}
+                    </div>
+                    {% endfor %}
+                </artical>
+            </main>
+        </div>
+    </div>
+</section>
+
+
+
+    <script>
+        // WebSocket code
+        const notifySocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/notify/'
+        );
+        
+        notifySocket.onopen = function() {
+            console.log('WebSocket connection established.');
+        };
+
+        notifySocket.onmessage = function (e) {
+            try {
+                const data = JSON.parse(e.data);
+                const messageContainer = document.getElementById('messageContainer');
+                if (messageContainer) {
+                    messageContainer.innerHTML = data.message || '';
+                } else {
+                    console.error('Element with ID "messageContainer" not found.');
+                }
+            } catch (error) {
+                console.error('Error parsing WebSocket message:', error);
+            }
+        };
+
+        notifySocket.onerror = function(error) {
+            console.error('WebSocket error:', error);
+        };
+
+        notifySocket.onclose = function(event) {
+            console.log('WebSocket connection closed:', event);
+        };
+    </script>
+</body>
+{% endblock body %}
+
+
