@@ -1,15 +1,107 @@
 {% load static %}
 {% load cart_tag %}
 
+
+
 <section class="header-main border-bottom">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-2 col-md-3 col-6">
+                <a href="{% url 'index' %}" class="brand-wrap">
+                    <img class="logo" src="{% static 'images/logo.png' %}">
+                </a>
+            </div>
+
+            <div class="col-lg-7 col-md-6 col-6">
+                <form action="#" class="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" style="max-width: 520px;" placeholder="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-6">
+                <div class="d-flex justify-content-end align-items-center">
+                    {% comment %} <div class="widget-header mr-3">
+                        <small class="text-muted">Logged In as {{ user.username }}</small>
+                        <div>
+                            <a href="{% url 'index' %}">Home</a><span class="dark-transp"> | </span>
+                            <a href="{% url 'user_dashboard' %}"> Dashboard</a>
+                        </div>
+                    </div> {% endcomment %}
+
+                    <a href="{% url 'view_wish_list' %}" class="widget-header pl-3 ml-2">
+                        <div class="icon icon-sm"><i class="fa fa-heart" style="color: black;"></i>
+						</div>
+                        <span class="badge badge-pill badge-danger notify">{{ request.user|wish_list_total }}</span>
+                    </a>
+
+                    <a href="{% url 'cart_view' %}" class="widget-header pl-3 ml-2">
+                        <div class="icon icon-sm"><i class="fa fa-shopping-cart" style="color: black;"></i></div>
+                        <span class="badge badge-pill badge-danger notify">{{ request.user|cart_total }}</span>
+                    </a>
+
+                    <div class="dropdown">
+                        <button class="btn btn-transparent dropdown-toggle" type="button" id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="icon icon-sm"><i class="fa fa-bell"></i></div>
+                            <span class="badge badge-pill badge-danger notify">{{ notification_count }}</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right scrollable-menu" aria-labelledby="notificationDropdown">
+                            <!-- Notification items go here -->
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+                        <button class="btn btn-transparent dropdown-toggle" type="button" id="messageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="icon icon-sm"><i class="fa fa-envelope"></i></div>
+                            <span class="badge badge-pill badge-danger notify">{{ message_count }}</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right scrollable-menu" aria-labelledby="messageDropdown">
+                            <!-- Message items go here -->
+                        </div>
+                    </div>
+
+					<div class="col-lg-3 col-md-3 col-6">
+						<div class="d-flex justify-content-end align-items-center">
+							<!-- Your existing code for "Logged In" text and other icons -->
+		
+							<div class="dropdown">
+								<button class="btn btn-transparent dropdown-toggle" type="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<div class="icon icon-sm"><i class="fa fa-user"></i></div>
+								</button>
+								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+									<!-- User account options go here -->
+									<a class="dropdown-item" href="">{{user.username}}</a>
+									<a class="dropdown-item" href="{% url 'user_dashboard' %}">Settings</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="{% url 'user_logout' %}">Logout</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+{% comment %} <section class="header-main border-bottom">
 	<div class="container">
 <div class="row align-items-center">
 	<div class="col-lg-2 col-md-3 col-6">
 		<a href="{% url 'index' %}" class="brand-wrap">
 			<img class="logo" src="{% static 'images/logo.png' %}" >
 		</a> <!-- brand-wrap.// -->
-	</div>
-	<div class="col-lg col-sm col-md col-6 flex-grow-0">
+	</div> {% endcomment %}
+	{% comment %} <div class="col-lg col-sm col-md col-6 flex-grow-0">
 		<div class="category-wrap dropdown d-inline-block float-right">
 			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 
 				<i class="fa fa-bars"></i> All category 
@@ -19,10 +111,10 @@
 			   <a class="dropdown-item" href="{% url 'show_product_cat_wise' pk=cat.pk %}">{{cat.category_name}} </a>
 			   {% endfor %}
 		   </div>
-		</div>  <!-- category-wrap.// -->
-	</div> <!-- col.// -->
+		</div>  
+	</div>  {% endcomment %}
 	{% comment %} <a href="./index.html" class="btn btn-outline-primary">Store</a> {% endcomment %}
-	<div class="col-lg  col-md-6 col-sm-12 col">
+	{% comment %} <div class="col-lg  col-md-6 col-sm-12 col">
 		<form action="#" class="search">
 			<div class="input-group w-100">
 			    <input type="text" class="form-control" style="width:60%;" placeholder="Search">
@@ -33,23 +125,17 @@
 			      </button>
 			    </div>
 		    </div>
-		</form> <!-- search-wrap .end// -->
-	</div> <!-- col.// -->
+		</form> 
+	</div> 
 	<div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
 				<div class="d-flex justify-content-end mb-3 mb-lg-0">
 					<div class="widget-header">
-						<small class="title text-muted">Logged In  {{user.username}} </small>
+					 <small class="title text-muted">Logged In  {{user.username}} </small> 
 						<div> 
-							<a href="{% url 'index' %}"  >Home</a> <span class="dark-transp"> | </span>
+							<a href="{% url 'index' %}"  >Home</a> <span class="dark-transp"> | </span> 
 							<a href="{% url 'user_dashboard' %}"  > Dashboard</a>
 						</div>
 					</div>
-
-
-					<a href="" class="widget-header pl-3 ml-2">
-						<div class="icon icon-sm "><i id="bellIcon" class="fa fa-bell"></i></div>
-						<span class="badge badge-pill badge-danger notify" id="badgeCount"></span> 
-					</a>
 
 					<a href="{% url 'view_wish_list' %}" class="widget-header pl-3 ml-2">
 						<div class="icon icon-sm "><i class="fa fa-heart"></i></div>
@@ -60,11 +146,30 @@
 						<div class="icon icon-sm "><i class="fa fa-shopping-cart"></i></div>
 						<span class="badge badge-pill badge-danger notify">{{ request.user | cart_total }}</span> 
 					</a>
+
+
+					<div class="btn-group dropleft">
+						<div class="d-flex notifications-icon-container rounded-circle align-items-center mr-3" id="id_chat_notification_dropdown_toggle" data-toggle="dropdown">
+							<span id="id_chat_notifications_count" class="notify-badge"></span>
+							<span class="d-flex material-icons notifications-material-icon m-auto align-items-center">chat</span>
+							<div class="dropdown-menu scrollable-menu" aria-labelledby="id_chat_notification_dropdown_toggle" id="id_chat_notifications_container">
+							</div>
+						</div>
+					</div>
+
+					<div class="btn-group dropleft">
+						<div class="d-flex notifications-icon-container rounded-circle align-items-center mr-3" id="id_notification_dropdown_toggle" data-toggle="dropdown" onclick="setGeneralNotificationsAsRead()">
+							<span id="id_general_notifications_count" class="notify-badge"></span>
+							<span class="d-flex material-icons notifications-material-icon m-auto align-items-center">notifications</span>
+							<div class="dropdown-menu scrollable-menu" aria-labelledby="id_notification_dropdown_toggle" id="id_general_notifications_container">					
+							</div>
+						</div>
+					</div>
 				</div> 
 			</div> 
 </div> 
 	</div> 
-</section> 
+</section>  {% endcomment %}
 
 {% comment %} 
 <script>
