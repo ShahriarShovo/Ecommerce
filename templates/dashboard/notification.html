@@ -42,7 +42,7 @@
 
 
 
-    <script>
+    {% comment %} <script>
         // WebSocket code
         const notifySocket = new WebSocket(
             'ws://'
@@ -76,7 +76,7 @@
             console.log('WebSocket connection closed:', event);
         };
     </script>
-</body>
+</body> {% endcomment %}
 {% endblock body %}
 
 
