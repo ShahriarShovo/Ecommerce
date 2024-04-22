@@ -1,28 +1,19 @@
-
 {% load static %}
 {% load product_tag %}
 {% block blody %}
-
 </header> 
-
 <section class="section-intro padding-y-sm">
 <div class="container">
 {% include "messages/messages.html" %}
-
 {% for banner in banners %}
-
 <div class="intro-banner-wrap">
 	<div class="slide">
 	<img src="{{ banner.image.url }}" class="img-fluid rounded">
 	</div>
 </div>
-
 {% endfor %}
-
 </div> 
 </section>
-
-
 
 {% include 'include/side_bar.html' %}
 
@@ -84,7 +75,7 @@
 			  
       			
 			{% comment %} Need to more check {% endcomment %}
-			
+			{% if request.user.is_authenticated %}
 			 <div class="right">
 					{% if wish_list  %} 
 						<div class="icon icon-sm " ><i class="fa fa-heart  " style="color: #3167EB;"></i></div>
@@ -96,6 +87,7 @@
 						</a>
 					{% endif %} 
 			  </div> 
+			  {% endif %}
 
 			</figcaption>
 		</figure>

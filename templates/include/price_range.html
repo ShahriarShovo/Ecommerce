@@ -1,4 +1,4 @@
-
+{% comment %} 
 <style>
     input[type=range]{
     -webkit-appearance: none;
@@ -35,18 +35,13 @@
             <h6 class="title">Price range </h6>
         </a>
     </header>
-
     <div class="filter-content collapse show" id="collapse_3" style="">
-        
         <div class="card-body">
-        
         <div class="product-widget mb-30">
-           
             <div class="price__slider mt-30">
                <input type="range" class="multi-range success" style="color:red;" value="1" min="{{min_price.product_price__min}}" max="{{max_price.product_price__max}}" id="rangeInput" oninput="maxPrice.value=this.value" width="400px;"/>
                <div>
                   <form action="" class="s-form mt-20" method="get">
-
                     <div class="form-group col-md-6">
                         <label></label>
                         <input  class="mr-4 form-control" type="number" id="maxPrice"  name="FilterPrice" onkeyup="rangeInput.value=this.value" value={{FilterPrice}}>
@@ -56,8 +51,113 @@
                </div>
             </div>
          </div>
-
         </div>
-
     </div>
-</article> 
+</article>  {% endcomment %}
+
+<style>
+    /* Range Input Styles */
+    input[type=range] {
+        -webkit-appearance: none;
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 5px;
+        background: #FCBE00;
+        border: none;
+        border-radius: 3px;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: goldenrod;
+        margin-top: -5px;
+    }
+
+    input[type=range]:focus {
+        outline: none;
+    }
+
+    input[type=range]:focus::-webkit-slider-runnable-track {
+        background: #FCBE00;
+    }
+
+    /* Additional Styles */
+    .filter-group {
+        margin-bottom: 20px;
+    }
+
+    .card-header {
+        background-color: #f5f5f5;
+        padding: 10px 15px;
+        border-bottom: 1px solid #ddd;
+        cursor: pointer;
+    }
+
+    .card-header:hover {
+        background-color: #e5e5e5;
+    }
+
+    .filter-content {
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        border-top: none;
+    }
+
+    .title {
+        margin: 0;
+    }
+
+    .price__slider {
+        margin-top: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+</style>
+
+<article class="filter-group">
+    <header class="card-header">
+        <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+            <i class="icon-control fa fa-chevron-down"></i>
+            <h6 class="title">Price Range</h6>
+        </a>
+    </header>
+    <div class="filter-content collapse show" id="collapse_3" style="">
+        <div class="card-body">
+            <div class="product-widget mb-30">
+                <div class="price__slider">
+                    <input type="range" class="multi-range success" value="1" min="{{ min_price.product_price__min }}" max="{{ max_price.product_price__max }}" id="rangeInput" oninput="maxPrice.value=this.value"/>
+                    <div>
+                        <form action="" class="s-form mt-20" method="get">
+                            <div class="form-group col-md-6">
+                                <label for="maxPrice">Max Price:</label>
+                                <input class="mr-4 form-control" type="number" id="maxPrice" name="FilterPrice" onkeyup="rangeInput.value=this.value" value="{{ FilterPrice }}">
+                                <button id="priceFilterBtn" class="btn btn-primary btn-sm mt-1">Filter</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

@@ -6,20 +6,20 @@
 	<div class="col-lg-2 col-md-3 col-6">
 		<a href="{% url 'index' %}" class="brand-wrap">
 			<img class="logo" src="{% static 'images/logo.png' %}" >
-		</a> <!-- brand-wrap.// -->
+		</a>
 	</div>
 	<div class="col-lg col-sm col-md col-6 flex-grow-0">
-		<div class="category-wrap dropdown d-inline-block float-right">
+		{% comment %} <div class="category-wrap dropdown d-inline-block float-right">
 			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 
 				<i class="fa fa-bars"></i> All category 
 			</button>
-			<div class="dropdown-menu">
+			 <div class="dropdown-menu">
 				 {% for cat in category_name %}
 				<a class="dropdown-item" href="#">{{cat.category_name}} </a>
 				{% endfor %}
-			</div>
-		</div>  <!-- category-wrap.// -->
-	</div> <!-- col.// -->
+			</div> 
+		</div>   {% endcomment %}
+	</div> 
 	{% comment %} <a href="./index.html" class="btn btn-outline-primary">Store</a> {% endcomment %}
 	<div class="col-lg  col-md-6 col-sm-12 col">
 		<form action="#" class="search">
@@ -32,8 +32,8 @@
 			      </button>
 			    </div>
 		    </div>
-		</form> <!-- search-wrap .end// -->
-	</div> <!-- col.// -->
+		</form> 
+	</div> 
 	<div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
 				<div class="d-flex justify-content-end mb-3 mb-lg-0">
 					<div class="widget-header">
@@ -44,12 +44,9 @@
 							
 						</div>
 					</div>
-					<a href="{% url 'cart_view' %}" class="widget-header pl-3 ml-3">
-						<div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
-						{% comment %} <span class="badge badge-pill badge-danger notify">{{ request.user.id | cart_total }}</span> {% endcomment %}
-					</a>
-				</div> <!-- widgets-wrap.// -->
-			</div> <!-- col.// -->
-</div> <!-- row.// -->
-	</div> <!-- container.// -->
+					
+				</div> 
+			</div> 
+</div> 
+	</div> 
 </section> 
