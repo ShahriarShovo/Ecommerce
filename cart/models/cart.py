@@ -39,7 +39,7 @@ class Cart (models.Model):
                    if item.product_Size_variant else item.product.product_price  * item.quantity
                     for item in cart_items)
         
-        #print("Final ---------------------------------------------",final_total)
+        print("Final ---------------------------------------------",final_total)
 
         if self.coupon:
              return final_total - self.coupon.discount

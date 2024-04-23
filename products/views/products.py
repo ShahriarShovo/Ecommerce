@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from products.models.products_model import Products,Customer_Review
 from django.core.paginator import Paginator
 from cart.models.wish_list import Wish_List
@@ -15,10 +15,16 @@ def index(request):
 
     min_price = Products.objects.all().aggregate(Min('product_price'))
     max_price = Products.objects.all().aggregate(Max('product_price'))
-    # print(min_price)
-    # print(max_price)
+    print(min_price)
+    print(max_price)
+    m1=min_price['product_price__min']
+    m2=max_price['product_price__max']
+    print(type(m1))
+    print(m2)
 
     FilterPrice = request.GET.get('FilterPrice')
+    print('fatch_all_products++++++++++++',type(FilterPrice))
+ 
 
     if FilterPrice:
         Int_FilterPrice = int(FilterPrice)
@@ -30,7 +36,14 @@ def index(request):
 
     
     for product in fatch_all_products:
-        reviews_count = Customer_Review.objects.filter(products=product.id).count()
+        try:
+            reviews_count = Customer_Review.objects.filter(products=product.id).count()
+        except Exception as e:
+            print("Error occurred while fetching reviews:", e)
+            reviews_count = 0
+
+        # reviews_count = Customer_Review.objects.filter(products=product.id).count()
+        # wish_list = None
     
         if request.user.is_authenticated :
             wish_list= Wish_List.objects.filter(user=request.user, products=product.id, is_added=True)

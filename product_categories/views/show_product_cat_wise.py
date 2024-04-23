@@ -31,4 +31,4 @@ def show_product_cat_wise(request,pk):
 
     # print("Pagination for cat ----", paged_product)
 
-    return render(request,'category/show_cat_wise_product.htm', context=context)
+    return render(request,'category/show_cat_wise_product.html', context=context)
