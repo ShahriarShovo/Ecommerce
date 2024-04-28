@@ -1,0 +1,1 @@
+from chat_notification.consumers.notification import NotificationConsumer

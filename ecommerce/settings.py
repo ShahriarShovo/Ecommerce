@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'admin_panel',
     'system_setting',
     'chat_notification',
+    'custom_middleware'
     
     
 ]
